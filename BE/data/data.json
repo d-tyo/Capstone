@@ -1,0 +1,214 @@
+{
+    "students":
+    [
+        {
+          "name": "Anya Forger",
+          "userName": "anya_forger",
+          "email": "anya.forger@example.com",
+          "contact": "+6427000001",
+          "DOB": "1995-03-10T12:00:00.000Z",
+          "location": "NZ",
+          "grade": "year 1",
+          "capability": "Mind Reader",
+          "teacherId": 7
+        },
+        {
+          "name": "Loid Forger",
+          "userName": "loid_forger",
+          "email": "loid.forger@example.com",
+          "contact": "+6427000002",
+          "DOB": "1988-07-22T12:00:00.000Z",
+          "location": "AU",
+          "grade": "ECE",
+          "capability": "Intellectual",
+          "teacherId": 2
+        },
+        {
+          "name": "Yor Forger",
+          "userName": "yor_forger",
+          "email": "yor.forger@example.com",
+          "contact": "+6427000003",
+          "DOB": "1990-12-15T12:00:00.000Z",
+          "location": "AU",
+          "grade": "ECE",
+          "capability": "Stamina Strength",
+          "teacherId": 5
+        },
+        {
+          "name": "Damian Desmond",
+          "userName": "damian_desmond",
+          "email": "damian.desmond@example.com",
+          "contact": "+6427000004",
+          "DOB": "1982-05-08T12:00:00.000Z",
+          "location": "NZ",
+          "grade": "year 1",
+          "capability": "Endurance",
+          "teacherId": 3
+        },
+        {
+          "name": "Ciel Phantomhive",
+          "userName": "ciel_phantomhive",
+          "email": "ciel.phantomhive@example.com",
+          "contact": "+6427000005",
+          "DOB": "1993-09-18T12:00:00.000Z",
+          "location": "AU",
+          "grade": "ECE",
+          "capability": "Intellectual",
+          "teacherId": 8
+        },
+        {
+          "name": "Gon Freecss",
+          "userName": "gon_freecss",
+          "email": "gon.freecss@example.com",
+          "contact": "+6427000006",
+          "DOB": "1998-02-03T12:00:00.000Z",
+          "location": "NZ",
+          "grade": "ECE",
+          "capability": "Stamina Strength",
+          "teacherId": 9
+        },
+        {
+          "name": "Killua Zoldyck",
+          "userName": "killua_zoldyck",
+          "email": "killua.zoldyck@example.com",
+          "contact": "+6427000007",
+          "DOB": "1997-07-07T12:00:00.000Z",
+          "location": "AU",
+          "grade": "ECE",
+          "capability": "Electric Shock",
+          "teacherId": 6
+        },
+        {
+          "name": "Edward Elric",
+          "userName": "edward_elric",
+          "email": "edward.elric@example.com",
+          "contact": "+6427000008",
+          "DOB": "1990-12-25T12:00:00.000Z",
+          "location": "AU",
+          "grade": "year 1",
+          "capability": "Alchemist",
+          "teacherId": 1
+        },
+        {
+          "name": "Azuma Kazuma",
+          "userName": "azuma_kazuma",
+          "email": "azuma.kazuma@example.com",
+          "contact": "+6427000009",
+          "DOB": "1985-10-30T12:00:00.000Z",
+          "location": "NZ",
+          "grade": "ECE",
+          "capability": "Baking",
+          "teacherId": 10
+        },
+        {
+          "name": "Ash Ketchum",
+          "userName": "ash_ketchum",
+          "email": "ash.ketchum@example.com",
+          "contact": "+6427000010",
+          "DOB": "1992-03-14T12:00:00.000Z",
+          "location": "AU",
+          "grade": "year 1",
+          "capability": "Empathy",
+          "teacherId": 4
+        },
+        {
+          "name": "Nicole Nicole",
+          "userName": "nicole_nicole",
+          "email": "nicole.nicole@example.com",
+          "contact": "+6427000011",
+          "DOB": "1989-11-05T12:00:00.000Z",
+          "location": "NZ",
+          "grade": "ECE",
+          "capability": "Empathy",
+          "teacherId": 5
+        },
+        {
+          "name": "Heihachi Mishima",
+          "userName": "heihachi_mishima",
+          "email": "heihachi.mishima@example.com",
+          "contact": "+6427000012",
+          "DOB": "1980-06-21T12:00:00.000Z",
+          "location": "AU",
+          "grade": "year 1",
+          "capability": "Stamina Strength",
+          "teacherId": 9
+        }
+      ],      
+      "teachers":
+      
+        [
+            {
+              "name": "Sarah Johnson",
+              "email": "sarah.johnson@example.com",
+              "DOB": "1985-07-15T12:00:00.000Z",
+              "grade": "Primary",
+              "contactNumber": "+6427001234"
+            },
+            {
+              "name": "Emily Davis",
+              "email": "emily.davis@example.com",
+              "DOB": "1978-04-22T12:00:00.000Z",
+              "grade": "Secondary",
+              "contactNumber": "+6427005678"
+            },
+            {
+              "name": "David Wilson",
+              "email": "david.wilson@example.com",
+              "DOB": "1990-12-10T12:00:00.000Z",
+              "grade": "University",
+              "contactNumber": "+6427012345"
+            },
+            {
+              "name": "Jessica Adams",
+              "email": "jessica.adams@example.com",
+              "DOB": "1983-09-05T12:00:00.000Z",
+              "grade": "ECE",
+              "contactNumber": "+6427023456"
+            },
+            {
+              "name": "Christopher Lee",
+              "email": "christopher.lee@example.com",
+              "DOB": "1975-11-28T12:00:00.000Z",
+              "grade": "Primary",
+              "contactNumber": "+6427034567"
+            },
+            {
+              "name": "Emma Turner",
+              "email": "emma.turner@example.com",
+              "DOB": "1988-03-18T12:00:00.000Z",
+              "grade": "Secondary",
+              "contactNumber": "+6427045678"
+            },
+            {
+              "name": "Alex Johnson",
+              "email": "alex.johnson@example.com",
+              "DOB": "1992-06-07T12:00:00.000Z",
+              "grade": "University",
+              "contactNumber": "+6427056789"
+            },
+            {
+              "name": "Grace Davis",
+              "email": "grace.davis@example.com",
+              "DOB": "1980-01-25T12:00:00.000Z",
+              "grade": "ECE",
+              "contactNumber": "+6427067890"
+            },
+            {
+              "name": "Ella Taylor",
+              "email": "ella.taylor@example.com",
+              "DOB": "1987-08-12T12:00:00.000Z",
+              "grade": "Primary",
+              "contactNumber": "+6427078901"
+            },
+            {
+              "name": "Lucas Moore",
+              "email": "lucas.moore@example.com",
+              "DOB": "1984-02-14T12:00:00.000Z",
+              "grade": "Secondary",
+              "contactNumber": "+6427089012"
+            }
+          ]
+          
+   
+
+}
