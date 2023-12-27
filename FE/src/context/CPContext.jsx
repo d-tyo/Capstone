@@ -10,7 +10,7 @@ export const CPProvider = (props) => {
   const [currentCP, setCurrentCP] = useState({});
 
   // sets user object in state, shared via context
-  const handleUpdateCP = (user) => {
+const handleUpdateCP = (user) => {
     setCurrentCP(user);
   };
 
@@ -20,7 +20,7 @@ export const CPProvider = (props) => {
   // sends data via its value prop to all children at every level.
   // We are sending both the current user and an update function
   return (
-    <CPContext.Provider value={{ currentCircle, handleUpdateCP }}>
+    <CPContext.Provider value={{ currentCP, handleUpdateCP }}>
       {props.children}
     </CPContext.Provider>
   );
