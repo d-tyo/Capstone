@@ -1,6 +1,7 @@
 import * as React from 'react';
 import { DataGridPro } from '@mui/x-data-grid-pro';
 import { useData } from '../hooks/useData';
+import { useDemoData } from '@mui/x-data-grid-generator';
 
 
 function updateRowPosition(initialIndex, newIndex, rows) {
@@ -15,18 +16,19 @@ function updateRowPosition(initialIndex, newIndex, rows) {
 }
 
 export default function StudentList() {
-//   const { data, loading: initialLoadingState } = useDemoData({
+//   const { data, loading: initialLoadingState }  = useDemoData({
 //     dataSet: 'Commodity',
 //     rowLength: 20,
 //     maxColumns: 20,
 //   });
 
-const data = useData(`http://localhost:8080/api/student`)
-  const [rows, setRows] = React.useState(data.rows);
+const data = useData(`http://localhost:3000/students`)
+  const [rows, setRows] = React.useState(data);
 //   const [loading, setLoading] = React.useState(initialLoadingState);
+console.log(data)
 
   React.useEffect(() => {
-    setRows(data.rows);
+    setRows(data);
   }, [data]);
 
 //   React.useEffect(() => {
@@ -42,7 +44,7 @@ const data = useData(`http://localhost:8080/api/student`)
     );
 
     setRows(newRows);
-    setLoading(false);
+    // setLoading(false);
   };
 
   return (

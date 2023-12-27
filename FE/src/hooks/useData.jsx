@@ -11,8 +11,10 @@ export function useData(url, defaultValue = {}) {
       fetch(url)
         .then((response) => response.json())
         .then((json) => {
+          
           if (!ignore) {
             setData(json);
+            console.log(json)
           }
         })
         .catch(error => setData(error.message)); //it tells you what the errora are
