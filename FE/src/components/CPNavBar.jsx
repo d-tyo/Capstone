@@ -123,7 +123,7 @@ export default function PersistentDrawerLeft() {
         <List>
           {['Account', 'Dashboard', 'Students', 'Courses', 'Help'].map((text, index) => (
             <ListItem key={text} disablePadding>
-              <NavLink to = {text} >
+              <NavLink to = {text.toLowerCase()} >
               <ListItemButton>
                 <ListItemIcon>
                   {index % 2 === 0 ? <InboxIcon /> : <MailIcon />}

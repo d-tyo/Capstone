@@ -5,7 +5,10 @@ import LogInPage from "../pages/LogInPage";
 import StudentPage from "../pages/StudentPage";
 import Dashboard from "../pages/Dashboard";
 import ProtectedRoute from "./ProtectedRoute";
-
+import AccountPage from "../pages/AccountPage";
+import LessonPage from "../pages/LessonPage";
+import HelpPage from "../pages/HelpPage";
+import ProfilePage from "../pages/ProfilePage";
 
 
 
@@ -18,13 +21,36 @@ function AppRoutes(props) {
     <Routes>
      <Route index element={<LandingPage/>}/>
      <Route path="/signup" element={<SignUp {...props} />} />
-     <Route path ="/Students" element= {<ProtectedRoute><StudentPage/></ProtectedRoute>}/>
+     <Route path ="/students" element= {<ProtectedRoute><StudentPage/></ProtectedRoute>}/>
      <Route path ="/loginpage" element= {<LogInPage/>}/>
-     <Route path ="/dashboard" element= {<ProtectedRoute><Dashboard/></ProtectedRoute>}/>
+     <Route path ="/account" element= {
+    //  <ProtectedRoute>
+        <AccountPage/>
+        //* </ProtectedRoute> */
+    }/>
+     <Route path ="/dashboard" element= {
+    //  <ProtectedRoute>
+        <Dashboard/>
+        //* </ProtectedRoute> */
+    }/>
+      
+      <Route path ="/courses" element= {
+    //  <ProtectedRoute>
+        <LessonPage/>
+        //* </ProtectedRoute> */
+    }/>
+      <Route path ="/help" element= {
+    //  <ProtectedRoute>
+        <HelpPage/>
+        //* </ProtectedRoute> */
+    }/>
+
+<Route path ="/profile" element= {
+    //  <ProtectedRoute>
+        <ProfilePage/>
+        //* </ProtectedRoute> */
+    }/>
     
-
-
-     
     </Routes>
 
     
