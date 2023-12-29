@@ -1,7 +1,9 @@
 import { Routes, Route } from "react-router-dom";
 import LandingPage from "../pages/LandingPage";
 import SignUp from "../pages/SignUp";
-import StudentList from "../pages/StudentList";
+import LogInPage from "../pages/LogInPage";
+import StudentPage from "../pages/StudentPage";
+import Dashboard from "../pages/Dashboard";
 
 
 
@@ -14,7 +16,9 @@ function AppRoutes(props) {
     <Routes>
      <Route index element={<LandingPage/>}/>
      <Route path="/signup" element={<SignUp {...props} />} />
-     <Route path ="/studentlist" element= {<StudentList/>}/>
+     <Route path ="/Students" element= {<StudentPage/>}/>
+     <Route path ="/loginpage" element= {<LogInPage/>}/>
+     <Route path ="/dashboard" element= {<Dashboard/>}/>
     
 
 

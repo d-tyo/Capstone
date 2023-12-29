@@ -20,6 +20,8 @@ import InboxIcon from '@mui/icons-material/MoveToInbox';
 import MailIcon from '@mui/icons-material/Mail';
 import Switch from './Switch';
 import AppRoutes from '../routes/AppRoutes';
+import AccountCircleOutlinedIcon from '@mui/icons-material/AccountCircleOutlined';
+import {NavLink} from 'react-router-dom'
 
 const drawerWidth = 240;
 
@@ -119,18 +121,20 @@ export default function PersistentDrawerLeft() {
           </IconButton>
         </DrawerHeader>
         <List>
-          {['Inbox', 'Starred', 'Send email', 'Drafts'].map((text, index) => (
+          {['Account', 'Dashboard', 'Students', 'Courses', 'Help'].map((text, index) => (
             <ListItem key={text} disablePadding>
+              <NavLink to = {text} >
               <ListItemButton>
                 <ListItemIcon>
                   {index % 2 === 0 ? <InboxIcon /> : <MailIcon />}
                 </ListItemIcon>
                 <ListItemText primary={text} />
               </ListItemButton>
+              </NavLink>
             </ListItem>
+           
           ))}
         </List>
-        <Divider />
         <List>
           {['All mail', 'Trash', 'Spam'].map((text, index) => (
             <ListItem key={text} disablePadding>

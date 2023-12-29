@@ -1,6 +1,5 @@
 import * as React from 'react';
 import { DataGridPro } from '@mui/x-data-grid-pro';
-import { useData } from '../hooks/useData';
 import { useDemoData } from '@mui/x-data-grid-generator';
 
 
@@ -15,25 +14,30 @@ function updateRowPosition(initialIndex, newIndex, rows) {
   });
 }
 
-export default function StudentList() {
-//   const { data, loading: initialLoadingState }  = useDemoData({
-//     dataSet: 'Commodity',
-//     rowLength: 20,
-//     maxColumns: 20,
-//   });
+export default function StudentList(props) {
+  // const { data, loading: initialLoadingState }  = useDemoData({
+  //   dataSet: 'Commodity',
+  //   rowLength: 20,
+  //   maxColumns: 20,
+  // });
 
-const data = useData(`http://localhost:3000/students`)
-  const [rows, setRows] = React.useState(data);
-//   const [loading, setLoading] = React.useState(initialLoadingState);
-console.log(data)
+const data = props.data
+// const columns = props.columns
+  const [rows, setRows] = React.useState(Array.isArray(data.rows) ? data.rows : []);
+  // const [loading, setLoading] = React.useState(initialLoadingState);
+// console.log(typeof(columns))
+// console.log(typeof(rows))
+// console.log(columns)
+// console.log(rows)
 
-  React.useEffect(() => {
-    setRows(data);
-  }, [data]);
+React.useEffect(() => {
+  console.log(data);
+    setRows(data.rows);
+}, [data]);
 
-//   React.useEffect(() => {
-//     setLoading(initialLoadingState);
-//   }, [initialLoadingState]);
+  // React.useEffect(() => {
+  //   setLoading(initialLoadingState);
+  // }, [initialLoadingState]);
 
   const handleRowOrderChange = async (params) => {
     setLoading(true);
@@ -44,18 +48,23 @@ console.log(data)
     );
 
     setRows(newRows);
-    // setLoading(false);
+    setLoading(false);
   };
+  console.log(Array.isArray(data.rows))
+  console.log(data)
 
   return (
     <div style={{ height: 400, width: '100%' }}>
-      <DataGridPro
+      {/* {typeof(data.rows) === 'array'? */}
+        <DataGridPro
         {...data}
         // loading={loading}
         rows={rows}
+        // columns={columns}
         rowReordering
         onRowOrderChange={handleRowOrderChange}
       />
+        {/* :null} */}
     </div>
   );
 }

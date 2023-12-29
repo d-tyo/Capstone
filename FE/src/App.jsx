@@ -6,6 +6,7 @@ import CPNavBar from './components/CPNavBar'
 import AppRoutes from './routes/AppRoutes'
 import { CPProvider } from './context/CPContext'
 
+
 function App() {
   const [count, setCount] = useState(0)
 
@@ -14,7 +15,8 @@ function App() {
   
       <CPProvider>
        <CPNavBar/>
-       
+    
+
 
       </CPProvider>
       
