@@ -4,6 +4,8 @@ import SignUp from "../pages/SignUp";
 import LogInPage from "../pages/LogInPage";
 import StudentPage from "../pages/StudentPage";
 import Dashboard from "../pages/Dashboard";
+import ProtectedRoute from "./ProtectedRoute";
+
 
 
 
@@ -16,9 +18,9 @@ function AppRoutes(props) {
     <Routes>
      <Route index element={<LandingPage/>}/>
      <Route path="/signup" element={<SignUp {...props} />} />
-     <Route path ="/Students" element= {<StudentPage/>}/>
+     <Route path ="/Students" element= {<ProtectedRoute><StudentPage/></ProtectedRoute>}/>
      <Route path ="/loginpage" element= {<LogInPage/>}/>
-     <Route path ="/dashboard" element= {<Dashboard/>}/>
+     <Route path ="/dashboard" element= {<ProtectedRoute><Dashboard/></ProtectedRoute>}/>
     
 
 

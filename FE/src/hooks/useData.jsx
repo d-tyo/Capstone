@@ -13,8 +13,8 @@ export function useData(url, defaultValue = {}) {
         .then((json) => {
           
           if (!ignore) {
-            setData(json);
-            console.log(json)
+            setData(json.data);
+         
           }
         })
         .catch(error => setData(error.message)); //it tells you what the errora are

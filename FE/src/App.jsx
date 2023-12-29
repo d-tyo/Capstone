@@ -12,13 +12,13 @@ function App() {
 
   return (
     <> 
-  
-      <CPProvider>
-       <CPNavBar/>
+
+        <CPProvider>
+           <CPNavBar/>
+
+        </CPProvider>
+     
     
-
-
-      </CPProvider>
       
 
     
