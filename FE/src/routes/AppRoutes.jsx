@@ -5,10 +5,11 @@ import LogInPage from "../pages/LogInPage";
 import StudentPage from "../pages/StudentPage";
 import Dashboard from "../pages/Dashboard";
 import ProtectedRoute from "./ProtectedRoute";
-import AccountPage from "../pages/AccountPage";
 import LessonPage from "../pages/LessonPage";
 import HelpPage from "../pages/HelpPage";
 import ProfilePage from "../pages/ProfilePage";
+import TeacherPage from "../pages/TeacherPage";
+import LogOut from "../pages/LogOut";
 
 
 
@@ -21,13 +22,13 @@ function AppRoutes(props) {
     <Routes>
      <Route index element={<LandingPage/>}/>
      <Route path="/signup" element={<SignUp {...props} />} />
-     <Route path ="/students" element= {<ProtectedRoute><StudentPage/></ProtectedRoute>}/>
-     <Route path ="/loginpage" element= {<LogInPage/>}/>
-     <Route path ="/account" element= {
-    //  <ProtectedRoute>
-        <AccountPage/>
-        //* </ProtectedRoute> */
+     <Route path ="/students" element= {
+        // <ProtectedRoute>
+        <StudentPage/>
+        // </ProtectedRoute>
     }/>
+     <Route path ="/loginpage" element= {<LogInPage/>}/>
+    
      <Route path ="/dashboard" element= {
     //  <ProtectedRoute>
         <Dashboard/>
@@ -45,15 +46,22 @@ function AppRoutes(props) {
         //* </ProtectedRoute> */
     }/>
 
-<Route path ="/profile" element= {
+    <Route path ="/profile" element= {
     //  <ProtectedRoute>
         <ProfilePage/>
         //* </ProtectedRoute> */
     }/>
     
-    </Routes>
+    <Route path ="/teachers" element= {
+        // <ProtectedRoute>
+        <TeacherPage/>
+        // </ProtectedRoute>
+    }/>
+   
 
-    
+   <Route path ="/logout" element= {<LogOut/>}/>
+
+   </Routes>
   );
 }
 

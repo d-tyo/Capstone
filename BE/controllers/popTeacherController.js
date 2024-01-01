@@ -22,7 +22,8 @@ const storeTeacher = async (res) => {
             email: teacher.email,
             grade: teacher.grade,
             DOB: teacher.DOB,
-            contact: teacher.contactNumber
+            contact: teacher.contactNumber,
+            password: teacher.password,
         
         };
         console.log(teacher.DOB)

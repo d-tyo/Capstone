@@ -22,6 +22,8 @@ import Switch from './Switch';
 import AppRoutes from '../routes/AppRoutes';
 import AccountCircleOutlinedIcon from '@mui/icons-material/AccountCircleOutlined';
 import {NavLink} from 'react-router-dom'
+import { useCPContext } from '../context/CPContext'; 
+import AccountComponent from './AccountComponent';
 
 const drawerWidth = 240;
 
@@ -73,6 +75,7 @@ const DrawerHeader = styled('div')(({ theme }) => ({
 export default function PersistentDrawerLeft() {
   const theme = useTheme();
   const [open, setOpen] = React.useState(false);
+  const {currentCP} = useCPContext();
 
   const handleDrawerOpen = () => {
     setOpen(true);
@@ -121,20 +124,26 @@ export default function PersistentDrawerLeft() {
           </IconButton>
         </DrawerHeader>
         <List>
-          {['Account', 'Dashboard', 'Students', 'Courses', 'Help'].map((text, index) => (
-            <ListItem key={text} disablePadding>
-              <NavLink to = {text.toLowerCase()} >
-              <ListItemButton>
-                <ListItemIcon>
-                  {index % 2 === 0 ? <InboxIcon /> : <MailIcon />}
-                </ListItemIcon>
-                <ListItemText primary={text} />
-              </ListItemButton>
-              </NavLink>
-            </ListItem>
-           
-          ))}
-        </List>
+        {['Account', 'Dashboard', 'Students', 'Courses', 'Help'].map((text, index) => (
+         // <> {currentCP.firstName ?}
+         <React.Fragment key={text}>
+            {text === 'Account' ? (
+              <AccountComponent key={text} />
+            ) : (
+              <ListItem key={text} disablePadding>
+                <NavLink to={text.toLowerCase()}>
+                  <ListItemButton>
+                    <ListItemIcon>{index % 2 === 0 ? <InboxIcon /> : <MailIcon />}</ListItemIcon>
+                    <ListItemText primary={text} />
+                  </ListItemButton>
+                </NavLink>
+              </ListItem>
+            )}
+          </React.Fragment>
+          // : null
+          // } </>
+        ))}
+      </List>
         <List>
           {['All mail', 'Trash', 'Spam'].map((text, index) => (
             <ListItem key={text} disablePadding>

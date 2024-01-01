@@ -1,6 +1,6 @@
-export const objarr = {columns:[
+export const stuobjarr = {columns:[
     {
-      "field": "name",
+      "field": "studentName",
       "headerName": "Name",
       "editable": true,
       "width": 120
@@ -47,5 +47,37 @@ export const objarr = {columns:[
       "editable": true,
       "width": 120
     }
+  ],
+  rows:[]}
+
+  export const trobjarr = {columns:[
+    {
+      "field": "teacherName",
+      "headerName": "Name",
+      "editable": true,
+      "width": 120
+    },
+   
+    {
+      "field": "email",
+      "headerName": "Email",
+      "editable": true,
+      "width": 120
+    },
+    {
+      "field": "contact",
+      "headerName": "Contact",
+      "editable": true,
+      "width": 120
+    },
+    
+    {
+      "field": "grade",
+      "headerName": "Grade",
+      "editable": true,
+      "width": 120
+    },
+    
+  
   ],
   rows:[]}

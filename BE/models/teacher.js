@@ -27,6 +27,11 @@ Teacher.init(
       required: true,
       unique: true,
     },
+    password: {
+      type: DataTypes.STRING,
+      allowNull: false,
+      required: true,
+    },
    
     grade: {
       type: DataTypes.STRING,
@@ -34,6 +39,7 @@ Teacher.init(
       required: false,
       unique: false, //it cannot be different
     },
+    
     contact: {
       type: DataTypes.STRING,
       allowNull: false,

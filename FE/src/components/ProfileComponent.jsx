@@ -1,8 +1,8 @@
 import React, { useState } from "react";
-import TextField from "@mui/material/TextField";
-import Grid from "@mui/material/Grid";
+import {TextField, Grid, } from "@mui/material";
 import Container from "@mui/material/Container";
 import Box from "@mui/material/Box";
+import FormControl from "@mui/material/FormControl"
 
 export default function ProfileComponent() {
   const [name, setName] = useState("");
@@ -16,6 +16,7 @@ export default function ProfileComponent() {
     <Container component="main" maxWidth="md">
       <Box sx={{ display: "flex", justifyContent: "center", alignItems: "center", height: "100vh" }}>
         <Grid container spacing={2}>
+            <FormControl>
           <Grid item xs={12} />
           <TextField
             type="fullname"
@@ -25,7 +26,7 @@ export default function ProfileComponent() {
             sx= {{borderRadius: 200}}
           />
           <Grid />
-
+        <br/>
           <Grid item xs={12} />
           <TextField
             type="email"
@@ -35,6 +36,7 @@ export default function ProfileComponent() {
             sx= {{borderRadius: 200}}
           />
           <Grid />
+          <br/>
 
           <Grid item xs={12} />
           <TextField
@@ -45,6 +47,7 @@ export default function ProfileComponent() {
             sx= {{borderRadius: 200}}
           />
           <Grid />
+          <br/>
 
           <Grid item xs={12} />
           <TextField
@@ -55,6 +58,7 @@ export default function ProfileComponent() {
             sx= {{borderRadius: 200}}
           />
           <Grid />
+          <br/>
 
           <Grid item xs={12} />
           <TextField
@@ -65,6 +69,7 @@ export default function ProfileComponent() {
             sx= {{borderRadius: 200}}
           />
           <Grid />
+          <br/>
 
           <Grid item xs={12} />
           <TextField
@@ -75,6 +80,7 @@ export default function ProfileComponent() {
             sx= {{borderRadius: 200}}
           />
           <Grid />
+          </FormControl>
         </Grid>
       </Box>
     </Container>

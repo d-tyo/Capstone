@@ -25,7 +25,10 @@ const storeStudent = async (res) => {
             email: student.email,
             DOB: student.DOB,
             grade: student.grade,
-            contact: student.contact
+            contact: student.contact,
+            password: student.password,
+            capability: student.capability,
+            location: student.location
         
         
         };

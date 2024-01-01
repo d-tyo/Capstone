@@ -39,12 +39,18 @@ Student.init(
       required: true,
       unique: true,
     },
-    // password: {
-    //   type: DataTypes.STRING,
-    //   allowNull: false,
-    //   required: true,
-    // },
+    password: {
+      type: DataTypes.STRING,
+      allowNull: false,
+      required: true,
+    },
     grade: {
+      type: DataTypes.STRING,
+      allowNull: false,
+      required: false,
+      // unique: true,
+    },
+    capability: {
       type: DataTypes.STRING,
       allowNull: false,
       required: false,
@@ -61,6 +67,13 @@ Student.init(
       allowNull: false,
       required: true,
       // unique: true,
+    },
+    location: {
+      type: DataTypes.STRING,
+      allowNull: false,
+      required: true,
+      // unique: true,
+      
     },
     
   },

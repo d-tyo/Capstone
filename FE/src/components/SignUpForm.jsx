@@ -1,39 +1,32 @@
 import React, { useState } from "react";
-import { useCPContext } from "../context/CPContext";
-import { useMyThemeContext } from "../context/MyThemeContext";
-import Avatar from '@mui/material/Avatar';
-import Button from '@mui/material/Button';
-import CssBaseline from '@mui/material/CssBaseline';
-import TextField from '@mui/material/TextField';
-import FormControlLabel from '@mui/material/FormControlLabel';
-import Checkbox from '@mui/material/Checkbox';
-import Link from '@mui/material/Link';
-import Grid from '@mui/material/Grid';
-import Box from '@mui/material/Box';
-import LockOutlinedIcon from '@mui/icons-material/LockOutlined';
-import Typography from '@mui/material/Typography';
-import Container from '@mui/material/Container';
-import InputLabel from '@mui/material/InputLabel';
-import MenuItem from '@mui/material/MenuItem';
-import FormControl from '@mui/material/FormControl';
-import Select from '@mui/material/Select';
-import { createTheme, ThemeProvider } from '@mui/material/styles';
+import Avatar from "@mui/material/Avatar";
+import Button from "@mui/material/Button";
+import CssBaseline from "@mui/material/CssBaseline";
+import TextField from "@mui/material/TextField";
+import FormControlLabel from "@mui/material/FormControlLabel";
+import Checkbox from "@mui/material/Checkbox";
+import Link from "@mui/material/Link";
+import Grid from "@mui/material/Grid";
+import Box from "@mui/material/Box";
+import LockOutlinedIcon from "@mui/icons-material/LockOutlined";
+import Typography from "@mui/material/Typography";
+import Container from "@mui/material/Container";
+import InputLabel from "@mui/material/InputLabel";
+import MenuItem from "@mui/material/MenuItem";
+import FormControl from "@mui/material/FormControl";
+import Select from "@mui/material/Select";
+import { createTheme, ThemeProvider } from "@mui/material/styles";
 
-const defaultTheme = createTheme();
+// Create a Material-UI theme
+const theme = createTheme();
 
 function SignUpForm() {
   const [userEmail, setUserEmail] = useState("");
   const [userPassword, setUserPassword] = useState("");
   const [userName, setUserName] = useState("");
-  const [submitResult, setSubmitResult] = useState('');
+  const [submitResult, setSubmitResult] = useState("");
   const [loginAttempts, setLoginAttempts] = useState(0);
-  const [AL, setAL] = useState('');
-  const { currentCP, handleUpdateCP } = useCPContext();
-  const { theme } = useMyThemeContext();
-
-  const loginOK = currentCP.email;
-
-
+  const [AL, setAL] = useState("");
 
   const handleChange = (event) => {
     setAL(event.target.value);
@@ -51,6 +44,7 @@ function SignUpForm() {
     } else if (userPassword === userEmail) {
       setSubmitResult("Password must not match email address");
       setLoginAttempts(loginAttempts + 1);
+
     } else {
       setSubmitResult("Successful sign-up.");
       handleUpdateCP({ name: userName, email: userEmail, password: userPassword });
@@ -61,7 +55,7 @@ function SignUpForm() {
   if (loginOK) return <p>You are already logged in.</p>;
 
   return (
-    <ThemeProvider theme={defaultTheme}>
+<ThemeProvider theme={theme}>
       <Container component="main" maxWidth="xs">
         <CssBaseline />
         <Grid
