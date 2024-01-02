@@ -6,6 +6,10 @@ router.get("/", (req, res) => {
   Controllers.lessonController.getLessons(res);
 });
 
+router.get("/:id", (req, res) => {
+  Controllers.lessonController.getLesson(req, res);
+});
+
 router.post("/create", (req, res) => {
   Controllers.lessonController.createLesson(req.body, res);
 });

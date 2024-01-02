@@ -1,25 +1,26 @@
-import * as React from 'react';
-import { Popper } from '@mui/base/Popper';
-import { ClickAwayListener } from '@mui/base/ClickAwayListener';
-import { styled } from '@mui/joy/styles';
-import Button from '@mui/joy/Button';
-import MenuList from '@mui/joy/MenuList';
-import MenuItem from '@mui/joy/MenuItem';
-import MenuButton from '@mui/joy/MenuButton';
-import MenuIcon from '@mui/icons-material/Menu';
-import List from '@mui/joy/List';
-import ListItem from '@mui/joy/ListItem';
-import ListItemDecorator from '@mui/joy/ListItemDecorator';
-import ListDivider from '@mui/joy/ListDivider';
-import Menu from '@mui/joy/Menu';
-import ArrowRight from '@mui/icons-material/ArrowRight';
-import ArrowDropDown from '@mui/icons-material/ArrowDropDown';
-import Dropdown from '@mui/joy/Dropdown';
-import Switch from '@mui/material/Switch';
-import FormGroup from '@mui/material/FormGroup';
-import FormControlLabel from '@mui/material/FormControlLabel';
-import Box from '@mui/material/Box';
-import AccountCircleIcon from '@mui/icons-material/AccountCircle';
+import * as React from "react";
+import { Popper } from "@mui/base/Popper";
+import { ClickAwayListener } from "@mui/base/ClickAwayListener";
+import { styled } from "@mui/joy/styles";
+import Button from "@mui/joy/Button";
+import MenuList from "@mui/joy/MenuList";
+import MenuItem from "@mui/joy/MenuItem";
+import MenuButton from "@mui/joy/MenuButton";
+import MenuIcon from "@mui/icons-material/Menu";
+import List from "@mui/joy/List";
+import ListItem from "@mui/joy/ListItem";
+import ListItemDecorator from "@mui/joy/ListItemDecorator";
+import ListDivider from "@mui/joy/ListDivider";
+import Menu from "@mui/joy/Menu";
+import ArrowRight from "@mui/icons-material/ArrowRight";
+import ArrowDropDown from "@mui/icons-material/ArrowDropDown";
+import Dropdown from "@mui/joy/Dropdown";
+import Switch from "@mui/material/Switch";
+import FormGroup from "@mui/material/FormGroup";
+import FormControlLabel from "@mui/material/FormControlLabel";
+import Box from "@mui/material/Box";
+import AccountCircleIcon from "@mui/icons-material/AccountCircle";
+import DropDown from "./DropDown";
 
 const Popup = styled(Popper)({
   zIndex: 1000,
@@ -40,20 +41,19 @@ export default function AccountComponent() {
   };
 
   const handleListKeyDown = (event) => {
-    if (event.key === 'Tab') {
+    if (event.key === "Tab") {
       setOpen(false);
-    } else if (event.key === 'Escape') {
+    } else if (event.key === "Escape") {
       buttonRef.current.focus();
       setOpen(false);
     }
   };
 
-  const SIZES = ['Small', 'Medium', 'Large', 'X-Large'];
-  const [size, setSize] = React.useState('Medium');
+  const SIZES = ["Small", "Medium", "Large", "X-Large"];
+  const [size, setSize] = React.useState("Medium");
 
-  
   return (
-    <Box sx={{ display: 'flex', alignItems: 'center', flexGrow: 1 }}>
+    <Box sx={{ display: "flex", alignItems: "center", flexGrow: 1 }}>
       <FormGroup>
         <FormControlLabel
           control={
@@ -63,26 +63,26 @@ export default function AccountComponent() {
               aria-label="login switch"
             />
           }
-          label={auth ? 'Logout' : 'Login'}
+          label={auth ? "Logout" : "Login"}
         />
       </FormGroup>
-  
+
       <Button
         ref={buttonRef}
         id="composition-button"
-        aria-controls={'composition-menu'}
+        aria-controls={"composition-menu"}
         aria-haspopup="true"
-        aria-expanded={open ? 'true' : undefined}
+        aria-expanded={open ? "true" : undefined}
         variant="outlined"
         color="neutral"
         onClick={() => {
           setOpen(!open);
         }}
-        endIcon={<AccountCircleIcon />}
+
       >
-        {auth ? 'Logout' : <AccountCircleIcon />}
+        <AccountCircleIcon />
       </Button>
-  
+
       <Popup
         role={undefined}
         id="composition-menu"
@@ -91,7 +91,7 @@ export default function AccountComponent() {
         disablePortal
         modifiers={[
           {
-            name: 'offset',
+            name: "offset",
             options: {
               offset: [0, 8],
             },
@@ -108,45 +108,12 @@ export default function AccountComponent() {
           <MenuList
             variant="outlined"
             onKeyDown={handleListKeyDown}
-            sx={{ boxShadow: 'md' }}
+            sx={{ boxShadow: "md" }}
           >
             <MenuItem onClick={handleClose}>Profile</MenuItem>
             <MenuItem onClick={handleClose}>Inbox</MenuItem>
             <MenuItem onClick={handleClose}>Calendar</MenuItem>
-            <Dropdown>
-              <MenuButton endDecorator={<ArrowDropDown />}>Academic</MenuButton>
-              <Menu sx={{ minWidth: 160, '--ListItemDecorator-size': '24px' }}>
-                <MenuItem
-                  onClick={() => {
-                    const nextIndex = SIZES.indexOf(size) + 1;
-                    const value = nextIndex > SIZES.length - 1 ? SIZES[0] : SIZES[nextIndex];
-                    setSize(value);
-                  }}
-                >
-                  Larger
-                </MenuItem>
-                <ListDivider />
-                <ListItem nested>
-                  <List aria-label="Font sizes">
-                    {SIZES.map((item) => (
-                      <MenuItem
-                        key={item}
-                        role="menuitemradio"
-                        aria-checked={item === size ? 'true' : 'false'}
-                        onClick={() => {
-                          setSize(item);
-                        }}
-                      >
-                        <ListItemDecorator>
-                          {item === size && <ArrowRight />}
-                        </ListItemDecorator>{' '}
-                        {item}
-                      </MenuItem>
-                    ))}
-                  </List>
-                </ListItem>
-              </Menu>
-            </Dropdown>
+            <DropDown />
             <MenuItem onClick={handleClose}>Settings</MenuItem>
             <MenuItem onClick={handleClose}>Logout</MenuItem>
           </MenuList>

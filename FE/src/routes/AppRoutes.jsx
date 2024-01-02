@@ -10,6 +10,7 @@ import HelpPage from "../pages/HelpPage";
 import ProfilePage from "../pages/ProfilePage";
 import TeacherPage from "../pages/TeacherPage";
 import LogOut from "../pages/LogOut";
+import SingleLesson from "../pages/SingleLesson";
 
 
 
@@ -35,11 +36,28 @@ function AppRoutes(props) {
         //* </ProtectedRoute> */
     }/>
       
-      <Route path ="/courses" element= {
+      <Route path ="/course" 
+        // element= {
     //  <ProtectedRoute>
-        <LessonPage/>
+        // <LessonPage/>
         //* </ProtectedRoute> */
+    // }
+    >   
+    <Route path =":id" element= {
+      //  <ProtectedRoute>
+          <SingleLesson/>
+       //* </ProtectedRoute> */
+      }/>
+
+    </Route>
+
+    <Route path ="/courses" 
+        element= {
+        <ProtectedRoute>
+        <LessonPage/>
+        </ProtectedRoute>
     }/>
+
       <Route path ="/help" element= {
     //  <ProtectedRoute>
         <HelpPage/>

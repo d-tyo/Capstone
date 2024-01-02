@@ -139,9 +139,11 @@ function SignUpForm() {
                          label="Academic Level"
                          onChange={handleChange}
                         >
-                <MenuItem value={10}>Ten</MenuItem>
-                <MenuItem value={20}>Twenty</MenuItem>
-                <MenuItem value={30}>Thirty</MenuItem>
+                <MenuItem value={10}>Early Childhood</MenuItem>
+                <MenuItem value={20}>Primary</MenuItem>
+                <MenuItem value={30}>Secondary</MenuItem>
+                <MenuItem value={40}>Tertiary</MenuItem>
+                <MenuItem value={50}>University</MenuItem>
             </Select>
             </FormControl>
             </Grid>

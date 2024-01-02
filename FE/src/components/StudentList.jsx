@@ -1,6 +1,6 @@
-import * as React from 'react';
-import { DataGridPro } from '@mui/x-data-grid-pro';
-import { useDemoData } from '@mui/x-data-grid-generator';
+import * as React from "react";
+import { DataGridPro } from "@mui/x-data-grid-pro";
+import { useDemoData } from "@mui/x-data-grid-generator";
 
 
 function updateRowPosition(initialIndex, newIndex, rows) {
@@ -21,19 +21,27 @@ export default function StudentList(props) {
   //   maxColumns: 20,
   // });
 
-const data = props.data
-// const columns = props.columns
-  const [rows, setRows] = React.useState(Array.isArray(data.rows) ? data.rows : []);
-  // const [loading, setLoading] = React.useState(initialLoadingState);
-// console.log(typeof(columns))
-// console.log(typeof(rows))
-// console.log(columns)
-// console.log(rows)
+  const data = props.data;
+  // const columns = props.columns
+  const [rows, setRows] = React.useState(
+    Array.isArray(data.rows) ? data.rows : []
+  );
 
-React.useEffect(() => {
-  console.log(data);
+  if (Array.isArray(data.rows)) {
+
+  }
+  // const [loading, setLoading] = React.useState(initialLoadingState);
+  // console.log(typeof(columns))
+  // console.log(typeof(rows))
+  // console.log(columns)
+  // console.log(rows)
+
+  React.useEffect(() => {
+    console.log(data);
     setRows(data.rows);
-}, [data]);
+  }, [data]);
+
+  console.log('data', data)
 
   // React.useEffect(() => {
   //   setLoading(initialLoadingState);
@@ -44,19 +52,19 @@ React.useEffect(() => {
     const newRows = await updateRowPosition(
       params.oldIndex,
       params.targetIndex,
-      rows,
+      rows
     );
 
     setRows(newRows);
     setLoading(false);
   };
-  console.log(Array.isArray(data.rows))
-  console.log(data)
+  console.log(Array.isArray(data.rows));
+  console.log(data);
 
   return (
-    <div style={{ height: 400, width: '100%' }}>
+    <div style={{ height: 400, width: "100%" }}>
       {/* {typeof(data.rows) === 'array'? */}
-        <DataGridPro
+      <DataGridPro
         {...data}
         // loading={loading}
         rows={rows}
@@ -64,7 +72,7 @@ React.useEffect(() => {
         rowReordering
         onRowOrderChange={handleRowOrderChange}
       />
-        {/* :null} */}
+      {/* :null} */}
     </div>
   );
 }

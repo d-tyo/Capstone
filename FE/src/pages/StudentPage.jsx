@@ -38,23 +38,7 @@ export default function StudentPage() {
       {Array.isArray(stuobjarr.rows) ? (
         <div>
           <StudentList data={stuobjarr} />
-          <table>
-            <tbody>
-              {stuobjarr.rows.map((student) => (
-                <tr key={student.id}>
-                  <td>{student.teacherId}</td>
-                  {/* Add a delete button next to TeacherId */}
-                  <td>
-                    <Stack direction="row" alignItems="center" spacing={1}>
-                      <IconButton aria-label="delete" size="small">
-                        <DeleteIcon fontSize="inherit" />
-                      </IconButton>
-                    </Stack>
-                  </td>
-                </tr>
-              ))}
-            </tbody>
-          </table>
+          
           {/* Add a plus button for adding students */}
           <Stack direction="row" alignItems="center" spacing={1}>
             <IconButton aria-label="add" size="small" onClick={handleOpenDialog}>

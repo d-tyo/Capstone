@@ -11,6 +11,15 @@ const getLessons = (res) => {
     });
 };
 
+const getLesson = (req, res) => {
+  Models.Lesson.findAll({where:{id : req.params.id}})
+    .then((data) => res.send({ result: 200, data: data }))
+    .catch((err) => {
+      console.log(err);
+      res.send({ result: 500, error: err.message });
+    });
+};
+
 const createLesson = (data, res) => {
   // creates a new Lessons using JSON data Lessonsed in request body
   console.log(data);
@@ -49,6 +58,7 @@ const deleteLesson = (req, res) => {
 
 module.exports = {
   getLessons,
+  getLesson,
   createLesson,
   updateLesson,
   deleteLesson
