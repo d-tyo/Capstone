@@ -16,17 +16,22 @@ import MenuItem from "@mui/material/MenuItem";
 import FormControl from "@mui/material/FormControl";
 import Select from "@mui/material/Select";
 import { createTheme, ThemeProvider } from "@mui/material/styles";
+import { useCPContext } from "../context/CPContext";
+import { useNavigate } from "react-router-dom"
 
 // Create a Material-UI theme
 const theme = createTheme();
 
 function SignUpForm() {
+  const {currentCP, handleUpdateCP} = useCPContext()
   const [userEmail, setUserEmail] = useState("");
   const [userPassword, setUserPassword] = useState("");
   const [userName, setUserName] = useState("");
   const [submitResult, setSubmitResult] = useState("");
   const [loginAttempts, setLoginAttempts] = useState(0);
+  const [registrationId, setRegistrationId] = useState("");
   const [AL, setAL] = useState("");
+  const navigate = useNavigate()
 
   const handleChange = (event) => {
     setAL(event.target.value);
@@ -34,6 +39,7 @@ function SignUpForm() {
 
   const handleSubmit = (e) => {
     e.preventDefault();
+    console.log(userName)
 
     if (userPassword.length < 5) {
       setSubmitResult("Password must be at least 5 characters long");
@@ -48,11 +54,12 @@ function SignUpForm() {
     } else {
       setSubmitResult("Successful sign-up.");
       handleUpdateCP({ name: userName, email: userEmail, password: userPassword });
+      navigate("/") // ("/ - index") taking to main route a.k.a homepage
     }
   };
 
   if (loginAttempts >= 5) return <p>Go away hackers, attempts exceeded</p>;
-  if (loginOK) return <p>You are already logged in.</p>;
+  if (currentCP.email) return <p>You are already logged in.</p>;
 
   return (
 <ThemeProvider theme={theme}>
@@ -92,6 +99,7 @@ function SignUpForm() {
                 <TextField
                   autoComplete="given-name"
                   name="fullName"
+                  onChange={(e)=> setUserName(e.target.value)}
                   required
                   fullWidth
                   id="fullName"
@@ -106,6 +114,7 @@ function SignUpForm() {
                   id="email"
                   label="Email Address"
                   name="email"
+                  onChange={(e)=> setUserEmail(e.target.value)}
                   autoComplete="email"
                 />
               </Grid>
@@ -114,6 +123,7 @@ function SignUpForm() {
                   required
                   fullWidth
                   name="password"
+                  onChange={(e)=> setUserPassword(e.target.value)}
                   label="Password"
                   type="password"
                   id="password"
@@ -142,6 +152,7 @@ function SignUpForm() {
                   id="registrationId"
                   label="Registration Id"
                   name="registrationId"
+                  onChange={(e)=> setRegistrationId(e.target.value)}
                   autoComplete="registrationId"
                 />
               </Grid>

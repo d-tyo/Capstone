@@ -14,12 +14,13 @@ function updateRowPosition(initialIndex, newIndex, rows) {
   });
 }
 
-export default function TeacherList(props) {
+export default function LessonList(props) {
 
 
 const data = props.data
 
   const [rows, setRows] = React.useState(Array.isArray(data.rows) ? data.rows : []);
+
 
 React.useEffect(() => {
   console.log(data);
@@ -43,13 +44,16 @@ React.useEffect(() => {
 
   return (
     <div style={{ height: 400, width: '100%' }}>
+      {/* {typeof(data.rows) === 'array'? */}
         <DataGridPro
         {...data}
+        // loading={loading}
         rows={rows}
+        // columns={columns}
         rowReordering
         onRowOrderChange={handleRowOrderChange}
       />
-    
+        {/* :null} */}
     </div>
   );
 }

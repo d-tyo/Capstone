@@ -81,3 +81,56 @@ export const stuobjarr = {columns:[
   
   ],
   rows:[]}
+
+  export const lessobjarr = {columns:[
+    {
+      "field": "teacherId",
+      "headerName": "Teacher",
+      "editable": true,
+      "width": 120
+    },
+   
+    {
+      "field": "subject",
+      "headerName": "Subject",
+      "editable": true,
+      "width": 120
+    },
+    {
+      "field": "grade",
+      "headerName": "Grade",
+      "editable": true,
+      "width": 120
+    },
+    
+    {
+      "field": "type",
+      "headerName": "Work",
+      "editable": true,
+      "width": 120
+    },
+
+    {
+      "field": "title",
+      "headerName": "Title",
+      "editable": true,
+      "width": 120
+    },
+
+    {
+      "field": "filePath",
+      "headerName": "Location",
+      "editable": true,
+      "width": 120
+    },
+    
+    {
+      "field": "comment",
+      "headerName": "Feedback",
+      "editable": true,
+      "width": 120
+    },
+    
+  
+  ],
+  rows:[]}
