@@ -17,6 +17,10 @@ router.post("/create", (req, res) => {
   Controllers.studentController.createStudents(req.body, res); //create new student
 });
 
+router.post("/login", (req, res) => { 
+  Controllers.studentController.loginUser(req.body, res); //login User
+});
+
 router.put("/:id", (req, res) => {
   Controllers.studentController.updateStudent(req, res);//update student
 });

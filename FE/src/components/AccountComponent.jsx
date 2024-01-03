@@ -1,7 +1,9 @@
 import * as React from "react";
 import { Popper } from "@mui/base/Popper";
-import { ClickAwayListener } from "@mui/base/ClickAwayListener";
 import { styled } from "@mui/joy/styles";
+import {NavLink} from "react-router-dom"
+import { ClickAwayListener } from "@mui/base/ClickAwayListener";
+
 import Button from "@mui/joy/Button";
 import MenuList from "@mui/joy/MenuList";
 import MenuItem from "@mui/joy/MenuItem";
@@ -21,6 +23,7 @@ import FormControlLabel from "@mui/material/FormControlLabel";
 import Box from "@mui/material/Box";
 import AccountCircleIcon from "@mui/icons-material/AccountCircle";
 import DropDown from "./DropDown";
+
 
 const Popup = styled(Popper)({
   zIndex: 1000,
@@ -48,9 +51,7 @@ export default function AccountComponent() {
       setOpen(false);
     }
   };
-
-  const SIZES = ["Small", "Medium", "Large", "X-Large"];
-  const [size, setSize] = React.useState("Medium");
+ 
 
   return (
     <Box sx={{ display: "flex", alignItems: "center", flexGrow: 1 }}>
@@ -110,12 +111,16 @@ export default function AccountComponent() {
             onKeyDown={handleListKeyDown}
             sx={{ boxShadow: "md" }}
           >
-            <MenuItem onClick={handleClose}>Profile</MenuItem>
+            <MenuItem onClick={handleClose} component = {NavLink} to  = {"/profile"}> Profile
+            </MenuItem>
             <MenuItem onClick={handleClose}>Inbox</MenuItem>
+            <MenuItem onClick={handleClose} component = {NavLink} to  = {"/teachers"}> Teachers
+           
+            </MenuItem>
             <MenuItem onClick={handleClose}>Calendar</MenuItem>
             <DropDown />
             <MenuItem onClick={handleClose}>Settings</MenuItem>
-            <MenuItem onClick={handleClose}>Logout</MenuItem>
+            <MenuItem onClick={handleClose} component = {NavLink} to  = {"/logout"}> Logout </MenuItem>
           </MenuList>
         </ClickAwayListener>
       </Popup>

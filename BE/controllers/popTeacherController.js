@@ -2,6 +2,7 @@
 const axios = require('axios');
 const Models = require('../models');
 const { Op } = require("sequelize");
+const bcrypt = require('bcryptjs')
 
 // THE BOSS OF THE APPLICATION LOGIC - COMMAND, CREATE & RETRIVE
 
@@ -23,7 +24,7 @@ const storeTeacher = async (res) => {
             grade: teacher.grade,
             DOB: teacher.DOB,
             contact: teacher.contactNumber,
-            password: teacher.password,
+            password: await bcrypt.hash(teacher.password, 10),
         
         };
         console.log(teacher.DOB)

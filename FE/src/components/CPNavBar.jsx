@@ -130,13 +130,13 @@ export default function PersistentDrawerLeft() {
             {text === 'Account' ? (
               <AccountComponent key={text} />
             ) : (
-              <ListItem key={text} disablePadding>
-                <NavLink to={text.toLowerCase()}>
+              <ListItem key={text} disablePadding component = {NavLink} to = {text.toLowerCase()}>
+                {/* <NavLink to={text.toLowerCase()}> */}
                   <ListItemButton>
                     <ListItemIcon>{index % 2 === 0 ? <InboxIcon /> : <MailIcon />}</ListItemIcon>
                     <ListItemText primary={text} />
                   </ListItemButton>
-                </NavLink>
+                {/* </NavLink> */}
               </ListItem>
             )}
           </React.Fragment>

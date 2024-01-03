@@ -1,6 +1,7 @@
 import React from "react"
 import axios from "axios";
 import IconButton from "@mui/material/IconButton";
+import EditIcon from '@mui/icons-material/Edit';
 import DeleteIcon from "@mui/icons-material/Delete";
 import { GridActionsCellItem } from "@mui/x-data-grid";
 import MUIDynamicDialog from "../components/MUIDynamicDialog";
@@ -73,11 +74,11 @@ import MUIDynamicDialog from "../components/MUIDynamicDialog";
           />,
           <GridActionsCellItem
             showInMenu
-            icon={<DeleteIcon />}
+            icon={<EditIcon />}
             label="Edit"
             onClick={() => {
               const open = true;
-              open == true ? <MUIDynamicDialog student = {params.row} open = {open}/> : null
+           return <MUIDynamicDialog student = {params.row} open = {open}/>
              
               // console.log("Edit", params.row.studentName);
                  // send a request BE to edit

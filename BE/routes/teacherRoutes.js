@@ -16,6 +16,10 @@ router.post("/create", (req, res) => {
   Controllers.teacherController.createTeachers(req.body, res); //create teacher(s)
 });
 
+router.post("/login", (req, res) => { 
+  Controllers.teacherController.loginUser(req.body, res); //login User
+});
+
 router.put("/:id", (req, res) => {
   Controllers.teacherController.updateTeacher(req, res); //update teacher
 });
