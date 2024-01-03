@@ -1,102 +1,105 @@
-import React from "react"
+import React, { useState } from "react";
 import axios from "axios";
+import AddIcon from "@mui/icons-material/Add";
 import IconButton from "@mui/material/IconButton";
-import EditIcon from '@mui/icons-material/Edit';
+import EditIcon from "@mui/icons-material/Edit";
 import DeleteIcon from "@mui/icons-material/Delete";
 import { GridActionsCellItem } from "@mui/x-data-grid";
 import MUIDynamicDialog from "../components/MUIDynamicDialog";
+import StudentPage from "../pages/StudentPage";
 
+// export const stuobjarr = (setDialogOpen) => ();
 
+export const stuobjarr = {
+  columns: [
+    {
+      field: "studentName",
+      headerName: "Name",
+      editable: true,
+      width: 120,
+    },
+    {
+      field: "userName",
+      headerName: "UserName",
+      editable: true,
+      width: 120,
+    },
+    {
+      field: "email",
+      headerName: "Email",
+      editable: true,
+      width: 120,
+    },
+    {
+      field: "contact",
+      headerName: "Contact",
+      editable: true,
+      width: 120,
+    },
+    {
+      field: "location",
+      headerName: "Location",
+      editable: true,
+      width: 120,
+    },
+    {
+      field: "grade",
+      headerName: "Grade",
+      editable: true,
+      width: 120,
+    },
+    {
+      field: "capability",
+      headerName: "Capability",
+      editable: true,
+      width: 120,
+    },
+    {
+      field: "teacherId",
+      headerName: "TeacherId",
+      editable: true,
+      width: 120,
+    },
+    {
+      field: "actions",
+      type: "actions",
+      getActions: (params) => {
+        const [isEditDialogOpen, setIsEditDialogOpen] = useState(false);
+        const [student, setStudent] = useState(params.row);
 
-  export const stuobjarr = {
-    columns: [
-      {
-        field: "studentName",
-        headerName: "Name",
-        editable: true,
-        width: 120,
-      },
-      {
-        field: "userName",
-        headerName: "UserName",
-        editable: true,
-        width: 120,
-      },
-      {
-        field: "email",
-        headerName: "Email",
-        editable: true,
-        width: 120,
-      },
-      {
-        field: "contact",
-        headerName: "Contact",
-        editable: true,
-        width: 120,
-      },
-      {
-        field: "location",
-        headerName: "Location",
-        editable: true,
-        width: 120,
-      },
-      {
-        field: "grade",
-        headerName: "Grade",
-        editable: true,
-        width: 120,
-      },
-      {
-        field: "capability",
-        headerName: "Capability",
-        editable: true,
-        width: 120,
-      },
-      {
-        field: "teacherId",
-        headerName: "TeacherId",
-        editable: true,
-        width: 120,
-      },
-      {
-        field: "actions",
-        type: "actions",
-        getActions: (params) => [
-          <GridActionsCellItem
-            showInMenu
-            icon={<DeleteIcon />}
-            label="Delete"
-            onClick={() => {
-            // axios.delete(`http://localhost:8080/api/student/${params.row.id}`)
-              console.log("delete", params.row);
-              // send a request BE to delete 
-            }}
+        return [
+          <MUIDynamicDialog
+            open={isEditDialogOpen}
+            setOpen={setIsEditDialogOpen}
+            student={student}
           />,
+
           <GridActionsCellItem
             showInMenu
             icon={<EditIcon />}
             label="Edit"
             onClick={() => {
-              const open = true;
-           return <MUIDynamicDialog student = {params.row} open = {open}/>
-             
+              setIsEditDialogOpen(true);
               // console.log("Edit", params.row.studentName);
-                 // send a request BE to edit
+              // send a request BE to edit
             }}
           />,
-        ],
-  
-        width: 120,
+          <GridActionsCellItem
+            showInMenu
+            icon={<DeleteIcon />}
+            label="Delete"
+            onClick={() => {
+              // axios.delete(`http://localhost:8080/api/student/${params.row.id}`)
+              console.log("delete", params.row);
+              // send a request BE to delete
+            }}
+          />,
+        ];
       },
-    ],
-    rows: [],
-  };
-
-
-
-
-
-
+    },
+  ],
+  rows: [],
+};
 
 export const trobjarr = {
   columns: [
@@ -182,3 +185,27 @@ export const lessobjarr = {
   ],
   rows: [],
 };
+
+// export default function StudentPage() {
+//   const [dialogOpen, setDialogOpen] = useState(false);
+//   const [editedStudent, setEditedStudent] = useState(null);
+
+//   const handleDialogClose = () => {
+//     setDialogOpen(false);
+//     setEditedStudent(null);
+//   };
+
+//   return (
+//     <React.Fragment>
+//       {dialogOpen && (
+//         <MUIDynamicDialog
+//           student={editedStudent}
+//           open={dialogOpen}
+//           onClose={handleDialogClose}
+//         />
+//       )}
+//       <YourComponent stuobjarr={stuobjarr(setDialogOpen)} />
+//       {/* Rest of your component code */}
+//     </React.Fragment>
+// );
+// }

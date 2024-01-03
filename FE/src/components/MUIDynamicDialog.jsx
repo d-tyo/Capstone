@@ -19,11 +19,9 @@ function PaperComponent(props) {
   );
 }
 
-export default function MUIDynamicDialog(props) {
+export default function MUIDynamicDialog({ open, setOpen, student }) {
 
-  const [open, setOpen] = React.useState(true);
-
-  const handleClickOpen = () => {
+  const handleOpen = () => {
     setOpen(true);
   };
 
@@ -31,11 +29,10 @@ export default function MUIDynamicDialog(props) {
     setOpen(false);
   };
 
+  console.log('student', student)
+
   return (
     <React.Fragment>
-      <Button variant="outlined" onClick={handleClickOpen}>
-        Open draggable dialog
-      </Button>
       <Dialog
         open={open}
         onClose={handleClose}
@@ -43,7 +40,7 @@ export default function MUIDynamicDialog(props) {
         aria-labelledby="draggable-dialog-title"
       >
         <DialogTitle style={{ cursor: 'move' }} id="draggable-dialog-title">
-          Subscribe
+          {student.studentName}
         </DialogTitle>
         <DialogContent>
           <DialogContentText>

@@ -32,9 +32,13 @@ const createTeachers= async (data, res) => {
 
 const loginUser = (data, res) => {
   console.log (data)
+  let login;
   // Find the user with the given email in the User model
-  Models.Teacher.findOne({ where: { email: data.email } }).then(
-  async function (user) {
+  if (data.userName)
+  {login = Models.Student.findOne({ where: { userName: data.userName } })}
+  else 
+  {login = Models.Teacher.findOne({ where: { email: data.email } })}
+  login.then(async function (user) {
   // If the user exists and the password is correct, send the user data as a response
   if (user && (await bcrypt.compare(data.password, user.password))) {
   // Replace "your-secret-key" with your actual secret key

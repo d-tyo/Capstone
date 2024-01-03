@@ -3,6 +3,7 @@ import StudentList from '../components/StudentList';
 import { useData } from '../hooks/useData';
 import { stuobjarr } from '../data/data';
 import Stack from '@mui/material/Stack';
+import Button from '@mui/material/Button'
 import IconButton from '@mui/material/IconButton';
 import DeleteIcon from '@mui/icons-material/Delete';
 import AddIcon from '@mui/icons-material/Add';
@@ -10,7 +11,7 @@ import Dialog from '@mui/material/Dialog';
 import DialogTitle from '@mui/material/DialogTitle';
 import DialogContent from '@mui/material/DialogContent';
 import DialogActions from '@mui/material/DialogActions';
-import Button from '@mui/material/Button';
+
 
 export default function StudentPage() {
   const students = useData('http://localhost:8080/api/student');

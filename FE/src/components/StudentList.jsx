@@ -15,33 +15,22 @@ function updateRowPosition(initialIndex, newIndex, rows) {
 }
 
 export default function StudentList(props) {
-  // const { data, loading: initialLoadingState }  = useDemoData({
-  //   dataSet: 'Commodity',
-  //   rowLength: 20,
-  //   maxColumns: 20,
-  // });
+ 
+
+  console.log('props', props)
 
   const data = props.data;
-  // const columns = props.columns
   const [rows, setRows] = React.useState(
     Array.isArray(data.rows) ? data.rows : []
   );
 
-  if (Array.isArray(data.rows)) {
-
-  }
   // const [loading, setLoading] = React.useState(initialLoadingState);
-  // console.log(typeof(columns))
-  // console.log(typeof(rows))
-  // console.log(columns)
-  // console.log(rows)
 
   React.useEffect(() => {
     console.log(data);
     setRows(data.rows);
   }, [data]);
 
-  console.log('data', data)
 
   // React.useEffect(() => {
   //   setLoading(initialLoadingState);
@@ -68,11 +57,10 @@ export default function StudentList(props) {
         {...data}
         // loading={loading}
         rows={rows}
-        // columns={columns}
         rowReordering
         onRowOrderChange={handleRowOrderChange}
       />
-      {/* :null} */}
+
     </div>
   );
 }

@@ -21,7 +21,7 @@ function Copyright(props) {
         <Typography variant="body2" color="text.secondary" align="center" {...props}>
             {'Copyright © '}
             <Link color="inherit" href="https://mui.com/">
-                Your Website
+                Circle Play
             </Link>{' '}
             {new Date().getFullYear()}
             {'.'}
@@ -112,7 +112,7 @@ export default function LogIn() {
                             required
                             fullWidth
                             id="email"
-                            label="Email"
+                            label="Email | User Name"
                             name="email"
                             type="email"
                             autoFocus
@@ -137,7 +137,7 @@ export default function LogIn() {
                             variant="contained"
                             sx={{ mt: 3, mb: 2 }}
                         >
-                            Sign In
+                            Log In
                         </Button>
                         <p>{errMsg}</p>
                         <Grid container>

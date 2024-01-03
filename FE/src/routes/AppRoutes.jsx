@@ -28,7 +28,7 @@ function AppRoutes(props) {
         <StudentPage/>
         // </ProtectedRoute>
     }/>
-     <Route path ="/loginpage" element= {<LogInPage/>}/>
+     <Route path ="/login" element= {<LogInPage/>}/>
     
      <Route path ="/dashboard" element= {
     //  <ProtectedRoute>
