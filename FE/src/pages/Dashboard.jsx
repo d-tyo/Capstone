@@ -7,7 +7,7 @@ export default function Dashboard() {
 <>
 <Typography> WELCOME TO CIRCLE PLAY </Typography>
 <img src={bannerImage} width="100%" alt="banner image" />
-<h3> Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer tooka galley of type and scrambled it to make a type specimen book</h3>
+<h3> Circle Play Vision is to be a source of meaningful and interactive content that not only brings joy and entertainment to our users but also fosters learning, inspires creativity, and connects communities. We believe that every circle we create is an opportunity to bring people together and offer experiences that have a lasting, positive impact on their lives.</h3>
 </>
   )
 }

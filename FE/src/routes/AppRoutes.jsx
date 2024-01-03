@@ -53,9 +53,9 @@ function AppRoutes(props) {
 
     <Route path ="/courses" 
         element= {
-        <ProtectedRoute>
+        // <ProtectedRoute>
         <LessonPage/>
-        </ProtectedRoute>
+        //* </ProtectedRoute> */
     }/>
 
       <Route path ="/help" element= {
