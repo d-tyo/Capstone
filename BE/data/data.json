@@ -163,80 +163,100 @@
       "email": "sarah.johnson@example.com",
       "DOB": "1985-07-15T12:00:00.000Z",
       "grade": "Primary",
-      "contactNumber": "+6427001234",
+      "registrationId": "A1B2C3D4",
+      "contact": "+6427001234",
       "password": "sarah123"
+     
     },
     {
       "name": "Emily Davis",
       "email": "emily.davis@example.com",
       "DOB": "1978-04-22T12:00:00.000Z",
       "grade": "Secondary",
-      "contactNumber": "+6427005678",
+      "registrationId": "E4M6I8L4Y",
+      "contact": "+6427005678",
       "password": "emily456"
+     
     },
     {
       "name": "David Wilson",
       "email": "david.wilson@example.com",
       "DOB": "1990-12-10T12:00:00.000Z",
       "grade": "University",
-      "contactNumber": "+6427012345",
+      "registrationId": "D7A8V9I0D",
+      "contact": "+6427012345",
       "password": "david789"
+      
     },
     {
       "name": "Jessica Adams",
       "email": "jessica.adams@example.com",
       "DOB": "1983-09-05T12:00:00.000Z",
       "grade": "ECE",
-      "contactNumber": "+6427023456",
+      "registrationId": "J1E0S1S0",
+      "contact": "+6427023456",
       "password": "jessica101"
+
     },
     {
       "name": "Christopher Lee",
       "email": "christopher.lee@example.com",
       "DOB": "1975-11-28T12:00:00.000Z",
       "grade": "Primary",
-      "contactNumber": "+6427034567",
+      "registrationId": "C8H9R7I5S",
+      "contact": "+6427034567",
       "password": "chris222"
+
     },
     {
       "name": "Emma Turner",
       "email": "emma.turner@example.com",
       "DOB": "1988-03-18T12:00:00.000Z",
       "grade": "Secondary",
-      "contactNumber": "+6427045678",
+      "registrationId": "E3M3M4A",
+      "contact": "+6427045678",
       "password": "emma333"
+      
     },
     {
       "name": "Alex Johnson",
       "email": "alex.johnson@example.com",
       "DOB": "1992-06-07T12:00:00.000Z",
       "grade": "University",
-      "contactNumber": "+6427056789",
+      "registrationId": "A4L3E2XJ",
+      "contact": "+6427056789",
       "password": "alex444"
+      
     },
     {
       "name": "Grace Davis",
       "email": "grace.davis@example.com",
       "DOB": "1980-01-25T12:00:00.000Z",
       "grade": "ECE",
-      "contactNumber": "+6427067890",
+      "registrationId": "G5R7A8C9E",
+      "contact": "+6427067890",
       "password": "grace555"
+     
     },
     {
       "name": "Ella Taylor",
       "email": "ella.taylor@example.com",
       "DOB": "1987-08-12T12:00:00.000Z",
       "grade": "Primary",
-      "contactNumber": "+6427078901",
+      "registrationId": "E6L6A7T8A",
+      "contact": "+6427078901",
       "password": "ella666"
+    
     },
     {
       "name": "Lucas Moore",
       "email": "lucas.moore@example.com",
       "DOB": "1984-02-14T12:00:00.000Z",
       "grade": "Secondary",
-      "contactNumber": "+6427089012",
+      "registrationId": "L7U8C9A7S",
+      "contact": "+6427089012",
       "password": "lucas777"
+      
     }
-  ]  
+  ] 
   }

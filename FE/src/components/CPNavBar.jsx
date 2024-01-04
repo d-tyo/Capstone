@@ -1,7 +1,6 @@
 import * as React from 'react';
 import { styled, useTheme } from '@mui/material/styles';
 import Box from '@mui/material/Box';
-import Menu from '@mui/material/Menu';
 import Drawer from '@mui/material/Drawer';
 import CssBaseline from '@mui/material/CssBaseline';
 import MuiAppBar from '@mui/material/AppBar';
@@ -25,8 +24,6 @@ import AccountCircleOutlinedIcon from '@mui/icons-material/AccountCircleOutlined
 import {NavLink} from 'react-router-dom'
 import { useCPContext } from '../context/CPContext'; 
 import AccountComponent from './AccountComponent';
-import MenuItem from '@mui/material/MenuItem';
-
 
 const drawerWidth = 240;
 
@@ -126,28 +123,27 @@ export default function PersistentDrawerLeft() {
             {theme.direction === 'ltr' ? <ChevronLeftIcon /> : <ChevronRightIcon />}
           </IconButton>
         </DrawerHeader>
-        <Menu>
+        <List>
         {['Account', 'Login', 'Dashboard', 'Students', 'Courses', 'Help'].map((text, index) => (
          // <> {currentCP.firstName ?}
          <React.Fragment key={text}>
             {text === 'Account' ? (
               <AccountComponent key={text} />
             ) : (
-              <MenuItem key={text} disablePadding component = {NavLink} to = {text.toLowerCase()}>
+              <ListItem key={text} disablePadding component = {NavLink} to = {text.toLowerCase()}>
                 {/* <NavLink to={text.toLowerCase()}> */}
-                  <IconButton>
-                    <MenuIcon>{index % 2 === 0 ? <InboxIcon /> : <MailIcon />}</MenuIcon>
-                    {/* <ListItemText primary={text} /> */}
-                    {text}
-                  </IconButton>
+                  <ListItemButton>
+                    <ListItemIcon>{index % 2 === 0 ? <InboxIcon /> : <MailIcon />}</ListItemIcon>
+                    <ListItemText primary={text} />
+                  </ListItemButton>
                 {/* </NavLink> */}
-              </MenuItem>
+              </ListItem>
             )}
           </React.Fragment>
           // : null
           // } </>
         ))}
-      </Menu>
+      </List>
         <List>
           {['All mail', 'Trash', 'Spam'].map((text, index) => (
             <ListItem key={text} disablePadding>

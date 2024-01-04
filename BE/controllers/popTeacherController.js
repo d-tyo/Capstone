@@ -22,9 +22,11 @@ const storeTeacher = async (res) => {
             teacherName: teacher.name,
             email: teacher.email,
             grade: teacher.grade,
+            registrationId: teacher.registrationId,
             DOB: teacher.DOB,
-            contact: teacher.contactNumber,
+            contact: teacher.contact,
             password: await bcrypt.hash(teacher.password, 10),
+          
         
         };
         console.log(teacher.DOB)

@@ -31,13 +31,13 @@ function Copyright(props) {
 
 export default function LogIn() {
 
-    const { currentUser, handleUpdateUser } = useCPContext();
+    const { currentCP, handleUpdateCP } = useCPContext();
 
-    const [loggedIn, setLoggedIn] = React.useState(currentUser ? currentUser.firstName:null)
+    const [loggedIn, setLoggedIn] = React.useState(currentCP ? currentCP.firstName:null)
     const [errMsg, setErrMsg] = React.useState('')
     const [loginAttempts, setLoginAttempts] = React.useState(0)
 
-    console.log(currentUser) // This needed to be check by Gareth 
+    console.log(currentCP) // This needed to be check by Gareth 
 
     const handleSubmit = async (event) => {
         event.preventDefault();
@@ -56,8 +56,12 @@ export default function LogIn() {
         //let isLoggedIn = (user && password && user === password)
 
         try {
-            let response = await axios.post('/api/users/login', {email: userEmail, password: userPassword});
-            loggedInUser = response.data.data;
+            let response;
+            if (userEmail.includes("@")) // email 
+            {response = await axios.post('http://localhost:8080/api/teacher/login', {email: userEmail, password: userPassword})}
+            else
+            {response = await axios.post('http://localhost:8080/api/student/login', {userName: userEmail, password: userPassword})}
+            loggedInUser = response.data.data.user;
             console.log(loggedInUser)
 
         } catch (err) {
@@ -78,7 +82,7 @@ export default function LogIn() {
             setLoggedIn(false)
         } else {
             setErrMsg('')
-            handleUpdateUser(loggedInUser)
+            handleUpdateCP(loggedInUser)
             setLoggedIn(true)
         }
 
@@ -97,10 +101,10 @@ export default function LogIn() {
             >
                 <Avatar sx={{ m: 1, bgcolor: 'secondary.main' }}>
                     {/* display profile photo if logged in - path is relative to backend */}
-                    {loggedIn ? <img src={currentUser.profilePhoto} width="40" alt={currentUser.profilePhotoTitle}/> : <LockOutlinedIcon />}
+                    {loggedIn ? <img src={currentCP.profilePhoto} width="40" alt={currentCP.profilePhotoTitle}/> : <LockOutlinedIcon />}
                 </Avatar>
                 <Typography component="h1" variant="h5">
-                    {loggedIn ? 'Hello '+currentUser.firstName : 'Please log in'}
+                    {loggedIn ? currentCP.userName? 'Hello '+currentCP.studentName: 'Hello '+currentCP.teacherName : 'Please log in'}
                 </Typography>
 
                 { (!loggedIn && loginAttempts < 5) ?
@@ -149,7 +153,7 @@ export default function LogIn() {
                             </Grid>
                         </Grid>
                     </Box>
-                 : <Button onClick={() => { handleUpdateUser({}); setLoggedIn(false); }}>Log Out</Button> }
+                 : <Button onClick={() => { handleUpdateCP({}); setLoggedIn(false); }}>Log Out</Button> }
             </Box>
             <Copyright sx={{ mt: 8, mb: 4 }} />
         </Container>

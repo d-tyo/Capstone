@@ -107,27 +107,27 @@ export const trobjarr = {
       field: "teacherName",
       headerName: "Name",
       editable: true,
-      width: 120,
+      width: 200,
     },
 
     {
       field: "email",
       headerName: "Email",
       editable: true,
-      width: 120,
+      width: 300,
     },
     {
       field: "contact",
       headerName: "Contact",
       editable: true,
-      width: 120,
+      width: 200,
     },
 
     {
       field: "grade",
       headerName: "Grade",
       editable: true,
-      width: 120,
+      width: 200,
     },
   ],
   rows: [],

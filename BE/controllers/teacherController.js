@@ -32,17 +32,14 @@ const createTeachers= async (data, res) => {
 
 const loginUser = (data, res) => {
   console.log (data)
-  let login;
+  
   // Find the user with the given email in the User model
-  if (data.userName)
-  {login = Models.Student.findOne({ where: { userName: data.userName } })}
-  else 
-  {login = Models.Teacher.findOne({ where: { email: data.email } })}
-  login.then(async function (user) {
+   Models.Teacher.findOne({ where: { email: data.email } }) .then
+  (async function (user) {
   // If the user exists and the password is correct, send the user data as a response
   if (user && (await bcrypt.compare(data.password, user.password))) {
   // Replace "your-secret-key" with your actual secret key
-  const secretKey = "817960";
+  const secretKey = "81828384"; //enable access to payload
   
   // Create a payload with user information
   const payload = {
@@ -66,9 +63,10 @@ const loginUser = (data, res) => {
   });
   };
 
-const updateTeacher = (req, res) => {
+const updateTeacher =  async (req, res) => {
   // updates the Teacher matching the ID from the param using JSON data Teachered in request body
   console.log(req.body);
+  req.body.password = await bcrypt.hash(req.body.password, 10);
   Models.Teacher.update(req.body, { where: { id: req.params.id } })
 
     .then((data) => res.send({ result: 200, data: data }))

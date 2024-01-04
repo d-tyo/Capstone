@@ -39,6 +39,13 @@ Teacher.init(
       required: false,
       unique: false, //it cannot be different
     },
+
+    registrationId: {
+      type: DataTypes.STRING,
+      allowNull: false,
+      required: false,
+      unique: true, 
+    },
     
     contact: {
       type: DataTypes.STRING,
