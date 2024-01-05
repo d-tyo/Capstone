@@ -7,6 +7,7 @@ import AppRoutes from "./routes/AppRoutes";
 import { CPProvider } from "./context/CPContext";
 
 import { BrowserRouter } from "react-router-dom";
+import { TeacherProvider } from "./context/TeacherContext";
 
 function App() {
   const [count, setCount] = useState(0);
@@ -14,7 +15,9 @@ function App() {
   return (
     <BrowserRouter>
       <CPProvider>
+        <TeacherProvider>
         <CPNavBar />
+        </TeacherProvider>
       </CPProvider>
     </BrowserRouter>
   );

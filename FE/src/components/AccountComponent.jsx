@@ -114,9 +114,7 @@ export default function AccountComponent() {
             <MenuItem onClick={handleClose} component = {NavLink} to  = {"/profile"}> Profile
             </MenuItem>
             <MenuItem onClick={handleClose}>Inbox</MenuItem>
-            <MenuItem onClick={handleClose} component = {NavLink} to  = {"/teachers"}> Teachers
            
-            </MenuItem>
             <MenuItem onClick={handleClose}>Calendar</MenuItem>
             <DropDown />
             <MenuItem onClick={handleClose}>Settings</MenuItem>

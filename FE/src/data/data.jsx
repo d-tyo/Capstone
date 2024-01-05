@@ -66,6 +66,7 @@ export const stuobjarr = {
       getActions: (params) => {
         const [isEditDialogOpen, setIsEditDialogOpen] = useState(false);
         const [student, setStudent] = useState(params.row);
+        const [delStudent, setDelStudent] = useState(null);
 
         return [
           <MUIDynamicDialog
@@ -89,7 +90,8 @@ export const stuobjarr = {
             icon={<DeleteIcon />}
             label="Delete"
             onClick={() => {
-              // axios.delete(`http://localhost:8080/api/student/${params.row.id}`)
+              axios.delete(`http://localhost:8080/api/student/${params.row.id}`)
+              .then(setDelStudent(params.row))
               console.log("delete", params.row);
               // send a request BE to delete
             }}

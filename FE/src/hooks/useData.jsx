@@ -14,6 +14,7 @@ export function useData(url, defaultValue = {}) {
           
           if (!ignore) {
             setData(json.data);
+            console.log("useData",json.data)
          
           }
         })

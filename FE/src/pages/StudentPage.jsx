@@ -1,7 +1,9 @@
 import React, { useState } from "react";
 import StudentList from "../components/StudentList";
+import axios from "axios";
 import { useData } from "../hooks/useData";
 import { stuobjarr } from "../data/data";
+import { useCPContext } from "../context/CPContext";
 import Stack from "@mui/material/Stack";
 import Button from "@mui/material/Button";
 import IconButton from "@mui/material/IconButton";
@@ -14,14 +16,20 @@ import DialogTitle from "@mui/material/DialogTitle";
 import DialogContent from "@mui/material/DialogContent";
 import DialogActions from "@mui/material/DialogActions";
 import FormControl from "@mui/material/FormControl";
-import { useCPContext } from "../context/CPContext";
-import axios from "axios";
+import { useTeacherContext } from "../context/TeacherContext";
+
+
 
 export default function StudentPage() {
+  const {teachers,handleUpdateCP} = useTeacherContext()
   const { currentCP } = useCPContext;
   const students = useData("http://localhost:8080/api/student");
+  const teacherarray = useData("http://localhost:8080/api/teacher");
+
+  handleUpdateCP(teacherarray) // saved in Teacher Context
+
   stuobjarr.rows = students;
-  console.log(students);
+  console.log("studentPage", students);
 
   const [openDialog, setOpenDialog] = useState(false);
 
@@ -70,7 +78,10 @@ export default function StudentPage() {
         }
       );
 
+      stuobjarr.rows.push(response.data)
+
       loggedInUser = response.data;
+      handleCloseDialog()
       console.log(loggedInUser);
     } catch (err) {
       console.log(err.message);

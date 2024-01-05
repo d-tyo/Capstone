@@ -124,7 +124,7 @@ export default function PersistentDrawerLeft() {
           </IconButton>
         </DrawerHeader>
         <List>
-        {['Account', 'Login', 'Dashboard', 'Students', 'Courses', 'Help'].map((text, index) => (
+        {['Account', 'Login', 'Dashboard', 'Teachers', 'Students', 'Courses', 'Help'].map((text, index) => (
          // <> {currentCP.firstName ?}
          <React.Fragment key={text}>
             {text === 'Account' ? (

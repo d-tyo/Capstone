@@ -29,7 +29,6 @@ export default function MUIDynamicDialog({ open, setOpen, student }) {
     setOpen(false);
   };
 
-  console.log('student', student)
 
   return (
     <React.Fragment>
