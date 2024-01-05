@@ -55,6 +55,12 @@ export const stuobjarr = {
       width: 120,
     },
     {
+      field: "DOB",
+      headerName: "DOB",
+      editable: true,
+      width: 120,
+    },
+    {
       field: "teacherId",
       headerName: "TeacherId",
       editable: true,

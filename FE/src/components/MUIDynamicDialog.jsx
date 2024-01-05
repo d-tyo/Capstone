@@ -2,6 +2,7 @@ import * as React from 'react';
 import axios from 'axios';
 import Button from '@mui/material/Button';
 import Dialog from '@mui/material/Dialog';
+import DateChange from './DateChange';
 import DialogActions from '@mui/material/DialogActions';
 import DialogContent from '@mui/material/DialogContent';
 import DialogContentText from '@mui/material/DialogContentText';
@@ -11,8 +12,10 @@ import Draggable from 'react-draggable';
 import Grid from "@mui/material/Grid";
 import FormControl from "@mui/material/FormControl";
 import TextField from "@mui/material/TextField";
+import {useState} from "react"
 import PersonAddAlt1Icon from '@mui/icons-material/PersonAddAlt1';
 import { useTeacherContext } from "../context/TeacherContext";
+
 
 
 function PaperComponent(props) {
@@ -27,7 +30,7 @@ function PaperComponent(props) {
 }
 
 export default function MUIDynamicDialog({ open, setOpen, student }) {
-
+  const [customDate, setCustomDate] = useState(false);
   const handleOpen = () => {
     setOpen(true);
   };
@@ -52,7 +55,7 @@ export default function MUIDynamicDialog({ open, setOpen, student }) {
     let userName = data.get("userName");
     let location = data.get("location");
     let registrationId = data.get("registration id");
-    let dateOfBirth = data.get("date of birth");
+    let dateOfBirth = customDate;
     let contact = data.get("contact");
 
     let loggedInUser = null;
@@ -160,6 +163,11 @@ export default function MUIDynamicDialog({ open, setOpen, student }) {
                   <br />
 
                   <Grid item xs={12} />
+                  <DateChange setDueDate = {setCustomDate}/>
+                  <Grid />
+                  <br />
+
+                  <Grid item xs={12} />
                   <TextField
                     name="contact"
                     type="contact"
@@ -170,16 +178,7 @@ export default function MUIDynamicDialog({ open, setOpen, student }) {
                   <Grid />
                   <br />
 
-                  <Grid item xs={12} />
-                  <TextField
-                    name="date of birth"
-                    type="date of birth"
-                    label="Date Of Birth"
-                    defaultValue = {student.DOB}
-                    sx={{ borderRadius: 200 }}
-                  />
-                  <Grid />
-                  <br />
+              
 
                   <Grid item xs={12} />
                   <TextField

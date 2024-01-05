@@ -4,6 +4,26 @@ const bcrypt = require('bcryptjs')
 const jwt = require("jsonwebtoken"); // CommonJS syntax
 
 
+
+// upload an image from a FE form onto the BE server: https://www/positronx.io/react-file-upload-tutorial-with-node-express-and-multer/
+// 
+// const addLessonImage = (req, res) => {
+//   console.log(req.file)// save filename is in req.file.filename
+//   const userUpdates = { profilePhoto : '/images/'+ req.file.filename, profilePhotoTitle: req.body.imageTitle };
+//   console.log(userUpdates);
+  
+//   //save path to uploaded file in DB for this user
+//   Models.User.Update(
+//     userUpdates,
+//     { where: {id:req.params.userId}}
+//   ).then(response =>
+//     res.status(200).json({result:'File uploaded to folder successfully', data: userUpdates}) // send updated info back in response
+//     ).catch(err =>
+//       res. status(500).json({result: err.message}) 
+//     )
+// }
+
+
 //CRUD OPERATIONS
 
 const getTeachers = (res) => {

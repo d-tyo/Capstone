@@ -25,6 +25,7 @@ import { NavLink } from "react-router-dom";
 import { useCPContext } from "../context/CPContext";
 import AccountComponent from "./AccountComponent";
 import ThemeSwitch from "./ThemeSwitch";
+import { useMyThemeContext } from "../context/MyThemeContext";
 
 const drawerWidth = 240;
 
@@ -74,7 +75,8 @@ const DrawerHeader = styled("div")(({ theme }) => ({
 }));
 
 export default function PersistentDrawerLeft({onChangeTheme}) {
-  const theme = useTheme();
+  const {theme} = useMyThemeContext();
+  // const theme = useTheme();
   const [open, setOpen] = React.useState(false);
   const { currentCP } = useCPContext();
 
@@ -89,7 +91,7 @@ export default function PersistentDrawerLeft({onChangeTheme}) {
   return (
     <Box sx={{ display: "flex" }}>
       <CssBaseline />
-      <AppBar position="fixed" open={open}>
+      <AppBar position="fixed" open={open} sx={{backgroundColour : "#FFC0CB"}} >
         <Toolbar>
           <IconButton
             color="inherit"

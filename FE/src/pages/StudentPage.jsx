@@ -10,15 +10,16 @@ import IconButton from "@mui/material/IconButton";
 import Grid from "@mui/material/Grid";
 import TextField from "@mui/material/TextField";
 import DeleteIcon from "@mui/icons-material/Delete";
-import PersonAddAlt1Icon from '@mui/icons-material/PersonAddAlt1';
+import PersonAddAlt1Icon from "@mui/icons-material/PersonAddAlt1";
 import Dialog from "@mui/material/Dialog";
 import DialogTitle from "@mui/material/DialogTitle";
 import DialogContent from "@mui/material/DialogContent";
 import DialogActions from "@mui/material/DialogActions";
 import FormControl from "@mui/material/FormControl";
-import Paper from '@mui/material/Paper';
-import Draggable from 'react-draggable';
+import Paper from "@mui/material/Paper";
+import Draggable from "react-draggable";
 import { useTeacherContext } from "../context/TeacherContext";
+import DateChange from "../components/DateChange";
 
 function PaperComponent(props) {
   return (
@@ -32,12 +33,13 @@ function PaperComponent(props) {
 }
 
 export default function StudentPage() {
-  const {teachers,handleUpdateCP} = useTeacherContext()
+  const { teachers, handleUpdateCP } = useTeacherContext();
   const { currentCP } = useCPContext;
+  const [customDate, setCustomDate] = useState(false);
   const students = useData("http://localhost:8080/api/student");
   const teacherarray = useData("http://localhost:8080/api/teacher");
 
-  handleUpdateCP(teacherarray) // saved in Teacher Context
+  handleUpdateCP(teacherarray); // saved in Teacher Context
 
   stuobjarr.rows = students;
   console.log("studentPage", students);
@@ -68,8 +70,9 @@ export default function StudentPage() {
     let userName = data.get("userName");
     let location = data.get("location");
     let registrationId = data.get("registration id");
-    let dateOfBirth = data.get("date of birth");
+    let dateOfBirth = customDate;
     let contact = data.get("contact");
+    console.log(currentCP);
 
     let loggedInUser = null;
 
@@ -78,6 +81,7 @@ export default function StudentPage() {
         `http://localhost:8080/api/student/create`,
         {
           studentName: fullName,
+          teacherId: currentCP.id, 
           userName: userName,
           email: Email,
           password: Password,
@@ -89,10 +93,10 @@ export default function StudentPage() {
         }
       );
 
-      stuobjarr.rows.push(response.data)
+      // stuobjarr.rows.push(response.data);
 
       loggedInUser = response.data;
-      handleCloseDialog()
+      handleCloseDialog();
       console.log(loggedInUser);
     } catch (err) {
       console.log(err.message);
@@ -112,8 +116,7 @@ export default function StudentPage() {
               size="small"
               onClick={handleOpenDialog}
             >
-             <PersonAddAlt1Icon fontSize="medium"/>
-             
+              <PersonAddAlt1Icon fontSize="medium" />
             </IconButton>
           </Stack>
           {/* Dialog for adding a new student */}
@@ -197,12 +200,8 @@ export default function StudentPage() {
                   <br />
 
                   <Grid item xs={12} />
-                  <TextField
-                    name="date of birth"
-                    type="date of birth"
-                    label="Date Of Birth"
-                    sx={{ borderRadius: 200 }}
-                  />
+                  <DateChange setDueDate = {setCustomDate}
+                 />
                   <Grid />
                   <br />
 
@@ -222,20 +221,10 @@ export default function StudentPage() {
             </DialogContent>
             <DialogActions>
               <Button onClick={handleCloseDialog}>Cancel</Button>
-           
 
-              <Button
-      
-                type="submit"
-             
-              
-              >
-                Add Student
-              </Button>
+              <Button type="submit">Add Student</Button>
             </DialogActions>
           </Dialog>
-
-     
         </div>
       ) : null}
     </>
