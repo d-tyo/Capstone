@@ -1,10 +1,10 @@
 const multer = require('multer')
 
-// First set up the path/ filename the image will use
+// First set up the path/ filename the image will use (DONE)
 const storage = multer.diskStorage({
-    destination: 'public/image', 
-    // Jo said storage images in public folder of backend, in defined images directory 
-    // But mine will be a lesson file not an Image? PDF so lol got to do something about it
+    destination: 'public/lesson', 
+    // Jo said storage images -> mine changed to lesson in public folder of backend, in defined images directory 
+   
     filename: (req, file, cb) => {
         cb(null, Date,now() + '-' + file.originalname)
         //timestamp the filename to keep it unique, otherwise files with same name will overwrite
@@ -14,7 +14,7 @@ const storage = multer.diskStorage({
 // create the image upload function => which I have it in FE UploadButton.jsx
 // single file will be stored in req.file, multiple files are stored in req.files
 
-const uploadFile = multer({storage:  storage}).single("file")
+const uploadFile = multer({storage: storage}).single("file")
 //'file' is the name of the file sent from the FE in a FormData Object
 
 const uploadFiles= multer({storage: storage}).array("files")

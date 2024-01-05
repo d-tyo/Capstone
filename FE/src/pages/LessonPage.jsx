@@ -3,6 +3,7 @@ import LessonList from '../components/LessonList';
 import { useData } from '../hooks/useData';
 import { lessobjarr } from '../data/data';
 import UploadButton from '../components/UploadButton';
+import LessonForm from '../components/LessonForm';
 
 export default function LessonPage() {
 
@@ -15,7 +16,7 @@ export default function LessonPage() {
             <>
 
                 {Array.isArray(lessobjarr.rows)?<LessonList data={lessobjarr} />:null}
-                <UploadButton/>
+                <LessonForm/>
             </>
         );
       }

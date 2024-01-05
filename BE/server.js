@@ -11,7 +11,7 @@ const corsOptions = {
 
 app.use(cors(corsOptions));
 
-
+app.use("/lessonUpload", express.static("public/lesson")); // required for lesson mappings
 
 // parse requests of content-type - application/json
 app.use(express.json());

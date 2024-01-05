@@ -1,7 +1,7 @@
 let express = require("express");
 let router = express.Router();
 let Controllers = require("../controllers"); //index.js
-// const {uploadFile} = require("../middleware/uploads")
+
 
 // "/:" end point created so that a specific /unique URL where an API or web service  can be accessed. 
 
@@ -21,9 +21,6 @@ router.post("/login", (req, res) => {
   Controllers.teacherController.loginUser(req.body, res); //login User
 });
 
-// router.post("/:userId/image/", (req, res) => { 
-//   Controllers.teacherController.addLessonImage(req, res); 
-// });
 
 router.put("/:id", (req, res) => {
   Controllers.teacherController.updateTeacher(req, res); //update teacher

@@ -1,6 +1,24 @@
 "use strict";
 let Models = require("../models"); //matches index.js
 
+// upload an image from a FE form onto the BE server: https://www/positronx.io/react-file-upload-tutorial-with-node-express-and-multer/
+
+const addLesson = (req, res) => {
+  console.log(req.file)// save filename is in req.file.filename
+  const lessonUpdates = { lesson : '/lesson/'+ req.file.filename, lessonTitle: req.body.lessonTitle };
+  console.log(lessonUpdates);
+  
+  //save path to uploaded file in DB for this user
+  Models.Lesson.Update(
+    lessonUpdates,
+    { where: {id:req.params.userId}}
+  ).then(response =>
+    res.status(200).json({result:'File uploaded to folder successfully', data: lessonUpdates}) // send updated info back in response
+    ).catch(err =>
+      res. status(500).json({result: err.message}) 
+    )
+}
+
 const getLessons = (res) => {
   // finds all Lessons
   Models.Lesson.findAll({})
@@ -61,5 +79,6 @@ module.exports = {
   getLesson,
   createLesson,
   updateLesson,
-  deleteLesson
+  deleteLesson,
+  addLesson
 };

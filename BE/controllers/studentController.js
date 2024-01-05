@@ -2,6 +2,7 @@
 const Models = require("../models");
 const bcrypt = require('bcryptjs')
 const jwt = require("jsonwebtoken"); // CommonJS syntax
+require("dotenv").config(); //dotenv to read .env
 
 // CRUD OPERATION
 
@@ -32,8 +33,7 @@ const loginUser = (data, res) => {
   async function (user) {
   // If the user exists and the password is correct, send the user data as a response
   if (user && (await bcrypt.compare(data.password, user.password))) {
-  // Replace "your-secret-key" with your actual secret key
-  const secretKey = "817960";
+ 
   
   // Create a payload with user information
   const payload = {
@@ -42,7 +42,7 @@ const loginUser = (data, res) => {
   };
   
   // Generate a token with jwt.sign
-  const token = jwt.sign(payload, secretKey, { expiresIn: "1h" });
+  const token = jwt.sign(payload, process.env.JWT_KEY, { expiresIn: "1h" });
   
   // Send the user data and token in the response
   res.send({ result: 200, data: { user, token } });

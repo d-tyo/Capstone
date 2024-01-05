@@ -37,6 +37,7 @@ export default function MUIDynamicDialog({ open, setOpen, student }) {
 
   const handleClose = () => {
     setOpen(false);
+    window.location.reload()
   };
 
   const handleEditStudent = async (event) => {

@@ -1,27 +1,11 @@
 "use strict";
-let Models = require("../models"); //matches index.js
+
 const bcrypt = require('bcryptjs')
+require("dotenv").config(); //dotenv to read .env
+let Models = require("../models"); //matches index.js
 const jwt = require("jsonwebtoken"); // CommonJS syntax
 
 
-
-// upload an image from a FE form onto the BE server: https://www/positronx.io/react-file-upload-tutorial-with-node-express-and-multer/
-// 
-// const addLessonImage = (req, res) => {
-//   console.log(req.file)// save filename is in req.file.filename
-//   const userUpdates = { profilePhoto : '/images/'+ req.file.filename, profilePhotoTitle: req.body.imageTitle };
-//   console.log(userUpdates);
-  
-//   //save path to uploaded file in DB for this user
-//   Models.User.Update(
-//     userUpdates,
-//     { where: {id:req.params.userId}}
-//   ).then(response =>
-//     res.status(200).json({result:'File uploaded to folder successfully', data: userUpdates}) // send updated info back in response
-//     ).catch(err =>
-//       res. status(500).json({result: err.message}) 
-//     )
-// }
 
 
 //CRUD OPERATIONS
@@ -68,7 +52,7 @@ const loginUser = (data, res) => {
   };
   
   // Generate a token with jwt.sign
-  const token = jwt.sign(payload, secretKey, { expiresIn: "1h" });
+  const token = jwt.sign(payload, process.env.JWT_KEY, { expiresIn: "1h" });
   
   // Send the user data and token in the response
   res.send({ result: 200, data: { user, token } });

@@ -16,7 +16,7 @@ export const stuobjarr = {
       field: "studentName",
       headerName: "Name",
       editable: true,
-      width: 120,
+      width: 200,
     },
     {
       field: "userName",
@@ -28,7 +28,7 @@ export const stuobjarr = {
       field: "email",
       headerName: "Email",
       editable: true,
-      width: 120,
+      width: 200,
     },
     {
       field: "contact",
@@ -58,7 +58,7 @@ export const stuobjarr = {
       field: "DOB",
       headerName: "DOB",
       editable: true,
-      width: 120,
+      width: 200,
     },
     {
       field: "teacherId",
@@ -98,7 +98,7 @@ export const stuobjarr = {
             onClick={() => {
               axios.delete(`http://localhost:8080/api/student/${params.row.id}`)
               .then(setDelStudent(params.row))
-              console.log("delete", params.row);
+              window.location.reload()
               // send a request BE to delete
             }}
           />,

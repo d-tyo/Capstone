@@ -1,9 +1,10 @@
-import React, { useState } from "react";
-import StudentList from "../components/StudentList";
-import axios from "axios";
+import React, { useState, useEffect } from "react";
 import { useData } from "../hooks/useData";
 import { stuobjarr } from "../data/data";
 import { useCPContext } from "../context/CPContext";
+import { useTeacherContext } from "../context/TeacherContext";
+import StudentList from "../components/StudentList";
+import axios from "axios";
 import Stack from "@mui/material/Stack";
 import Button from "@mui/material/Button";
 import IconButton from "@mui/material/IconButton";
@@ -18,7 +19,6 @@ import DialogActions from "@mui/material/DialogActions";
 import FormControl from "@mui/material/FormControl";
 import Paper from "@mui/material/Paper";
 import Draggable from "react-draggable";
-import { useTeacherContext } from "../context/TeacherContext";
 import DateChange from "../components/DateChange";
 
 function PaperComponent(props) {
@@ -34,11 +34,14 @@ function PaperComponent(props) {
 
 export default function StudentPage() {
   const { teachers, handleUpdateCP } = useTeacherContext();
-  const { currentCP } = useCPContext;
+  const { currentCP } = useCPContext();
   const [customDate, setCustomDate] = useState(false);
   const students = useData("http://localhost:8080/api/student");
   const teacherarray = useData("http://localhost:8080/api/teacher");
 
+
+
+  
   handleUpdateCP(teacherarray); // saved in Teacher Context
 
   stuobjarr.rows = students;
@@ -52,6 +55,7 @@ export default function StudentPage() {
 
   const handleCloseDialog = () => {
     setOpenDialog(false);
+    window.location.reload() //refresh the page
   };
 
   const handleAddStudent = async (event) => {

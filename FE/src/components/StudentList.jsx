@@ -25,10 +25,22 @@ export default function StudentList(props) {
   );
 
   // const [loading, setLoading] = React.useState(initialLoadingState);
-
   React.useEffect(() => {
-    console.log(data);
-    setRows(data.rows);
+    setRows((prevRows) =>
+      data.rows.map((student) => {
+        // Parse the ISO 8601 date string
+        const parsedDate = new Date(student.DOB);
+
+        // Format the date as DD-MM-YYYY
+        const formattedDOB = `${parsedDate.getDate().toString().padStart(2, '0')}-${(parsedDate.getMonth() + 1).toString().padStart(2, '0')}-${parsedDate.getFullYear()}`;
+
+        // Update the student object with the formatted DOB
+        return {
+          ...student,
+          DOB: formattedDOB,
+        };
+      })
+    );
   }, [data]);
 
 

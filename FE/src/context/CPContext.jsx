@@ -1,4 +1,5 @@
 import { useState, useContext, createContext } from "react";
+import { useCookies } from "react-cookie";
 
 // 1. Create the context
 const CPContext = createContext();
@@ -6,12 +7,20 @@ const CPContext = createContext();
 // Custom provider component for this context.
 // Use it in App.jsx like <UserProvider>...</UserProvider>
 export const CPProvider = (props) => {
+  const [cookies, setCookie, removeCookie] = useCookies(["user"]);
   // store the current user in state at the top level
-  const [currentCP, setCurrentCP] = useState({});
+  const [currentCP, setCurrentCP] = useState(cookies.user ? cookies.user : {});
 
   // sets user object in state, shared via context
 const handleUpdateCP = (user) => {
-    setCurrentCP(user);
+  if (user.email) {
+    setCookie("user", JSON.stringify(user), { path: "/", maxAge: 60 * 60 * 24 * 2 });
+  } else {
+    removeCookie("user");
+  }
+  setCurrentCP(user);
+  console.log(user)
+  
   };
 
   
