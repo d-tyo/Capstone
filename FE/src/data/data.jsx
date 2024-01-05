@@ -188,26 +188,4 @@ export const lessobjarr = {
   rows: [],
 };
 
-// export default function StudentPage() {
-//   const [dialogOpen, setDialogOpen] = useState(false);
-//   const [editedStudent, setEditedStudent] = useState(null);
 
-//   const handleDialogClose = () => {
-//     setDialogOpen(false);
-//     setEditedStudent(null);
-//   };
-
-//   return (
-//     <React.Fragment>
-//       {dialogOpen && (
-//         <MUIDynamicDialog
-//           student={editedStudent}
-//           open={dialogOpen}
-//           onClose={handleDialogClose}
-//         />
-//       )}
-//       <YourComponent stuobjarr={stuobjarr(setDialogOpen)} />
-//       {/* Rest of your component code */}
-//     </React.Fragment>
-// );
-// }

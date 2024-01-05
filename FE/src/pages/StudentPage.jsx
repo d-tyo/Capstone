@@ -16,9 +16,20 @@ import DialogTitle from "@mui/material/DialogTitle";
 import DialogContent from "@mui/material/DialogContent";
 import DialogActions from "@mui/material/DialogActions";
 import FormControl from "@mui/material/FormControl";
+import Paper from '@mui/material/Paper';
+import Draggable from 'react-draggable';
 import { useTeacherContext } from "../context/TeacherContext";
 
-
+function PaperComponent(props) {
+  return (
+    <Draggable
+      handle="#draggable-dialog-title"
+      cancel={'[class*="MuiDialogContent-root"]'}
+    >
+      <Paper {...props} />
+    </Draggable>
+  );
+}
 
 export default function StudentPage() {
   const {teachers,handleUpdateCP} = useTeacherContext()
@@ -94,22 +105,26 @@ export default function StudentPage() {
         <div>
           <StudentList data={stuobjarr} />
 
-          {/* Add a plus button for adding students */}
+          {/* Add an Icon button for adding students */}
           <Stack direction="row" alignItems="center" spacing={1}>
             <IconButton
               aria-label="add"
               size="small"
               onClick={handleOpenDialog}
             >
-              <PersonAddAlt1Icon fontSize="medium"  />
+             <PersonAddAlt1Icon fontSize="medium"/>
+             
             </IconButton>
           </Stack>
           {/* Dialog for adding a new student */}
+
           <Dialog
             component="form"
             open={openDialog}
             onSubmit={handleAddStudent}
             onClose={handleCloseDialog}
+            PaperComponent={PaperComponent}
+            aria-labelledby="draggable-dialog-title"
           >
             <DialogTitle>Add New Student</DialogTitle>
             <DialogContent>
@@ -210,13 +225,17 @@ export default function StudentPage() {
            
 
               <Button
+      
                 type="submit"
-       
+             
+              
               >
                 Add Student
               </Button>
             </DialogActions>
           </Dialog>
+
+     
         </div>
       ) : null}
     </>

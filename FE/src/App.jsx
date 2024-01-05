@@ -5,18 +5,23 @@ import "./App.css";
 import CPNavBar from "./components/CPNavBar";
 import AppRoutes from "./routes/AppRoutes";
 import { CPProvider } from "./context/CPContext";
-
 import { BrowserRouter } from "react-router-dom";
 import { TeacherProvider } from "./context/TeacherContext";
+import MyThemeProvider from "./context/MyThemeContext";
+import { purpleTheme } from "./themes/purpleTheme";
+import { tealTheme } from "./themes/tealTheme";
+
 
 function App() {
   const [count, setCount] = useState(0);
-
+  const [currentTheme, setCurrentTheme] = useState(purpleTheme);
   return (
     <BrowserRouter>
       <CPProvider>
         <TeacherProvider>
-        <CPNavBar />
+          <MyThemeProvider theme = {currentTheme}>
+            <CPNavBar onChangeTheme = {setCurrentTheme}/>
+          </MyThemeProvider>
         </TeacherProvider>
       </CPProvider>
     </BrowserRouter>

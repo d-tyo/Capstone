@@ -1,81 +1,82 @@
-import * as React from 'react';
-import { styled, useTheme } from '@mui/material/styles';
-import Box from '@mui/material/Box';
-import Drawer from '@mui/material/Drawer';
-import CssBaseline from '@mui/material/CssBaseline';
-import MuiAppBar from '@mui/material/AppBar';
-import Toolbar from '@mui/material/Toolbar';
-import List from '@mui/material/List';
-import Typography from '@mui/material/Typography';
-import Divider from '@mui/material/Divider';
-import IconButton from '@mui/material/IconButton';
-import MenuIcon from '@mui/icons-material/Menu';
-import ChevronLeftIcon from '@mui/icons-material/ChevronLeft';
-import ChevronRightIcon from '@mui/icons-material/ChevronRight';
-import ListItem from '@mui/material/ListItem';
-import ListItemButton from '@mui/material/ListItemButton';
-import ListItemIcon from '@mui/material/ListItemIcon';
-import ListItemText from '@mui/material/ListItemText';
-import InboxIcon from '@mui/icons-material/MoveToInbox';
-import MailIcon from '@mui/icons-material/Mail';
-import Switch from './Switch';
-import AppRoutes from '../routes/AppRoutes';
-import AccountCircleOutlinedIcon from '@mui/icons-material/AccountCircleOutlined';
-import {NavLink} from 'react-router-dom'
-import { useCPContext } from '../context/CPContext'; 
-import AccountComponent from './AccountComponent';
+import * as React from "react";
+import { styled, useTheme } from "@mui/material/styles";
+import Box from "@mui/material/Box";
+import Drawer from "@mui/material/Drawer";
+import CssBaseline from "@mui/material/CssBaseline";
+import MuiAppBar from "@mui/material/AppBar";
+import Toolbar from "@mui/material/Toolbar";
+import List from "@mui/material/List";
+import Typography from "@mui/material/Typography";
+import Divider from "@mui/material/Divider";
+import IconButton from "@mui/material/IconButton";
+import MenuIcon from "@mui/icons-material/Menu";
+import ChevronLeftIcon from "@mui/icons-material/ChevronLeft";
+import ChevronRightIcon from "@mui/icons-material/ChevronRight";
+import ListItem from "@mui/material/ListItem";
+import ListItemButton from "@mui/material/ListItemButton";
+import ListItemIcon from "@mui/material/ListItemIcon";
+import ListItemText from "@mui/material/ListItemText";
+import InboxIcon from "@mui/icons-material/MoveToInbox";
+import MailIcon from "@mui/icons-material/Mail";
+import Switch from "./Switch";
+import AppRoutes from "../routes/AppRoutes";
+import AccountCircleOutlinedIcon from "@mui/icons-material/AccountCircleOutlined";
+import { NavLink } from "react-router-dom";
+import { useCPContext } from "../context/CPContext";
+import AccountComponent from "./AccountComponent";
+import ThemeSwitch from "./ThemeSwitch";
 
 const drawerWidth = 240;
 
-const Main = styled('main', { shouldForwardProp: (prop) => prop !== 'open' })(
+const Main = styled("main", { shouldForwardProp: (prop) => prop !== "open" })(
   ({ theme, open }) => ({
     flexGrow: 1,
     padding: theme.spacing(3),
-    transition: theme.transitions.create('margin', {
+    transition: theme.transitions.create("margin", {
       easing: theme.transitions.easing.sharp,
       duration: theme.transitions.duration.leavingScreen,
     }),
     marginLeft: `-${drawerWidth}px`,
     ...(open && {
-      transition: theme.transitions.create('margin', {
+      transition: theme.transitions.create("margin", {
         easing: theme.transitions.easing.easeOut,
         duration: theme.transitions.duration.enteringScreen,
       }),
       marginLeft: 0,
     }),
-  }),
+  })
 );
 
 const AppBar = styled(MuiAppBar, {
-  shouldForwardProp: (prop) => prop !== 'open',
+  shouldForwardProp: (prop) => prop !== "open",
 })(({ theme, open }) => ({
-  transition: theme.transitions.create(['margin', 'width'], {
+  transition: theme.transitions.create(["margin", "width"], {
     easing: theme.transitions.easing.sharp,
     duration: theme.transitions.duration.leavingScreen,
   }),
   ...(open && {
     width: `calc(100% - ${drawerWidth}px)`,
     marginLeft: `${drawerWidth}px`,
-    transition: theme.transitions.create(['margin', 'width'], {
+    transition: theme.transitions.create(["margin", "width"], {
       easing: theme.transitions.easing.easeOut,
       duration: theme.transitions.duration.enteringScreen,
     }),
   }),
 }));
 
-const DrawerHeader = styled('div')(({ theme }) => ({
-  display: 'flex',
-  alignItems: 'center',
+const DrawerHeader = styled("div")(({ theme }) => ({
+  display: "flex",
+  alignItems: "center",
   padding: theme.spacing(0, 1),
   // necessary for content to be below app bar
   ...theme.mixins.toolbar,
-  justifyContent: 'flex-end',
+  justifyContent: "flex-end",
 }));
 
-export default function PersistentDrawerLeft() {
+export default function PersistentDrawerLeft({onChangeTheme}) {
   const theme = useTheme();
   const [open, setOpen] = React.useState(false);
-  const {currentCP} = useCPContext();
+  const { currentCP } = useCPContext();
 
   const handleDrawerOpen = () => {
     setOpen(true);
@@ -86,7 +87,7 @@ export default function PersistentDrawerLeft() {
   };
 
   return (
-    <Box sx={{ display: 'flex' }}>
+    <Box sx={{ display: "flex" }}>
       <CssBaseline />
       <AppBar position="fixed" open={open}>
         <Toolbar>
@@ -95,23 +96,24 @@ export default function PersistentDrawerLeft() {
             aria-label="open drawer"
             onClick={handleDrawerOpen}
             edge="start"
-            sx={{ mr: 2, ...(open && { display: 'none' }) }}
+            sx={{ mr: 2, ...(open && { display: "none" }) }}
           >
             <MenuIcon />
           </IconButton>
-          <Typography variant="h6" noWrap component="div">
-          Circle Play
+          <Typography variant="h6" noWrap>
+            Circle Play
           </Typography>
-          <Switch/>
+          <Typography component="div" sx={{ flexGrow: 1 }}></Typography>
+          <ThemeSwitch onChangeTheme={onChangeTheme}/>
         </Toolbar>
       </AppBar>
       <Drawer
         sx={{
           width: drawerWidth,
           flexShrink: 0,
-          '& .MuiDrawer-paper': {
+          "& .MuiDrawer-paper": {
             width: drawerWidth,
-            boxSizing: 'border-box',
+            boxSizing: "border-box",
           },
         }}
         variant="persistent"
@@ -120,32 +122,51 @@ export default function PersistentDrawerLeft() {
       >
         <DrawerHeader>
           <IconButton onClick={handleDrawerClose}>
-            {theme.direction === 'ltr' ? <ChevronLeftIcon /> : <ChevronRightIcon />}
+            {theme.direction === "ltr" ? (
+              <ChevronLeftIcon />
+            ) : (
+              <ChevronRightIcon />
+            )}
           </IconButton>
         </DrawerHeader>
         <List>
-        {['Account', 'Login', 'Dashboard', 'Teachers', 'Students', 'Courses', 'Help'].map((text, index) => (
-         // <> {currentCP.firstName ?}
-         <React.Fragment key={text}>
-            {text === 'Account' ? (
-              <AccountComponent key={text} />
-            ) : (
-              <ListItem key={text} disablePadding component = {NavLink} to = {text.toLowerCase()}>
-                {/* <NavLink to={text.toLowerCase()}> */}
+          {[
+            "Account",
+            "Login",
+            "Dashboard",
+            "Teachers",
+            "Students",
+            "Courses",
+            "Help",
+          ].map((text, index) => (
+            // <> {currentCP.firstName ?}
+            <React.Fragment key={text}>
+              {text === "Account" ? (
+                <AccountComponent key={text} />
+              ) : (
+                <ListItem
+                  key={text}
+                  disablePadding
+                  component={NavLink}
+                  to={text.toLowerCase()}
+                >
+                  {/* <NavLink to={text.toLowerCase()}> */}
                   <ListItemButton>
-                    <ListItemIcon>{index % 2 === 0 ? <InboxIcon /> : <MailIcon />}</ListItemIcon>
+                    <ListItemIcon>
+                      {index % 2 === 0 ? <InboxIcon /> : <MailIcon />}
+                    </ListItemIcon>
                     <ListItemText primary={text} />
                   </ListItemButton>
-                {/* </NavLink> */}
-              </ListItem>
-            )}
-          </React.Fragment>
-          // : null
-          // } </>
-        ))}
-      </List>
+                  {/* </NavLink> */}
+                </ListItem>
+              )}
+            </React.Fragment>
+            // : null
+            // } </>
+          ))}
+        </List>
         <List>
-          {['All mail', 'Trash', 'Spam'].map((text, index) => (
+          {["All mail", "Trash", "Spam"].map((text, index) => (
             <ListItem key={text} disablePadding>
               <ListItemButton>
                 <ListItemIcon>
@@ -159,7 +180,7 @@ export default function PersistentDrawerLeft() {
       </Drawer>
       <Main open={open}>
         <DrawerHeader />
-        <AppRoutes/>
+        <AppRoutes />
       </Main>
     </Box>
   );
