@@ -36,7 +36,7 @@ const {currentCP} = useCPContext()
       // post everything from form (including image data) to backend, where we will save the image file to disk using multer middleware
       // https://www.positronx.io/react-file-upload-tutorial-with-node-express-and-multer/
       const response = await axios.post(
-        `http://localhost:8080/api/lesson/uploadLesson`,
+        `http://localhost:8080/api/lesson/4/uploadLesson`,
         formData
       ); // see backend for this route
       console.log(response.data);
@@ -60,7 +60,7 @@ const {currentCP} = useCPContext()
   return (
     <Container component="main" maxWidth="xs">
       <CssBaseline />
-      <h3>Upload Lesson</h3>
+
       {currentCP.teacherName ? (
         <Box
           component="form"
@@ -85,12 +85,16 @@ const {currentCP} = useCPContext()
             onChange={(e) => setLessonTitle(e.target.value)}
           />
           {/* {image.preview && <img src={image.preview} width='100' height='100' />} */}
-          <input name="lesson" type="file" onChange={handleFileChange} />
+         
+         {/* Lesson 1 */}
+         {lesson.preview === ""? "no file selected": lessonTitle ? lessonTitle: lesson.preview }
           <Button
-            type="submit"
+            type="file"
             component="label"
             variant="contained"
             startIcon={<CloudUploadIcon />}
+            name="lesson"
+            onChange={handleFileChange}
           >
             Upload file
             <VisuallyHiddenInput type="file" />

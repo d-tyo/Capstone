@@ -1,7 +1,7 @@
 let express = require("express");
 let router = express.Router();
 let Controllers = require("../controllers"); //index.js
-// const {uploadFile} = require("../middleware/uploads")
+const {uploadFile} = require("../middleware/uploads")
 
 router.get("/", (req, res) => {
   Controllers.lessonController.getLessons(res);
@@ -15,7 +15,7 @@ router.post("/create", (req, res) => {
   Controllers.lessonController.createLesson(req.body, res);
 });
 
-router.post("/uploadLesson/", (req, res) => { 
+router.post("/:lessonId/uploadLesson/", uploadFile, (req, res) => { 
   Controllers.lessonController.addLesson(req, res); 
 });
 

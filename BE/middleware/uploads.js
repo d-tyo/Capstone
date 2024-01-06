@@ -6,7 +6,7 @@ const storage = multer.diskStorage({
     // Jo said storage images -> mine changed to lesson in public folder of backend, in defined images directory 
    
     filename: (req, file, cb) => {
-        cb(null, Date,now() + '-' + file.originalname)
+        cb(null, Date.now() + '-' + file.originalname)
         //timestamp the filename to keep it unique, otherwise files with same name will overwrite
     },
 })
@@ -21,4 +21,4 @@ const uploadFiles= multer({storage: storage}).array("files")
 //Change single to array for multiple,  FE needs to send array in FormData
 
 
-module.exports = {uploadFile,uploadFiles}
+module.exports = {uploadFile, uploadFiles}

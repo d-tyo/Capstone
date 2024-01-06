@@ -143,6 +143,13 @@ export const trobjarr = {
 
 export const lessobjarr = {
   columns: [
+
+    {
+      field: "id",
+      headerName: "Lesson ID",
+      editable: true,
+      width: 120,
+    },
     {
       field: "teacherId",
       headerName: "Teacher",
@@ -189,6 +196,45 @@ export const lessobjarr = {
       headerName: "Feedback",
       editable: true,
       width: 120,
+    },
+    {
+      field: "actions",
+      type: "actions",
+      getActions: (params) => {
+        const [isEditDialogOpen, setIsEditDialogOpen] = useState(false);
+        const [student, setStudent] = useState(params.row);
+        const [delStudent, setDelStudent] = useState(null);
+
+        return [
+          <MUIDynamicDialog
+            open={isEditDialogOpen}
+            setOpen={setIsEditDialogOpen}
+            student={student}
+          />,
+
+          <GridActionsCellItem
+            showInMenu
+            icon={<EditIcon />}
+            label="Edit"
+            onClick={() => {
+              setIsEditDialogOpen(true);
+              // console.log("Edit", params.row.studentName);
+              // send a request BE to edit
+            }}
+          />,
+          <GridActionsCellItem
+            showInMenu
+            icon={<DeleteIcon />}
+            label="Delete"
+            onClick={() => {
+              axios.delete(`http://localhost:8080/api/lesson/${params.row.id}`)
+              .then(setDelStudent(params.row))
+              window.location.reload()
+              // send a request BE to delete
+            }}
+          />,
+        ];
+      },
     },
   ],
   rows: [],

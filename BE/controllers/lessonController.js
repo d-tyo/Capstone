@@ -5,13 +5,13 @@ let Models = require("../models"); //matches index.js
 
 const addLesson = (req, res) => {
   console.log(req.file)// save filename is in req.file.filename
-  const lessonUpdates = { lesson : '/lesson/'+ req.file.filename, lessonTitle: req.body.lessonTitle };
+  const lessonUpdates = { filePath : '/lesson/'+ req.file.filename, title: req.body.lessonTitle };
   console.log(lessonUpdates);
   
   //save path to uploaded file in DB for this user
-  Models.Lesson.Update(
+  Models.Lesson.update(
     lessonUpdates,
-    { where: {id:req.params.userId}}
+    { where: {id:req.params.lessonId}}
   ).then(response =>
     res.status(200).json({result:'File uploaded to folder successfully', data: lessonUpdates}) // send updated info back in response
     ).catch(err =>
