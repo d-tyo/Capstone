@@ -1,23 +1,20 @@
-import LessonList from "../components/LessonList";
-import { useData } from "../hooks/useData";
-import { lessobjarr } from "../data/data";
-import LessonForm from "../components/LessonForm";
-import React, { useState, useEffect } from "react";
-import Stack from "@mui/material/Stack";
+import * as React from "react";
+import axios from "axios";
 import Button from "@mui/material/Button";
-import IconButton from "@mui/material/IconButton";
-import Grid from "@mui/material/Grid";
-import TextField from "@mui/material/TextField";
-import DeleteIcon from "@mui/icons-material/Delete";
-import PersonAddAlt1Icon from "@mui/icons-material/PersonAddAlt1";
 import Dialog from "@mui/material/Dialog";
-import DialogTitle from "@mui/material/DialogTitle";
-import DialogContent from "@mui/material/DialogContent";
+import DateChange from "./DateChange";
 import DialogActions from "@mui/material/DialogActions";
-import FormControl from "@mui/material/FormControl";
+import DialogContent from "@mui/material/DialogContent";
+import DialogContentText from "@mui/material/DialogContentText";
+import DialogTitle from "@mui/material/DialogTitle";
 import Paper from "@mui/material/Paper";
 import Draggable from "react-draggable";
-import axios from "axios";
+import Grid from "@mui/material/Grid";
+import FormControl from "@mui/material/FormControl";
+import TextField from "@mui/material/TextField";
+import { useState } from "react";
+import PersonAddAlt1Icon from "@mui/icons-material/PersonAddAlt1";
+import { useTeacherContext } from "../context/TeacherContext";
 import { useCPContext } from "../context/CPContext";
 
 function PaperComponent(props) {
@@ -31,24 +28,20 @@ function PaperComponent(props) {
   );
 }
 
-export default function LessonPage() {
-  const { currentCP } = useCPContext();
-  const Lessons = useData("http://localhost:8080/api/lesson");
-
-  lessobjarr.rows = Lessons;
-
-  const [openDialog, setOpenDialog] = useState(false);
-
-  const handleOpenDialog = () => {
-    setOpenDialog(true);
+export default function EditLesson({ open, setOpen, lesson }) {
+    const { currentCP } = useCPContext();
+   
+  const [customDate, setCustomDate] = useState(false);
+  const handleOpen = () => {
+    setOpen(true);
   };
 
-  const handleCloseDialog = () => {
-    setOpenDialog(false);
-    window.location.reload(); //refresh the page
+  const handleClose = () => {
+    setOpen(false);
+    window.location.reload(); //refresh page
   };
 
-  const handleAddLesson = async (event) => {
+  const handleEditLesson = async (event) => {
     event.preventDefault();
     const data = new FormData(event.currentTarget);
     console.log({
@@ -79,10 +72,8 @@ export default function LessonPage() {
         }
       );
 
-      // stuobjarr.rows.push(response.data);
-
       loggedInUser = response.data;
-      handleCloseDialog();
+      handleClose();
       console.log(loggedInUser);
     } catch (err) {
       console.log(err.message);
@@ -91,26 +82,17 @@ export default function LessonPage() {
 
   return (
     <>
-      {Array.isArray(lessobjarr.rows) ? <LessonList data={lessobjarr} /> : null}
-      <LessonForm />
-
-      {/* Add an Icon button for adding students */}
-      <Stack direction="row" alignItems="center" spacing={1}>
-        <IconButton aria-label="add" size="small" onClick={handleOpenDialog}>
-          <PersonAddAlt1Icon fontSize="medium" />
-        </IconButton>
-      </Stack>
-      {/* Dialog for adding a new student */}
-
       <Dialog
         component="form"
-        open={openDialog}
-        onSubmit={handleAddLesson}
-        onClose={handleCloseDialog}
+        open={open}
+        onClose={handleClose}
+        onSubmit={handleEditLesson}
         PaperComponent={PaperComponent}
         aria-labelledby="draggable-dialog-title"
       >
-        <DialogTitle>Add New Lesson</DialogTitle>
+        <DialogTitle style={{ cursor: "move" }} id="draggable-dialog-title">
+          Edit :  {lesson.title}
+        </DialogTitle>
         <DialogContent>
           <br />
           <Grid container spacing={2}>
@@ -120,6 +102,7 @@ export default function LessonPage() {
                 name="teacherId"
                 type="teacherId"
                 label="Teacher Id"
+                defaultValue = {lesson.teacherId}
                 sx={{ borderRadius: 200 }}
               />
               <br />
@@ -128,6 +111,7 @@ export default function LessonPage() {
                 name="subject"
                 type="subject"
                 label="Subject"
+                defaultValue = {lesson.subject}
                 sx={{ borderRadius: 200, width: 400 }}
               />
               <Grid />
@@ -138,6 +122,8 @@ export default function LessonPage() {
                 name="academic teaching level"
                 type="academic teaching level"
                 label="Grade"
+                defaultValue = {lesson.grade}
+                onChange={e => console.log(e.target.value)}
                 sx={{ borderRadius: 200, width: 400 }}
               />
               <Grid />
@@ -148,6 +134,7 @@ export default function LessonPage() {
                 name="type"
                 type="type"
                 label="Type"
+                defaultValue = {lesson.type}
                 sx={{ borderRadius: 200 }}
               />
               <Grid />
@@ -158,33 +145,35 @@ export default function LessonPage() {
                 name="title"
                 type="title"
                 label="Title"
+                defaultValue = {lesson.title}
                 sx={{ borderRadius: 200 }}
               />
               <Grid />
               <br />
 
               <Grid item xs={12} />
-              <TextField 
-              name="filePath" 
-              type="filePath" 
-              label="File Path" />
+              <TextField name="filePath" type="filePath" label="File Path" />
               <Grid />
               <br />
 
               <Grid item xs={12} />
-              <TextField 
-              name="comment" type="comment" label="Comment" />
+              <TextField name="comment" type="comment" label="Comment"     defaultValue = {lesson.comment} />
               <Grid />
               <br />
             </FormControl>
           </Grid>
-          {/* Add form or input fields for adding a new student */}
-          {/* For example: <input type="text" placeholder="Enter student name" /> */}
+          {/* Add form or input fields for adding a new lesson */}
+          {/* For example: <input type="text" placeholder="Enter lesson name" /> */}
         </DialogContent>
         <DialogActions>
-          <Button onClick={handleCloseDialog}>Cancel</Button>
+          <Button onClick={handleClose}>Cancel</Button>
 
-          <Button type="submit">Add Lesson</Button>
+          <Button
+            type="submit
+                 "
+          >
+            Edit File
+          </Button>
         </DialogActions>
       </Dialog>
     </>

@@ -7,6 +7,7 @@ import DeleteIcon from "@mui/icons-material/Delete";
 import { GridActionsCellItem } from "@mui/x-data-grid";
 import MUIDynamicDialog from "../components/MUIDynamicDialog";
 import StudentPage from "../pages/StudentPage";
+import EditLesson from "../components/EditLesson";
 
 // export const stuobjarr = (setDialogOpen) => ();
 
@@ -202,14 +203,14 @@ export const lessobjarr = {
       type: "actions",
       getActions: (params) => {
         const [isEditDialogOpen, setIsEditDialogOpen] = useState(false);
-        const [student, setStudent] = useState(params.row);
-        const [delStudent, setDelStudent] = useState(null);
+        const [lesson, setLesson] = useState(params.row);
+        const [delLesson, setDelLesson] = useState(null);
 
         return [
-          <MUIDynamicDialog
+          <EditLesson
             open={isEditDialogOpen}
             setOpen={setIsEditDialogOpen}
-            student={student}
+            lesson={lesson}
           />,
 
           <GridActionsCellItem
@@ -220,6 +221,7 @@ export const lessobjarr = {
               setIsEditDialogOpen(true);
               // console.log("Edit", params.row.studentName);
               // send a request BE to edit
+
             }}
           />,
           <GridActionsCellItem

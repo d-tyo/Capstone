@@ -21,7 +21,8 @@ const VisuallyHiddenInput = styled("input")({
 
 function LessonForm() {
 const {currentCP} = useCPContext()
-  const [lesson, setLesson] = useState({ preview: "", data: "" });
+const [lessonId, setLessonId] = useState("")
+ const [lesson, setLesson] = useState({ preview: "", data: "" });
   const [lessonTitle, setLessonTitle] = useState("");
   const [status, setStatus] = useState("");
 
@@ -36,11 +37,14 @@ const {currentCP} = useCPContext()
       // post everything from form (including image data) to backend, where we will save the image file to disk using multer middleware
       // https://www.positronx.io/react-file-upload-tutorial-with-node-express-and-multer/
       const response = await axios.post(
-        `http://localhost:8080/api/lesson/4/uploadLesson`,
+        `http://localhost:8080/api/lesson/${lessonId}/uploadLesson`,
         formData
       ); // see backend for this route
       console.log(response.data);
       setStatus(response.data.result);
+      window.location.reload()
+
+      
       //update current user with new profile photo details
     } catch (err) {
       setStatus(err.message);
@@ -86,6 +90,18 @@ const {currentCP} = useCPContext()
           />
           {/* {image.preview && <img src={image.preview} width='100' height='100' />} */}
          
+          <TextField
+            margin="normal"
+            required
+            fullWidth
+            id="LessonTitle"
+            autoFocus
+            label="Lesson ID"
+            name="lessonTitle"
+            defaultValue={""}
+            onChange={(e) => setLessonId(parseInt(e.target.value))} 
+          />
+
          {/* Lesson 1 */}
          {lesson.preview === ""? "no file selected": lessonTitle ? lessonTitle: lesson.preview }
           <Button
