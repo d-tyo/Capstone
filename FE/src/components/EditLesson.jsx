@@ -50,7 +50,7 @@ export default function EditLesson({ open, setOpen, lesson }) {
     });
 
     let subject = data.get("subject");
-    let academicTeachingLevel = data.get("academic teaching level");
+    let academicTeachingLevel = data.get("grade");
     let type = data.get("type");
     let title = data.get("title");
     let filePath = data.get("filePath");
@@ -59,8 +59,8 @@ export default function EditLesson({ open, setOpen, lesson }) {
     let loggedInUser = null;
 
     try {
-      let response = await axios.post(
-        `http://localhost:8080/api/lesson/create`,
+      let response = await axios.put(
+        `http://localhost:8080/api/lesson/${lesson.id}`,
         {
           teacherId: currentCP.id,
           subject: subject,
@@ -119,8 +119,8 @@ export default function EditLesson({ open, setOpen, lesson }) {
 
               <Grid item xs={12} />
               <TextField
-                name="academic teaching level"
-                type="academic teaching level"
+                name="grade"
+                type="grade"
                 label="Grade"
                 defaultValue = {lesson.grade}
                 onChange={e => console.log(e.target.value)}

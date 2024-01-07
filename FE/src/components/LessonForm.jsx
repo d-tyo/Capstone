@@ -26,7 +26,7 @@ const [lessonId, setLessonId] = useState("")
   const [lessonTitle, setLessonTitle] = useState("");
   const [status, setStatus] = useState("");
 
-  const handleSubmit = async (e) => {
+  const handleSubmit = async (e) => { //upload File button to submit from the foamData
     e.preventDefault();
     // build up all form data to be sent to back end in a FormData object (comes built-in to browser-based JS)
     let formData = new FormData();
@@ -51,7 +51,7 @@ const [lessonId, setLessonId] = useState("")
     }
   };
 
-  const handleFileChange = (e) => {
+  const handleFileChange = (e) => { //select the right file to update
     console.log(e.target.files[0]);
     // create object with data from uploaded image and URL to preview it
     const file = {
@@ -99,18 +99,20 @@ const [lessonId, setLessonId] = useState("")
             label="Lesson ID"
             name="lessonTitle"
             defaultValue={""}
-            onChange={(e) => setLessonId(parseInt(e.target.value))} 
+            onChange={(e) => setLessonId(parseInt(e.target.value))} // insert your own LessonID 
           />
 
          {/* Lesson 1 */}
-         {lesson.preview === ""? "no file selected": lessonTitle ? lessonTitle: lesson.preview }
+         {lesson.preview === ""? "no file selected": lessonTitle ? lessonTitle: lesson.preview } 
+         {/* //lesson uploaded / file chosen name */}
+         
           <Button
             type="file"
             component="label"
             variant="contained"
             startIcon={<CloudUploadIcon />}
             name="lesson"
-            onChange={handleFileChange}
+            onChange={handleFileChange} // button that chooses the file to be uploded
           >
             Upload file
             <VisuallyHiddenInput type="file" />

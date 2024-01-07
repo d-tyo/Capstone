@@ -8,7 +8,7 @@ export default function DateChange(props) {
   const [customDate, setCustomDate] = useState(false);
   const handleDateChange = (date) => {
     //define the date
-    const selectedDate = new Date(date);
+    const selectedDate = new Date(date); //formatted into JS
     console.log(selectedDate);
     //set the date
     props.setDueDate(selectedDate);

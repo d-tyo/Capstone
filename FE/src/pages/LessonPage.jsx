@@ -1,24 +1,24 @@
-import LessonList from "../components/LessonList";
 import { useData } from "../hooks/useData";
 import { lessobjarr } from "../data/data";
-import LessonForm from "../components/LessonForm";
-import React, { useState, useEffect } from "react";
+import { useCPContext } from "../context/CPContext";
+import React, { useState } from "react";
+import axios from "axios";
+import Grid from "@mui/material/Grid";
 import Stack from "@mui/material/Stack";
 import Button from "@mui/material/Button";
-import IconButton from "@mui/material/IconButton";
-import Grid from "@mui/material/Grid";
-import TextField from "@mui/material/TextField";
-import DeleteIcon from "@mui/icons-material/Delete";
-import PersonAddAlt1Icon from "@mui/icons-material/PersonAddAlt1";
+import Paper from "@mui/material/Paper";
+import Draggable from "react-draggable";
 import Dialog from "@mui/material/Dialog";
 import DialogTitle from "@mui/material/DialogTitle";
 import DialogContent from "@mui/material/DialogContent";
 import DialogActions from "@mui/material/DialogActions";
 import FormControl from "@mui/material/FormControl";
-import Paper from "@mui/material/Paper";
-import Draggable from "react-draggable";
-import axios from "axios";
-import { useCPContext } from "../context/CPContext";
+import LessonList from "../components/LessonList";
+import LessonForm from "../components/LessonForm";
+import IconButton from "@mui/material/IconButton";
+import TextField from "@mui/material/TextField";
+import DeleteIcon from "@mui/icons-material/Delete";
+import CreateNewFolderIcon from '@mui/icons-material/CreateNewFolder';
 
 function PaperComponent(props) {
   return (
@@ -48,7 +48,7 @@ export default function LessonPage() {
     window.location.reload(); //refresh the page
   };
 
-  const handleAddLesson = async (event) => {
+  const handleAddLesson = async (event) => { //Add lesson not a file 
     event.preventDefault();
     const data = new FormData(event.currentTarget);
     console.log({
@@ -91,17 +91,18 @@ export default function LessonPage() {
 
   return (
     <>
+
+      {/* Add an Icon button for adding lessons */}
+      <Stack direction="row" alignItems="center" spacing={1}>
+        <IconButton aria-label="add" size="small" onClick={handleOpenDialog}>
+          <CreateNewFolderIcon fontSize="medium" />
+        </IconButton>
+      </Stack>
+
       {Array.isArray(lessobjarr.rows) ? <LessonList data={lessobjarr} /> : null}
       <LessonForm />
 
-      {/* Add an Icon button for adding students */}
-      <Stack direction="row" alignItems="center" spacing={1}>
-        <IconButton aria-label="add" size="small" onClick={handleOpenDialog}>
-          <PersonAddAlt1Icon fontSize="medium" />
-        </IconButton>
-      </Stack>
-      {/* Dialog for adding a new student */}
-
+      {/* Dialog for adding a new Lesson*/}
       <Dialog
         component="form"
         open={openDialog}
@@ -178,8 +179,8 @@ export default function LessonPage() {
               <br />
             </FormControl>
           </Grid>
-          {/* Add form or input fields for adding a new student */}
-          {/* For example: <input type="text" placeholder="Enter student name" /> */}
+          {/* Add form or input fields for adding a new lesson */}
+          {/* For example: <input type="text" placeholder="Enter lesson name" /> */}
         </DialogContent>
         <DialogActions>
           <Button onClick={handleCloseDialog}>Cancel</Button>

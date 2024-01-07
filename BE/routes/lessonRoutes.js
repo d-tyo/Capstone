@@ -16,7 +16,7 @@ router.post("/create", (req, res) => {
 });
 
 router.post("/:lessonId/uploadLesson/", uploadFile, (req, res) => { 
-  Controllers.lessonController.addLesson(req, res); 
+  Controllers.lessonController.addLesson(req, res); // upload lesson Id 
 });
 
 router.put("/:id", (req, res) => {

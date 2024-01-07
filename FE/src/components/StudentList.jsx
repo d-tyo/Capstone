@@ -44,9 +44,6 @@ export default function StudentList(props) {
   }, [data]);
 
 
-  // React.useEffect(() => {
-  //   setLoading(initialLoadingState);
-  // }, [initialLoadingState]);
 
   const handleRowOrderChange = async (params) => {
     setLoading(true);

@@ -5,13 +5,13 @@ let Models = require("../models"); //matches index.js
 
 const addLesson = (req, res) => {
   console.log(req.file)// save filename is in req.file.filename
-  const lessonUpdates = { filePath : '/lesson/'+ req.file.filename, title: req.body.lessonTitle };
+  const lessonUpdates = { filePath : '/lesson/'+ req.file.filename, title: req.body.lessonTitle }; //passing throught the file location + title
   console.log(lessonUpdates);
   
   //save path to uploaded file in DB for this user
   Models.Lesson.update(
     lessonUpdates,
-    { where: {id:req.params.lessonId}}
+    { where: {id:req.params.lessonId}}// filtered specific lesson path by using params 
   ).then(response =>
     res.status(200).json({result:'File uploaded to folder successfully', data: lessonUpdates}) // send updated info back in response
     ).catch(err =>
@@ -53,7 +53,7 @@ const createLesson = (data, res) => {
 
 
 const updateLesson = (req, res) => {
-  // updates the Lessons matching the ID from the param using JSON data Lessonsed in request body
+  // updates the Lessons matching the ID from the param using JSON data in request body 
   console.log(req.body);
   Models.Lesson.update(req.body, { where: { id: req.params.id } })
 

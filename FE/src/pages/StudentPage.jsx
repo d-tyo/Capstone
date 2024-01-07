@@ -3,13 +3,13 @@ import { useData } from "../hooks/useData";
 import { stuobjarr } from "../data/data";
 import { useCPContext } from "../context/CPContext";
 import { useTeacherContext } from "../context/TeacherContext";
-import StudentList from "../components/StudentList";
 import axios from "axios";
 import Stack from "@mui/material/Stack";
 import Button from "@mui/material/Button";
 import IconButton from "@mui/material/IconButton";
 import Grid from "@mui/material/Grid";
 import TextField from "@mui/material/TextField";
+import StudentList from "../components/StudentList";
 import DeleteIcon from "@mui/icons-material/Delete";
 import PersonAddAlt1Icon from "@mui/icons-material/PersonAddAlt1";
 import Dialog from "@mui/material/Dialog";
@@ -44,7 +44,7 @@ export default function StudentPage() {
   
   handleUpdateCP(teacherarray); // saved in Teacher Context
 
-  stuobjarr.rows = students;
+  stuobjarr.rows = students; //stuobjarr changed = students
   console.log("studentPage", students);
 
   const [openDialog, setOpenDialog] = useState(false);
@@ -58,7 +58,7 @@ export default function StudentPage() {
     window.location.reload() //refresh the page
   };
 
-  const handleAddStudent = async (event) => {
+  const handleAddStudent = async (event) => { // Add Student 
     event.preventDefault();
     const data = new FormData(event.currentTarget);
     console.log({
@@ -82,6 +82,7 @@ export default function StudentPage() {
 
     try {
       let response = await axios.post(
+        //create the file path lists
         `http://localhost:8080/api/student/create`,
         {
           studentName: fullName,
@@ -128,7 +129,7 @@ export default function StudentPage() {
           <Dialog
             component="form"
             open={openDialog}
-            onSubmit={handleAddStudent}
+            onSubmit={handleAddStudent} //add student 
             onClose={handleCloseDialog}
             PaperComponent={PaperComponent}
             aria-labelledby="draggable-dialog-title"
@@ -226,7 +227,7 @@ export default function StudentPage() {
             <DialogActions>
               <Button onClick={handleCloseDialog}>Cancel</Button>
 
-              <Button type="submit">Add Student</Button>
+              <Button type="submit">Add Student</Button> 
             </DialogActions>
           </Dialog>
         </div>

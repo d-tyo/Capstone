@@ -1,12 +1,12 @@
 const multer = require('multer')
 
 // First set up the path/ filename the image will use (DONE)
-const storage = multer.diskStorage({
-    destination: 'public/lesson', 
+const storage = multer.diskStorage({ //where the file is getting save 
+    destination: 'public/lesson',  //created a path to insert the file uploaded
     // Jo said storage images -> mine changed to lesson in public folder of backend, in defined images directory 
    
     filename: (req, file, cb) => {
-        cb(null, Date.now() + '-' + file.originalname)
+        cb(null, Date.now() + '-' + file.originalname)  //created a path to insert the file uploaded
         //timestamp the filename to keep it unique, otherwise files with same name will overwrite
     },
 })

@@ -71,7 +71,7 @@ export const stuobjarr = {
       field: "actions",
       type: "actions",
       getActions: (params) => {
-        const [isEditDialogOpen, setIsEditDialogOpen] = useState(false);
+        const [isEditDialogOpen, setIsEditDialogOpen] = useState(false); //field edit
         const [student, setStudent] = useState(params.row);
         const [delStudent, setDelStudent] = useState(null);
 
@@ -230,7 +230,7 @@ export const lessobjarr = {
             label="Delete"
             onClick={() => {
               axios.delete(`http://localhost:8080/api/lesson/${params.row.id}`)
-              .then(setDelStudent(params.row))
+              .then(setDelLesson(params.row))
               window.location.reload()
               // send a request BE to delete
             }}
