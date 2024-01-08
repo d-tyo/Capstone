@@ -1,3 +1,4 @@
+import React from "react";
 import { useState } from "react";
 import "./App.css";
 import CPNavBar from "./components/CPNavBar";
@@ -8,6 +9,7 @@ import { TeacherProvider } from "./context/TeacherContext";
 import { ThemeProvider } from "@mui/material/styles";
 import { purpleTheme } from "./themes/purpleTheme";
 import { tealTheme } from "./themes/tealTheme";
+
 
 function App() {
   const [count, setCount] = useState(0);

@@ -16,8 +16,6 @@ import ListItem from "@mui/material/ListItem";
 import ListItemButton from "@mui/material/ListItemButton";
 import ListItemIcon from "@mui/material/ListItemIcon";
 import ListItemText from "@mui/material/ListItemText";
-import InboxIcon from "@mui/icons-material/MoveToInbox";
-import MailIcon from "@mui/icons-material/Mail";
 import AppRoutes from "../routes/AppRoutes";
 import AccountCircleOutlinedIcon from "@mui/icons-material/AccountCircleOutlined";
 import { NavLink } from "react-router-dom";
@@ -25,8 +23,8 @@ import { useCPContext } from "../context/CPContext";
 import AccountComponent from "./AccountComponent";
 import DarkModeSwitch from "./DarkModeSwitch";
 
-// import ThemeSwitch from "./DarkModeSwitch";
-// import { useMyThemeContext } from "../context/MyThemeContext";
+import ThemeSwitch from "./DarkModeSwitch";
+import { useMyThemeContext } from "../context/MyThemeContext";
 
 // TODO - hide menu items from non-logged in users
 
@@ -92,8 +90,8 @@ export default function PersistentDrawerLeft({ onChangeTheme, theme }) {
   return (
     <Box sx={{ display: "flex" }}>
       <CssBaseline />
-      <AppBar position="fixed" open={open} sx={{ backgroundColour: "#FFC0CB" }}>
-        <Toolbar>
+      <AppBar position="fixed" sx={{ backgroundColor: "#FFC0CB" }}>
+        <Toolbar sx={{ ...(open && { marginLeft: `${drawerWidth}px` }) }}>
           <IconButton
             color="inherit"
             aria-label="open drawer"
