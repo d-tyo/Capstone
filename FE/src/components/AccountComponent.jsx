@@ -1,12 +1,12 @@
 import * as React from "react";
 import { Popper } from "@mui/base/Popper";
-import { styled } from "@mui/joy/styles";
+import { styled } from "@mui/system";
 import {NavLink} from "react-router-dom"
 import { ClickAwayListener } from "@mui/base/ClickAwayListener";
 
-import Button from "@mui/joy/Button";
-import MenuList from "@mui/joy/MenuList";
-import MenuItem from "@mui/joy/MenuItem";
+import Button from "@mui/material/Button";
+import MenuList from "@mui/material/MenuList";
+import MenuItem from "@mui/material/MenuItem";
 import MenuButton from "@mui/joy/MenuButton";
 import MenuIcon from "@mui/icons-material/Menu";
 import List from "@mui/joy/List";
@@ -25,9 +25,9 @@ import AccountCircleIcon from "@mui/icons-material/AccountCircle";
 import DropDown from "./DropDown";
 
 
-const Popup = styled(Popper)({
-  zIndex: 1000,
-});
+// const Popup = styled(Popper)({
+//   zIndex: 1000,
+// });
 
 export default function AccountComponent() {
   const buttonRef = React.useRef(null);
@@ -85,7 +85,7 @@ export default function AccountComponent() {
         <AccountCircleIcon />
       </Button>
 
-      <Popup
+      <Popper
         role={undefined}
         id="composition-menu"
         open={open}
@@ -122,7 +122,7 @@ export default function AccountComponent() {
             <MenuItem onClick={handleClose} component = {NavLink} to  = {"/logout"}> Logout </MenuItem>
           </MenuList>
         </ClickAwayListener>
-      </Popup>
+      </Popper>
     </Box>
   );
 }

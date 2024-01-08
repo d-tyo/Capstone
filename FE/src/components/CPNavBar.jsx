@@ -23,6 +23,7 @@ import AccountCircleOutlinedIcon from "@mui/icons-material/AccountCircleOutlined
 import { NavLink } from "react-router-dom";
 import { useCPContext } from "../context/CPContext";
 import AccountComponent from "./AccountComponent";
+import DarkModeSwitch from "./DarkModeSwitch";
 // import ThemeSwitch from "./DarkModeSwitch";
 // import { useMyThemeContext } from "../context/MyThemeContext";
 
@@ -73,9 +74,7 @@ const DrawerHeader = styled("div")(({ theme }) => ({
   justifyContent: "flex-end",
 }));
 
-export default function PersistentDrawerLeft({onChangeTheme, theme}) {
-
-
+export default function PersistentDrawerLeft({ onChangeTheme, theme }) {
   const [open, setOpen] = React.useState(false);
   const { currentCP } = useCPContext();
 
@@ -89,8 +88,8 @@ export default function PersistentDrawerLeft({onChangeTheme, theme}) {
 
   return (
     <Box sx={{ display: "flex" }}>
-      {/* <CssBaseline /> */}
-      {/* <AppBar position="fixed" open={open} sx={{backgroundColour : "#FFC0CB"}} >
+      <CssBaseline />
+      <AppBar position="fixed" open={open} sx={{ backgroundColour: "#FFC0CB" }}>
         <Toolbar>
           <IconButton
             color="inherit"
@@ -105,9 +104,9 @@ export default function PersistentDrawerLeft({onChangeTheme, theme}) {
             Circle Play
           </Typography>
           <Typography component="div" sx={{ flexGrow: 1 }}></Typography>
-          <ThemeSwitch onChangeTheme={onChangeTheme}/>
+          <DarkModeSwitch onChangeTheme={onChangeTheme} />
         </Toolbar>
-      </AppBar> */}
+      </AppBar>
       <Drawer
         sx={{
           width: drawerWidth,
@@ -140,30 +139,20 @@ export default function PersistentDrawerLeft({onChangeTheme, theme}) {
             "Courses",
             "Help",
           ].map((text, index) => (
-            // <> {currentCP.firstName ?}
             <React.Fragment key={text}>
               {text === "Account" ? (
                 <AccountComponent key={text} />
-              ) : (
-                <ListItem
-                  key={text}
-                  disablePadding
-                  component={NavLink}
-                  to={text.toLowerCase()}
-                >
-                  {/* <NavLink to={text.toLowerCase()}> */}
-                  <ListItemButton>
-                    <ListItemIcon>
-                      {index % 2 === 0 ? <InboxIcon /> : <MailIcon />}
-                    </ListItemIcon>
-                    <ListItemText primary={text} />
-                  </ListItemButton>
-                  {/* </NavLink> */}
-                </ListItem>
-              )}
+              ) : ( 
+              <ListItem
+                key={text}
+                disablePadding
+                component={NavLink}
+                to={text.toLowerCase()}
+              >
+                {text}
+              </ListItem>
+               )} 
             </React.Fragment>
-            // : null
-            // } </>
           ))}
         </List>
       </Drawer>
