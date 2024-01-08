@@ -18,14 +18,13 @@ import ListItemIcon from "@mui/material/ListItemIcon";
 import ListItemText from "@mui/material/ListItemText";
 import InboxIcon from "@mui/icons-material/MoveToInbox";
 import MailIcon from "@mui/icons-material/Mail";
-import Switch from "./Switch";
 import AppRoutes from "../routes/AppRoutes";
 import AccountCircleOutlinedIcon from "@mui/icons-material/AccountCircleOutlined";
 import { NavLink } from "react-router-dom";
 import { useCPContext } from "../context/CPContext";
 import AccountComponent from "./AccountComponent";
-import ThemeSwitch from "./ThemeSwitch";
-import { useMyThemeContext } from "../context/MyThemeContext";
+// import ThemeSwitch from "./DarkModeSwitch";
+// import { useMyThemeContext } from "../context/MyThemeContext";
 
 const drawerWidth = 240;
 
@@ -74,9 +73,9 @@ const DrawerHeader = styled("div")(({ theme }) => ({
   justifyContent: "flex-end",
 }));
 
-export default function PersistentDrawerLeft({onChangeTheme}) {
-  const {theme} = useMyThemeContext();
-  // const theme = useTheme();
+export default function PersistentDrawerLeft({onChangeTheme, theme}) {
+
+
   const [open, setOpen] = React.useState(false);
   const { currentCP } = useCPContext();
 
@@ -90,8 +89,8 @@ export default function PersistentDrawerLeft({onChangeTheme}) {
 
   return (
     <Box sx={{ display: "flex" }}>
-      <CssBaseline />
-      <AppBar position="fixed" open={open} sx={{backgroundColour : "#FFC0CB"}} >
+      {/* <CssBaseline /> */}
+      {/* <AppBar position="fixed" open={open} sx={{backgroundColour : "#FFC0CB"}} >
         <Toolbar>
           <IconButton
             color="inherit"
@@ -108,7 +107,7 @@ export default function PersistentDrawerLeft({onChangeTheme}) {
           <Typography component="div" sx={{ flexGrow: 1 }}></Typography>
           <ThemeSwitch onChangeTheme={onChangeTheme}/>
         </Toolbar>
-      </AppBar>
+      </AppBar> */}
       <Drawer
         sx={{
           width: drawerWidth,
@@ -165,18 +164,6 @@ export default function PersistentDrawerLeft({onChangeTheme}) {
             </React.Fragment>
             // : null
             // } </>
-          ))}
-        </List>
-        <List>
-          {["All mail", "Trash", "Spam"].map((text, index) => (
-            <ListItem key={text} disablePadding>
-              <ListItemButton>
-                <ListItemIcon>
-                  {index % 2 === 0 ? <InboxIcon /> : <MailIcon />}
-                </ListItemIcon>
-                <ListItemText primary={text} />
-              </ListItemButton>
-            </ListItem>
           ))}
         </List>
       </Drawer>

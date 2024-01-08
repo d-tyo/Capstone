@@ -1,5 +1,4 @@
 import * as React from 'react';
-import Avatar from '@mui/material/Avatar';
 import Button from '@mui/material/Button';
 import CssBaseline from '@mui/material/CssBaseline';
 import TextField from '@mui/material/TextField';
@@ -13,6 +12,8 @@ import LockOutlinedIcon from '@mui/icons-material/LockOutlined';
 import Typography from '@mui/material/Typography';
 import { createTheme, ThemeProvider } from '@mui/material/styles';
 import {useNavigate} from 'react-router-dom'
+import { useCPContext } from '../context/CPContext';
+import { useEffect } from 'react';
 
 function Copyright(props) {
   return (
@@ -31,15 +32,21 @@ function Copyright(props) {
 const defaultTheme = createTheme();
 
 export default function SignInSide() {
+  const {handleUpdateCP} = useCPContext()
   const navigate = useNavigate()
-  const handleSubmit = (event) => {
-    event.preventDefault();
-    const data = new FormData(event.currentTarget);
-    console.log({
-      email: data.get('email'),
-      password: data.get('password'),
-    });
-  };
+  useEffect(() => {
+    handleUpdateCP({})
+  }, []) 
+
+  // const handleSubmit = (event) => {
+  //   event.preventDefault();
+  //   const data = new FormData(event.currentTarget);
+  //   console.log({
+  //     email: data.get('email'),
+  //     password: data.get('password'),
+  //   });
+  // };
+
 
   return (
     <ThemeProvider theme={defaultTheme}>

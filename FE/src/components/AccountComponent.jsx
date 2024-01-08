@@ -54,7 +54,7 @@ export default function AccountComponent() {
  
 
   return (
-    <Box sx={{ display: "flex", alignItems: "center", flexGrow: 1 }}>
+    <Box sx={{ display: "flex", alignItems: "center", flexGrow: 1 }} data-testid="account-component-box">
       <FormGroup>
         <FormControlLabel
           control={
@@ -62,6 +62,7 @@ export default function AccountComponent() {
               checked={auth}
               onChange={handleChange}
               aria-label="login switch"
+              data-testid="account-switch"
             />
           }
           label={auth ? "Logout" : "Login"}

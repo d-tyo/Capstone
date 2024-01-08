@@ -113,7 +113,7 @@ export default function StudentPage() {
       {Array.isArray(stuobjarr.rows) ? (
         <div>
           <StudentList data={stuobjarr} />
-
+          { currentCP.teacherName ?  <>
           {/* Add an Icon button for adding students */}
           <Stack direction="row" alignItems="center" spacing={1}>
             <IconButton
@@ -124,7 +124,9 @@ export default function StudentPage() {
               <PersonAddAlt1Icon fontSize="medium" />
             </IconButton>
           </Stack>
-          {/* Dialog for adding a new student */}
+         
+          {/* Dialog for adding a new student */}  </> : null
+        }
 
           <Dialog
             component="form"

@@ -7,7 +7,7 @@ import AppRoutes from "./routes/AppRoutes";
 import { CPProvider } from "./context/CPContext";
 import { BrowserRouter } from "react-router-dom";
 import { TeacherProvider } from "./context/TeacherContext";
-import MyThemeProvider from "./context/MyThemeContext";
+import { ThemeProvider } from "@mui/material/styles";
 import { purpleTheme } from "./themes/purpleTheme";
 import { tealTheme } from "./themes/tealTheme";
 
@@ -19,9 +19,9 @@ function App() {
     <BrowserRouter>
       <CPProvider>
         <TeacherProvider>
-          <MyThemeProvider theme = {currentTheme}>
-            <CPNavBar onChangeTheme = {setCurrentTheme}/>
-          </MyThemeProvider>
+        <ThemeProvider theme={currentTheme}>
+            <CPNavBar onChangeTheme = {setCurrentTheme} theme = {currentTheme}/>
+       </ThemeProvider>
         </TeacherProvider>
       </CPProvider>
     </BrowserRouter>
