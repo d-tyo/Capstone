@@ -23,7 +23,7 @@ import AccountCircleOutlinedIcon from "@mui/icons-material/AccountCircleOutlined
 import { NavLink } from "react-router-dom";
 import { useCPContext } from "../context/CPContext";
 import AccountComponent from "./AccountComponent";
-import DarkModeSwitch from "./DarkModeSwitch";
+
 // import ThemeSwitch from "./DarkModeSwitch";
 // import { useMyThemeContext } from "../context/MyThemeContext";
 
@@ -140,9 +140,9 @@ export default function PersistentDrawerLeft({ onChangeTheme, theme }) {
             "Help",
           ].map((text, index) => (
             <React.Fragment key={text}>
-              {text === "Account" ? (
+              {/* {text === "Account" ? (
                 <AccountComponent key={text} />
-              ) : ( 
+              ) : ( */}
               <ListItem
                 key={text}
                 disablePadding
@@ -151,7 +151,7 @@ export default function PersistentDrawerLeft({ onChangeTheme, theme }) {
               >
                 {text}
               </ListItem>
-               )} 
+              {/* )} */}
             </React.Fragment>
           ))}
         </List>

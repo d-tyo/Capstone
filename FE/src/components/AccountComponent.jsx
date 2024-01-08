@@ -53,7 +53,9 @@ export default function AccountComponent() {
  
 
   return (
-    <Box sx={{ display: "flex", alignItems: "center", flexGrow: 1 }} data-testid="account-component-box">
+    <Box sx={{ display: "flex", alignItems: "center", flexGrow: 1 }} 
+    // data-testid="account-component-box"
+    >
       <FormGroup>
         <FormControlLabel
           control={
