@@ -53,7 +53,9 @@ function SignUpForm() {
 
     } else {
       setSubmitResult("Successful sign-up.");
-      handleUpdateCP({ name: userName, email: userEmail, password: userPassword });
+      handleUpdateCP({ name: userName, email: userEmail, password: userPassword }); // need to make sure this user object matches the DB model
+      // TODO - add this user into the DB using axios.post
+
       navigate("/") // ("/ - index") taking to main route a.k.a homepage
     }
   };
@@ -133,6 +135,8 @@ function SignUpForm() {
               <Grid item xs={12}>
               <FormControl fullWidth>
                 <InputLabel id="demo-simple-select-label">Academic Level</InputLabel>
+
+                {/* TODO - make sure this matches the list in AcademicLevelsMenu, ideally both use same variable */}
                 <Select labelId="demo-simple-select-label"
                          id="demo-simple-select"
                          value={AL}
