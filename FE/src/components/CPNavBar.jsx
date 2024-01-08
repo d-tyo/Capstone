@@ -23,10 +23,10 @@ import AccountCircleOutlinedIcon from "@mui/icons-material/AccountCircleOutlined
 import { NavLink } from "react-router-dom";
 import { useCPContext } from "../context/CPContext";
 import AccountComponent from "./AccountComponent";
+import DarkModeSwitch from "./DarkModeSwitch";
 
 // import ThemeSwitch from "./DarkModeSwitch";
 // import { useMyThemeContext } from "../context/MyThemeContext";
-
 
 // TODO - hide menu items from non-logged in users
 
@@ -143,18 +143,20 @@ export default function PersistentDrawerLeft({ onChangeTheme, theme }) {
             "Help",
           ].map((text, index) => (
             <React.Fragment key={text}>
-              {/* {text === "Account" ? (
+              {text === "Account" ? (
                 <AccountComponent key={text} />
-              ) : ( */}
-              <ListItem
-                key={text}
-                disablePadding
-                component={NavLink}
-                to={text.toLowerCase()}
-              >
-                {text}
-              </ListItem>
-              {/* )} */}
+              ) : (
+                <ListItem
+                  key={text}
+                  disablePadding
+                  component={NavLink}
+                  to={text.toLowerCase()}
+                >
+                  <ListItemButton>
+                    <ListItemText primary={text} />
+                  </ListItemButton>
+                </ListItem>
+              )}
             </React.Fragment>
           ))}
         </List>

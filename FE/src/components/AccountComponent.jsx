@@ -1,7 +1,7 @@
 import * as React from "react";
 import { Popper } from "@mui/base/Popper";
 import { styled } from "@mui/material/styles";
-import {NavLink} from "react-router-dom"
+import { NavLink } from "react-router-dom";
 import { ClickAwayListener } from "@mui/base/ClickAwayListener";
 
 import Button from "@mui/material/Button";
@@ -12,7 +12,7 @@ import MenuIcon from "@mui/icons-material/Menu";
 import List from "@mui/joy/List";
 import ListItem from "@mui/joy/ListItem";
 import ListItemDecorator from "@mui/joy/ListItemDecorator";
-import Menu from "@mui/joy/Menu";
+
 import ArrowRight from "@mui/icons-material/ArrowRight";
 import ArrowDropDown from "@mui/icons-material/ArrowDropDown";
 import Dropdown from "@mui/joy/Dropdown";
@@ -22,7 +22,7 @@ import FormControlLabel from "@mui/material/FormControlLabel";
 import Box from "@mui/material/Box";
 import AccountCircleIcon from "@mui/icons-material/AccountCircle";
 import AcademicLevelsMenu from "./AcademicLevelsMenu";
-
+import { Paper } from "@mui/material";
 
 const Popup = styled(Popper)({
   zIndex: 1000,
@@ -50,11 +50,11 @@ export default function AccountComponent() {
       setOpen(false);
     }
   };
- 
 
   return (
-    <Box sx={{ display: "flex", alignItems: "center", flexGrow: 1 }} 
-    // data-testid="account-component-box"
+    <Box
+      sx={{ display: "flex", alignItems: "center", flexGrow: 1 }}
+      // data-testid="account-component-box"
     >
       <FormGroup>
         <FormControlLabel
@@ -80,7 +80,6 @@ export default function AccountComponent() {
         onClick={() => {
           setOpen(!open);
         }}
-
       >
         <AccountCircleIcon />
       </Button>
@@ -100,25 +99,38 @@ export default function AccountComponent() {
           },
         ]}
       >
-        <ClickAwayListener
-          onClickAway={(event) => {
-            if (event.target !== buttonRef.current) {
-              handleClose();
-            }
-          }}
-        >
-          <MenuList
-            onKeyDown={handleListKeyDown}
-            sx={{ boxShadow: "md" }}
+        <Paper>
+          <ClickAwayListener
+            onClickAway={(event) => {
+              if (event.target !== buttonRef.current) {
+                handleClose();
+              }
+            }}
           >
-            <MenuItem onClick={handleClose} component = {NavLink} to  = {"/profile"}> Profile</MenuItem>
-            <MenuItem onClick={handleClose}>Inbox</MenuItem>
-            <MenuItem onClick={handleClose}>Calendar</MenuItem>
-            <AcademicLevelsMenu/>
-            <MenuItem onClick={handleClose}>Settings</MenuItem>
-            <MenuItem onClick={handleClose} component = {NavLink} to  = {"/logout"}> Logout </MenuItem>
-          </MenuList>
-        </ClickAwayListener>
+            <MenuList onKeyDown={handleListKeyDown}>
+              <MenuItem
+                onClick={handleClose}
+                component={NavLink}
+                to={"/profile"}
+              >
+                {" "}
+                Profile
+              </MenuItem>
+              <MenuItem onClick={handleClose}>Inbox</MenuItem>
+              <MenuItem onClick={handleClose}>Calendar</MenuItem>
+              <AcademicLevelsMenu />
+              <MenuItem onClick={handleClose}>Settings</MenuItem>
+              <MenuItem
+                onClick={handleClose}
+                component={NavLink}
+                to={"/logout"}
+              >
+                {" "}
+                Logout{" "}
+              </MenuItem>
+            </MenuList>
+          </ClickAwayListener>
+        </Paper>
       </Popup>
     </Box>
   );
