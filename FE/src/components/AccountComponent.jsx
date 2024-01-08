@@ -12,7 +12,6 @@ import MenuIcon from "@mui/icons-material/Menu";
 import List from "@mui/joy/List";
 import ListItem from "@mui/joy/ListItem";
 import ListItemDecorator from "@mui/joy/ListItemDecorator";
-import ListDivider from "@mui/joy/ListDivider";
 import Menu from "@mui/joy/Menu";
 import ArrowRight from "@mui/icons-material/ArrowRight";
 import ArrowDropDown from "@mui/icons-material/ArrowDropDown";
@@ -25,9 +24,9 @@ import AccountCircleIcon from "@mui/icons-material/AccountCircle";
 import DropDown from "./DropDown";
 
 
-// const Popup = styled(Popper)({
-//   zIndex: 1000,
-// });
+const Popup = styled(Popper)({
+  zIndex: 1000,
+});
 
 export default function AccountComponent() {
   const buttonRef = React.useRef(null);
@@ -112,9 +111,8 @@ export default function AccountComponent() {
           >
             <MenuItem onClick={handleClose} component = {NavLink} to  = {"/profile"}> Profile</MenuItem>
             <MenuItem onClick={handleClose}>Inbox</MenuItem>
-           
             <MenuItem onClick={handleClose}>Calendar</MenuItem>
-            
+            <DropDown/>
             <MenuItem onClick={handleClose}>Settings</MenuItem>
             <MenuItem onClick={handleClose} component = {NavLink} to  = {"/logout"}> Logout </MenuItem>
           </MenuList>
