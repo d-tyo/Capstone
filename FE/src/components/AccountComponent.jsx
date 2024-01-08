@@ -112,8 +112,7 @@ export default function AccountComponent() {
             onKeyDown={handleListKeyDown}
             sx={{ boxShadow: "md" }}
           >
-            <MenuItem onClick={handleClose} component = {NavLink} to  = {"/profile"}> Profile
-            </MenuItem>
+            <MenuItem onClick={handleClose} component = {NavLink} to  = {"/profile"}> Profile</MenuItem>
             <MenuItem onClick={handleClose}>Inbox</MenuItem>
            
             <MenuItem onClick={handleClose}>Calendar</MenuItem>
