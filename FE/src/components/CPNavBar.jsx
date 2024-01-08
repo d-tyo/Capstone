@@ -27,6 +27,9 @@ import AccountComponent from "./AccountComponent";
 // import ThemeSwitch from "./DarkModeSwitch";
 // import { useMyThemeContext } from "../context/MyThemeContext";
 
+
+// TODO - hide menu items from non-logged in users
+
 const drawerWidth = 240;
 
 const Main = styled("main", { shouldForwardProp: (prop) => prop !== "open" })(

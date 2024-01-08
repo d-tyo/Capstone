@@ -21,7 +21,7 @@ import FormGroup from "@mui/material/FormGroup";
 import FormControlLabel from "@mui/material/FormControlLabel";
 import Box from "@mui/material/Box";
 import AccountCircleIcon from "@mui/icons-material/AccountCircle";
-import DropDown from "./DropDown";
+import AcademicLevelsMenu from "./AcademicLevelsMenu";
 
 
 const Popup = styled(Popper)({
@@ -85,7 +85,7 @@ export default function AccountComponent() {
         <AccountCircleIcon />
       </Button>
 
-      <Popper
+      <Popup
         role={undefined}
         id="composition-menu"
         open={open}
@@ -114,12 +114,12 @@ export default function AccountComponent() {
             <MenuItem onClick={handleClose} component = {NavLink} to  = {"/profile"}> Profile</MenuItem>
             <MenuItem onClick={handleClose}>Inbox</MenuItem>
             <MenuItem onClick={handleClose}>Calendar</MenuItem>
-            <DropDown/>
+            <AcademicLevelsMenu/>
             <MenuItem onClick={handleClose}>Settings</MenuItem>
             <MenuItem onClick={handleClose} component = {NavLink} to  = {"/logout"}> Logout </MenuItem>
           </MenuList>
         </ClickAwayListener>
-      </Popper>
+      </Popup>
     </Box>
   );
 }
