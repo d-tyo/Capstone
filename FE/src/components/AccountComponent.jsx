@@ -1,6 +1,6 @@
 import * as React from "react";
 import { Popper } from "@mui/base/Popper";
-import { styled } from "@mui/system";
+import { styled } from "@mui/material/styles";
 import {NavLink} from "react-router-dom"
 import { ClickAwayListener } from "@mui/base/ClickAwayListener";
 
@@ -76,7 +76,6 @@ export default function AccountComponent() {
         aria-haspopup="true"
         aria-expanded={open ? "true" : undefined}
         variant="outlined"
-        color="neutral"
         onClick={() => {
           setOpen(!open);
         }}
@@ -108,7 +107,6 @@ export default function AccountComponent() {
           }}
         >
           <MenuList
-            variant="outlined"
             onKeyDown={handleListKeyDown}
             sx={{ boxShadow: "md" }}
           >
@@ -117,7 +115,7 @@ export default function AccountComponent() {
             <MenuItem onClick={handleClose}>Inbox</MenuItem>
            
             <MenuItem onClick={handleClose}>Calendar</MenuItem>
-            <DropDown />
+            
             <MenuItem onClick={handleClose}>Settings</MenuItem>
             <MenuItem onClick={handleClose} component = {NavLink} to  = {"/logout"}> Logout </MenuItem>
           </MenuList>
