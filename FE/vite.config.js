@@ -8,7 +8,7 @@ export default defineConfig({
   server: {
     proxy: {
       '/api': 'http://localhost:8080/', // axios call in front-end /api
-      '/images': 'http://localhost:8080/' 
+      '/lesson': 'http://localhost:8080/' 
     }
   }  
 })

@@ -20,6 +20,8 @@ app.get("/", (req, res) => {
   res.json({ message: "Welcome to my SQLDB application." });
 });
 
+app.use("/lesson", express.static("public/lesson")); // required for image mappings
+
 // let gradeRoutes = require('./routes/gradeRoute')
 // app.use('/api/grade', gradeRoutes)
 

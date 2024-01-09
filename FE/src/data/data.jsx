@@ -97,7 +97,7 @@ export const stuobjarr = {
             icon={<DeleteIcon />}
             label="Delete"
             onClick={() => {
-              axios.delete(`http://localhost:8080/api/student/${params.row.id}`)
+              axios.delete(`/api/student/${params.row.id}`)
               .then(setDelStudent(params.row))
               window.location.reload()
               // send a request BE to delete
@@ -229,7 +229,7 @@ export const lessobjarr = {
             icon={<DeleteIcon />}
             label="Delete"
             onClick={() => {
-              axios.delete(`http://localhost:8080/api/lesson/${params.row.id}`)
+              axios.delete(`/api/lesson/${params.row.id}`)
               .then(setDelLesson(params.row))
               window.location.reload()
               // send a request BE to delete

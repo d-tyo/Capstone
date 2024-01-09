@@ -22,7 +22,7 @@ export default function AcademicLevelsMenu() {
 
   const handleChooseLevel = async (popupState, level) => {
     handleUpdateCP({...currentCP, level: level});
-    let response = await axios.put("/api/teacher/" + currentCP.id, {level:level})  
+    let response = await axios.put("/api/teacher/" + currentCP.id, {level:level})  //post changed to put 
     console.log (response)
     popupState.close();
   }

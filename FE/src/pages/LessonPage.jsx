@@ -19,6 +19,7 @@ import IconButton from "@mui/material/IconButton";
 import TextField from "@mui/material/TextField";
 import DeleteIcon from "@mui/icons-material/Delete";
 import CreateNewFolderIcon from '@mui/icons-material/CreateNewFolder';
+import { Link } from "react-router-dom";
 
 function PaperComponent(props) {
   return (
@@ -33,9 +34,10 @@ function PaperComponent(props) {
 
 export default function LessonPage() {
   const { currentCP } = useCPContext();
-  const Lessons = useData("http://localhost:8080/api/lesson");
+  const lessons = useData("http://localhost:8080/api/lesson", []);
 
-  lessobjarr.rows = Lessons;
+  lessobjarr.rows = lessons.map (lesson => ({...lesson, filePath : <Link href={lesson.filePath}> (open PDF) </Link> }));
+  console.log(lessobjarr.rows)
 
   const [openDialog, setOpenDialog] = useState(false);
 

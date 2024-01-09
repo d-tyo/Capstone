@@ -75,7 +75,7 @@ const updateTeacher =  async (req, res) => {
   if (req.body.password)
     req.body.password = await bcrypt.hash(req.body.password, 10);
   
-  Models.Teacher.update(req.body, { where: { id: req.params.id } })
+  Models.Teacher.update(req.body, { where: { id: req.params.id } }) //password hash if it's changed if not then it stays the same
 
     .then((data) => res.send({ result: 200, data: data }))
     .catch((err) => {
