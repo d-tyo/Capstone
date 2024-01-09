@@ -45,7 +45,7 @@ const [lessonId, setLessonId] = useState("")
       window.location.reload()
 
       
-      //update current user with new profile photo details
+      //update current user with new lesson details
     } catch (err) {
       setStatus(err.message);
     }
@@ -53,7 +53,7 @@ const [lessonId, setLessonId] = useState("")
 
   const handleFileChange = (e) => { //select the right file to update
     console.log(e.target.files[0]);
-    // create object with data from uploaded image and URL to preview it
+    // create object with data from uploaded lesson and URL to preview it
     const file = {
       preview: URL.createObjectURL(e.target.files[0]),
       data: e.target.files[0],
