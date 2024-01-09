@@ -14,10 +14,7 @@ function updateRowPosition(initialIndex, newIndex, rows) {
   });
 }
 
-export default function LessonList(props) {
-
-
-const data = props.data
+export default function LessonList({data}) {
 
   const [rows, setRows] = React.useState(Array.isArray(data.rows) ? data.rows : []);
 

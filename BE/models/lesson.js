@@ -52,7 +52,6 @@ Lessons.init(
       type: DataTypes.STRING,
       allowNull: false,
       required: true,
-      unique: true,
     },
 
     comment: {

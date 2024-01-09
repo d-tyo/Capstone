@@ -1,7 +1,7 @@
 import { useData } from "../hooks/useData";
 import { lessobjarr } from "../data/data";
 import { useCPContext } from "../context/CPContext";
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import axios from "axios";
 import Grid from "@mui/material/Grid";
 import Stack from "@mui/material/Stack";
@@ -18,7 +18,7 @@ import LessonForm from "../components/LessonForm";
 import IconButton from "@mui/material/IconButton";
 import TextField from "@mui/material/TextField";
 import DeleteIcon from "@mui/icons-material/Delete";
-import CreateNewFolderIcon from '@mui/icons-material/CreateNewFolder';
+import CreateNewFolderIcon from "@mui/icons-material/CreateNewFolder";
 import { Link } from "react-router-dom";
 
 function PaperComponent(props) {
@@ -34,12 +34,20 @@ function PaperComponent(props) {
 
 export default function LessonPage() {
   const { currentCP } = useCPContext();
-  const lessons = useData("http://localhost:8080/api/lesson", []);
-
-  lessobjarr.rows = lessons.map (lesson => ({...lesson, filePath : <Link href={lesson.filePath}> (open PDF) </Link> }));
-  console.log(lessobjarr.rows)
-
+  const [lessonTable, setLessonTable] = useState(lessobjarr);
   const [openDialog, setOpenDialog] = useState(false);
+
+  useEffect(() => {
+    axios.get("/api/lesson").then((response) => {
+      const lessons = response.data.data
+      setLessonTable({ ...lessonTable, rows: lessons });
+    });
+  }, []);
+
+  //const lessons = useData("http://localhost:8080/api/lesson", []);
+
+  //lessobjarr.rows = lessons; //lessons.map (lesson => ({...lesson, filePath : <Link href={lesson.filePath}> (open PDF) </Link> }));
+  console.log(lessonTable.rows);
 
   const handleOpenDialog = () => {
     setOpenDialog(true);
@@ -47,10 +55,11 @@ export default function LessonPage() {
 
   const handleCloseDialog = () => {
     setOpenDialog(false);
-    window.location.reload(); //refresh the page
+    //window.location.reload(); //refresh the page - component auto-refreshes when state changes
   };
 
-  const handleAddLesson = async (event) => { //Add lesson not a file 
+  const handleAddLesson = async (event) => {
+    //Add lesson not a file
     event.preventDefault();
     const data = new FormData(event.currentTarget);
     console.log({
@@ -59,33 +68,31 @@ export default function LessonPage() {
     });
 
     let subject = data.get("subject");
-    let academicTeachingLevel = data.get("academic teaching level");
+    let grade = data.get("grade");
     let type = data.get("type");
     let title = data.get("title");
     let filePath = data.get("filePath");
     let comment = data.get("comment");
 
-    let loggedInUser = null;
+    let newLesson = {
+      teacherId: currentCP.id,
+      subject: subject,
+      grade: grade,
+      type: type,
+      title: title,
+      filePath: filePath,
+      comment: comment,
+    }
 
     try {
-      let response = await axios.post(
-        `http://localhost:8080/api/lesson/create`,
-        {
-          teacherId: currentCP.id,
-          subject: subject,
-          grade: academicTeachingLevel,
-          type: type,
-          title: title,
-          filePath: filePath,
-          comment: comment,
-        }
-      );
+      // add lesson to database
+      let response = await axios.post(`/api/lesson/create`, newLesson);
+      console.log(response.data)
+      newLesson = response.data.data; // includes the new id after being added to db
 
-      // stuobjarr.rows.push(response.data);
-
-      loggedInUser = response.data;
+      // add lesson to table
+      setLessonTable({...lessonTable, rows: [...lessonTable.rows, newLesson]});
       handleCloseDialog();
-      console.log(loggedInUser);
     } catch (err) {
       console.log(err.message);
     }
@@ -93,12 +100,9 @@ export default function LessonPage() {
 
   return (
     <>
-
       {/* Add an Icon button for adding lessons */}
-     
 
-      {Array.isArray(lessobjarr.rows) ? <LessonList data={lessobjarr} /> : null}
- 
+      {Array.isArray(lessonTable.rows) ? <LessonList data={lessonTable} /> : null}
 
       <Stack direction="row" alignItems="center" spacing={1} sx={{}}>
         <IconButton aria-label="add" size="small" onClick={handleOpenDialog}>
@@ -121,69 +125,48 @@ export default function LessonPage() {
         <DialogContent>
           <br />
           <Grid container spacing={2}>
-            <FormControl>
-              <Grid item xs={12} />
-              <TextField
-                name="teacherId"
-                type="teacherId"
-                label="Teacher Id"
-                sx={{ borderRadius: 200 }}
-              />
-              <br />
-              <Grid item xs={12} />
-              <TextField
-                name="subject"
-                type="subject"
-                label="Subject"
-                sx={{ borderRadius: 200, width: 400 }}
-              />
-              <Grid />
-              <br />
+              <Grid item xs={12}>
+                <TextField
+                  name="subject"
+                  type="subject"
+                  label="Subject"
+                  sx={{ borderRadius: 200 }}
+                />
+              </Grid>
+              <Grid item xs={12}>
+                <TextField
+                  name="grade"
+                  type="grade"
+                  label="Grade"
+                  sx={{ borderRadius: 200 }}
+                />
+              </Grid>
 
-              <Grid item xs={12} />
-              <TextField
-                name="academic teaching level"
-                type="academic teaching level"
-                label="Grade"
-                sx={{ borderRadius: 200, width: 400 }}
-              />
-              <Grid />
-              <br />
+              <Grid item xs={12}>
+                <TextField
+                  name="type"
+                  type="type"
+                  label="Type"
+                  sx={{ borderRadius: 200 }}
+                />
+              </Grid>
 
-              <Grid item xs={12} />
-              <TextField
-                name="type"
-                type="type"
-                label="Type"
-                sx={{ borderRadius: 200 }}
-              />
-              <Grid />
-              <br />
+              <Grid item xs={12}>
+                <TextField
+                  name="title"
+                  type="title"
+                  label="Title"
+                  sx={{ borderRadius: 200 }}
+                />
+              </Grid>
 
-              <Grid item xs={12} />
-              <TextField
-                name="title"
-                type="title"
-                label="Title"
-                sx={{ borderRadius: 200 }}
-              />
-              <Grid />
-              <br />
+              <Grid item xs={12}>
+                <TextField name="filePath" type="filePath" label="File Path" />
+              </Grid>
 
-              <Grid item xs={12} />
-              <TextField 
-              name="filePath" 
-              type="filePath" 
-              label="File Path" />
-              <Grid />
-              <br />
-
-              <Grid item xs={12} />
-              <TextField 
-              name="comment" type="comment" label="Comment" />
-              <Grid />
-              <br />
-            </FormControl>
+              <Grid item xs={12}>
+                <TextField name="comment" type="comment" label="Comment" />
+              </Grid>
           </Grid>
           {/* Add form or input fields for adding a new lesson */}
           {/* For example: <input type="text" placeholder="Enter lesson name" /> */}

@@ -8,6 +8,7 @@ import { GridActionsCellItem } from "@mui/x-data-grid";
 import MUIDynamicDialog from "../components/MUIDynamicDialog";
 import StudentPage from "../pages/StudentPage";
 import EditLesson from "../components/EditLesson";
+import { Link } from "react-router-dom";
 
 // export const stuobjarr = (setDialogOpen) => ();
 
@@ -190,6 +191,7 @@ export const lessobjarr = {
       headerName: "Location",
       editable: true,
       width: 120,
+      renderCell: ({value}) => value ? <Link to={value} target="_blank"> (open PDF) </Link> : '(no PDF)'
     },
 
     {
