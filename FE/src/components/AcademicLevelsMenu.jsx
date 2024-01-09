@@ -4,6 +4,7 @@ import Menu from '@mui/material/Menu';
 import MenuItem from '@mui/material/MenuItem';
 import PopupState, { bindTrigger, bindMenu } from 'material-ui-popup-state';
 import { useCPContext } from '../context/CPContext';
+import axios from 'axios';
 
 export const levels = ['Early Childhood', 'Primary','Secondary', 'Tertiary', 'University'];
 
@@ -19,8 +20,10 @@ export default function AcademicLevelsMenu() {
     return menuItems;
   }
 
-  const handleChooseLevel = (popupState, level) => {
-    handleUpdateCP({...currentCP, grade: level});
+  const handleChooseLevel = async (popupState, level) => {
+    handleUpdateCP({...currentCP, level: level});
+    let response = await axios.post("/api/teacher/" + currentCP.id, {level:level})  
+    console.log (response)
     popupState.close();
   }
 
