@@ -9,4 +9,10 @@ export default defineConfig({
     environment: 'jsdom',
     setupFiles: './setup.js',
   },
+  server: {
+    proxy: {
+      '/api': 'http://localhost:8080/',
+      '/images': 'http://localhost:8080/'
+    }
+  }  
 })
