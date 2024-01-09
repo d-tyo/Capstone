@@ -21,7 +21,7 @@
       "contact": "+6427000002",
       "DOB": "1988-07-22T12:00:00.000Z",
       "location": "AU",
-      "grade": "ECE",
+      "grade": "Early Childhood",
       "capability": "Intellectual",
       "teacherId": 2,
       "password": "loid456"
@@ -34,7 +34,7 @@
       "contact": "+6427000003",
       "DOB": "1990-12-15T12:00:00.000Z",
       "location": "AU",
-      "grade": "ECE",
+      "grade": "Early Childhood",
       "capability": "Stamina Strength",
       "teacherId": 5,
       "password": "yor789"
@@ -60,7 +60,7 @@
       "contact": "+6427000005",
       "DOB": "1993-09-18T12:00:00.000Z",
       "location": "AU",
-      "grade": "ECE",
+      "grade": "Early Childhood",
       "capability": "Intellectual",
       "teacherId": 8,
       "password": "ciel222"
@@ -73,7 +73,7 @@
       "contact": "+6427000006",
       "DOB": "1998-02-03T12:00:00.000Z",
       "location": "NZ",
-      "grade": "ECE",
+      "grade": "Early Childhood",
       "capability": "Stamina Strength",
       "teacherId": 9,
       "password": "gon333"
@@ -86,7 +86,7 @@
       "contact": "+6427000007",
       "DOB": "1997-07-07T12:00:00.000Z",
       "location": "AU",
-      "grade": "ECE",
+      "grade": "Early Childhood",
       "capability": "Electric Shock",
       "teacherId": 6,
       "password": "killua444"
@@ -112,7 +112,7 @@
       "contact": "+6427000009",
       "DOB": "1985-10-30T12:00:00.000Z",
       "location": "NZ",
-      "grade": "ECE",
+      "grade": "Early Childhood",
       "capability": "Baking",
       "teacherId": 10,
       "password": "azuma666"
@@ -138,7 +138,7 @@
       "contact": "+6427000011",
       "DOB": "1989-11-05T12:00:00.000Z",
       "location": "NZ",
-      "grade": "ECE",
+      "grade": "Early Childhood",
       "capability": "Empathy",
       "teacherId": 5,
       "password": "nicole888"
@@ -162,7 +162,7 @@
       "name": "Sarah Johnson",
       "email": "sarah.johnson@example.com",
       "DOB": "1985-07-15T12:00:00.000Z",
-      "grade": "Primary",
+      "level": "Primary",
       "registrationId": "A1B2C3D4",
       "contact": "+6427001234",
       "password": "sarah123"
@@ -172,7 +172,7 @@
       "name": "Emily Davis",
       "email": "emily.davis@example.com",
       "DOB": "1978-04-22T12:00:00.000Z",
-      "grade": "Secondary",
+      "level": "Secondary",
       "registrationId": "E4M6I8L4Y",
       "contact": "+6427005678",
       "password": "emily456"
@@ -182,7 +182,7 @@
       "name": "David Wilson",
       "email": "david.wilson@example.com",
       "DOB": "1990-12-10T12:00:00.000Z",
-      "grade": "University",
+      "level": "University",
       "registrationId": "D7A8V9I0D",
       "contact": "+6427012345",
       "password": "david789"
@@ -192,7 +192,7 @@
       "name": "Jessica Adams",
       "email": "jessica.adams@example.com",
       "DOB": "1983-09-05T12:00:00.000Z",
-      "grade": "ECE",
+      "level": "Early Childhood",
       "registrationId": "J1E0S1S0",
       "contact": "+6427023456",
       "password": "jessica101"
@@ -202,7 +202,7 @@
       "name": "Christopher Lee",
       "email": "christopher.lee@example.com",
       "DOB": "1975-11-28T12:00:00.000Z",
-      "grade": "Primary",
+      "level": "Primary",
       "registrationId": "C8H9R7I5S",
       "contact": "+6427034567",
       "password": "chris222"
@@ -212,7 +212,7 @@
       "name": "Emma Turner",
       "email": "emma.turner@example.com",
       "DOB": "1988-03-18T12:00:00.000Z",
-      "grade": "Secondary",
+      "level": "Secondary",
       "registrationId": "E3M3M4A",
       "contact": "+6427045678",
       "password": "emma333"
@@ -222,7 +222,7 @@
       "name": "Alex Johnson",
       "email": "alex.johnson@example.com",
       "DOB": "1992-06-07T12:00:00.000Z",
-      "grade": "University",
+      "level": "University",
       "registrationId": "A4L3E2XJ",
       "contact": "+6427056789",
       "password": "alex444"
@@ -232,7 +232,7 @@
       "name": "Grace Davis",
       "email": "grace.davis@example.com",
       "DOB": "1980-01-25T12:00:00.000Z",
-      "grade": "ECE",
+      "level": "Early Childhood",
       "registrationId": "G5R7A8C9E",
       "contact": "+6427067890",
       "password": "grace555"
@@ -242,7 +242,7 @@
       "name": "Ella Taylor",
       "email": "ella.taylor@example.com",
       "DOB": "1987-08-12T12:00:00.000Z",
-      "grade": "Primary",
+      "level": "Primary",
       "registrationId": "E6L6A7T8A",
       "contact": "+6427078901",
       "password": "ella666"
@@ -252,7 +252,7 @@
       "name": "Lucas Moore",
       "email": "lucas.moore@example.com",
       "DOB": "1984-02-14T12:00:00.000Z",
-      "grade": "Secondary",
+      "level": "Secondary",
       "registrationId": "L7U8C9A7S",
       "contact": "+6427089012",
       "password": "lucas777"

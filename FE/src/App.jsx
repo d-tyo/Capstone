@@ -11,15 +11,18 @@ import { purpleTheme } from "./themes/purpleTheme";
 import { tealTheme } from "./themes/tealTheme";
 
 
+
+
 function App() {
   const [count, setCount] = useState(0);
   const [currentTheme, setCurrentTheme] = useState(purpleTheme);
   return (
     <ThemeProvider theme={currentTheme}>
       <BrowserRouter>
-        <CPProvider>
+        <CPProvider  onChangeTheme={setCurrentTheme}>
           <TeacherProvider>
             <CPNavBar onChangeTheme={setCurrentTheme} theme={currentTheme} />
+            <AppRoutes/>
           </TeacherProvider>
         </CPProvider>
       </BrowserRouter>

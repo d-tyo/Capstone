@@ -5,7 +5,7 @@ import MenuItem from '@mui/material/MenuItem';
 import PopupState, { bindTrigger, bindMenu } from 'material-ui-popup-state';
 import { useCPContext } from '../context/CPContext';
 
-const levels = ['ECE', 'Primary','Secondary', 'Tertiary', 'University'];
+export const levels = ['Early Childhood', 'Primary','Secondary', 'Tertiary', 'University'];
 
 export default function AcademicLevelsMenu() {
   const { currentCP, handleUpdateCP } = useCPContext();

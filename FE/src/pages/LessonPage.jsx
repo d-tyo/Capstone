@@ -93,13 +93,17 @@ export default function LessonPage() {
     <>
 
       {/* Add an Icon button for adding lessons */}
-      <Stack direction="row" alignItems="center" spacing={1}>
+     
+
+      {Array.isArray(lessobjarr.rows) ? <LessonList data={lessobjarr} /> : null}
+ 
+
+      <Stack direction="row" alignItems="center" spacing={1} sx={{}}>
         <IconButton aria-label="add" size="small" onClick={handleOpenDialog}>
           <CreateNewFolderIcon fontSize="medium" />
         </IconButton>
       </Stack>
 
-      {Array.isArray(lessobjarr.rows) ? <LessonList data={lessobjarr} /> : null}
       <LessonForm />
 
       {/* Dialog for adding a new Lesson*/}

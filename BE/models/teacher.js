@@ -33,7 +33,7 @@ Teacher.init(
       required: true,
     },
    
-    grade: {
+    level: {
       type: DataTypes.STRING,
       allowNull: false,
       required: false,

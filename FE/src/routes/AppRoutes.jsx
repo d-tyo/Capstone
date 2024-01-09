@@ -11,6 +11,7 @@ import ProfilePage from "../pages/ProfilePage";
 import TeacherPage from "../pages/TeacherPage";
 import LogOut from "../pages/LogOut";
 import SingleLesson from "../pages/SingleLesson";
+import React from "react";
 
 // special component containing all the possible routes for this app
 // any props passed into AppRoutes will also be passed onto
@@ -48,18 +49,18 @@ function AppRoutes(props) {
 
       <Route
         path="/course"
-        // element= {
-        //  <ProtectedRoute>
-        // <LessonPage/>
-        //* </ProtectedRoute> */
-        // }
+        element= {
+        <ProtectedRoute>
+        <LessonPage/>
+         </ProtectedRoute>
+         }
       >
         <Route
           path=":id"
           element={
-            //  <ProtectedRoute>
-            <SingleLesson />
-            //* </ProtectedRoute> */
+            <ProtectedRoute>
+             <SingleLesson />
+            </ProtectedRoute> 
           }
         />
       </Route>

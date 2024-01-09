@@ -21,7 +21,7 @@ const storeTeacher = async (res) => {
             // id: c.MakeId,
             teacherName: teacher.name,
             email: teacher.email,
-            grade: teacher.grade,
+            level: teacher.level,
             registrationId: teacher.registrationId,
             DOB: teacher.DOB,
             contact: teacher.contact,

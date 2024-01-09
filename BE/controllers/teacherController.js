@@ -51,6 +51,8 @@ const loginUser = (data, res) => {
   email: user.email,
   };
   
+  console.log(user)
+  
   // Generate a token with jwt.sign
   const token = jwt.sign(payload, process.env.JWT_KEY, { expiresIn: "1h" });
   

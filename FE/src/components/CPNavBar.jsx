@@ -16,21 +16,21 @@ import ListItem from "@mui/material/ListItem";
 import ListItemButton from "@mui/material/ListItemButton";
 import ListItemIcon from "@mui/material/ListItemIcon";
 import ListItemText from "@mui/material/ListItemText";
-import AppRoutes from "../routes/AppRoutes";
 import AccountCircleOutlinedIcon from "@mui/icons-material/AccountCircleOutlined";
 import { NavLink } from "react-router-dom";
 import { useCPContext } from "../context/CPContext";
 import AccountComponent from "./AccountComponent";
 import DarkModeSwitch from "./DarkModeSwitch";
-
 import ThemeSwitch from "./DarkModeSwitch";
 import { useMyThemeContext } from "../context/MyThemeContext";
+
 
 // TODO - hide menu items from non-logged in users
 
 const drawerWidth = 240;
 
 const Main = styled("main", { shouldForwardProp: (prop) => prop !== "open" })(
+   // @ts-ignore
   ({ theme, open }) => ({
     flexGrow: 1,
     padding: theme.spacing(3),
@@ -51,6 +51,7 @@ const Main = styled("main", { shouldForwardProp: (prop) => prop !== "open" })(
 
 const AppBar = styled(MuiAppBar, {
   shouldForwardProp: (prop) => prop !== "open",
+   // @ts-ignore
 })(({ theme, open }) => ({
   transition: theme.transitions.create(["margin", "width"], {
     easing: theme.transitions.easing.sharp,
@@ -90,7 +91,7 @@ export default function PersistentDrawerLeft({ onChangeTheme, theme }) {
   return (
     <Box sx={{ display: "flex" }}>
       <CssBaseline />
-      <AppBar position="fixed" sx={{ backgroundColor: "#FFC0CB" }}>
+      <AppBar position="fixed" sx={{ }}>
         <Toolbar sx={{ ...(open && { marginLeft: `${drawerWidth}px` }) }}>
           <IconButton
             color="inherit"
@@ -159,9 +160,9 @@ export default function PersistentDrawerLeft({ onChangeTheme, theme }) {
           ))}
         </List>
       </Drawer>
-      <Main open={open}>
+     {/* @ts-ignore */}
+     <Main open={open}>
         <DrawerHeader />
-        <AppRoutes />
       </Main>
     </Box>
   );
