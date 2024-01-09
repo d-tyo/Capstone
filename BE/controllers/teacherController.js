@@ -72,7 +72,9 @@ const loginUser = (data, res) => {
 const updateTeacher =  async (req, res) => {
   // updates the Teacher matching the ID from the param using JSON data Teachered in request body
   console.log(req.body);
-  req.body.password = await bcrypt.hash(req.body.password, 10);
+  if (req.body.password)
+    req.body.password = await bcrypt.hash(req.body.password, 10);
+  
   Models.Teacher.update(req.body, { where: { id: req.params.id } })
 
     .then((data) => res.send({ result: 200, data: data }))

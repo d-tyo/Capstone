@@ -58,9 +58,9 @@ export default function LogIn() {
         try {
             let response;
             if (userEmail.includes("@")) // email 
-            {response = await axios.post('http://localhost:8080/api/teacher/login', {email: userEmail, password: userPassword})}
+            {response = await axios.post('/api/teacher/login', {email: userEmail, password: userPassword})}
             else
-            {response = await axios.post('http://localhost:8080/api/student/login', {userName: userEmail, password: userPassword})}
+            {response = await axios.post('/api/student/login', {userName: userEmail, password: userPassword})}
             loggedInUser = response.data.data.user;
             console.log(loggedInUser)
 
