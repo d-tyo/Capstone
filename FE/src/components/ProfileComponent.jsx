@@ -60,7 +60,6 @@ export default function ProfileComponent() {
         response = await axios.put(
           `http://localhost:8080/api/student/${currentCP.id}`,
           {
-           
             studentName: fullName,
             userName: userName,
             email: Email,
@@ -97,9 +96,14 @@ export default function ProfileComponent() {
             <TextField
               name="fullName"
               type="fullname"
-              label="FullName" 
-              defaultValue={currentCP.userName ? currentCP.studentName : currentCP.teacherName}
+              label="FullName"
+              defaultValue={
+                currentCP.userName
+                  ? currentCP.studentName
+                  : currentCP.teacherName
+              }
               sx={{ borderRadius: 200 }}
+              variant="outlined"
             />
             <Grid />
             <br />
@@ -109,32 +113,34 @@ export default function ProfileComponent() {
               type="email"
               label="Email"
               defaultValue={currentCP.email}
-              sx={{ borderRadius: 200, width: 300 }}
+              sx={{ borderRadius: 200, width: 400 }}
+              variant="outlined"
             />
             <Grid />
             <br />
 
-           { currentCP.userName ? // student UserName
-           <> 
-           <Grid item xs={12} />
-            <TextField
-              name="userName"
-              type="userName"
-              label="userName"
-              defaultValue={currentCP.userName}
-              sx={{ borderRadius: 200, width: 300 }}
-            />
-            <Grid />
-            <br /> 
-            </>
-            : null
-            }
+            {currentCP.userName ? ( // student UserName
+              <>
+                <Grid item xs={12} />
+                <TextField
+                  name="userName"
+                  type="userName"
+                  label="userName"
+                  defaultValue={currentCP.userName}
+                  sx={{ borderRadius: 200, width: 300 }}
+                  variant="outlined"
+                />
+                <Grid />
+                <br />
+              </>
+            ) : null}
 
             <Grid item xs={12} />
             <TextField
               name="password"
               label="Password"
               sx={{ borderRadius: 200 }}
+              variant="outlined"
             />
             <Grid />
             <br />
@@ -146,6 +152,7 @@ export default function ProfileComponent() {
               label="location"
               defaultValue={currentCP.location}
               sx={{ borderRadius: 200 }}
+              variant="outlined"
             />
             <Grid />
             <br />
@@ -157,29 +164,32 @@ export default function ProfileComponent() {
               label={currentCP.userName ? "grade" : "Academic Teaching Level"}
               defaultValue={currentCP.grade} // student unable to modify as it wasnt stated in the response above
               sx={{ borderRadius: 200 }}
+              variant="outlined"
             />
             <Grid />
             <br />
-            { !currentCP.userName ? // student UserName
-           <> 
-            <Grid item xs={12} />
-            <TextField
-              name="registration id"
-              type="registration id"
-              label="Registration ID"
-              defaultValue={currentCP.registrationId}
-              sx={{ borderRadius: 200 }}
-            />
-            <Grid />
-            <br />
-          </>
-          : null }
+            {!currentCP.userName ? ( // student UserName
+              <>
+                <Grid item xs={12} />
+                <TextField
+                  name="registration id"
+                  type="registration id"
+                  label="Registration ID"
+                  variant="outlined"
+                  defaultValue={currentCP.registrationId}
+                  sx={{ borderRadius: 200 }}
+                />
+                <Grid />
+                <br />
+              </>
+            ) : null}
 
             <Grid item xs={12} />
             <TextField
               name="date of birth"
               type="date of birth"
               label="Date Of Birth"
+              variant="outlined"
               defaultValue={currentCP.DOB ? currentCP.DOB.slice(0, 10) : ""}
               sx={{ borderRadius: 200 }}
             />
@@ -191,21 +201,22 @@ export default function ProfileComponent() {
               name="contact"
               type="contact"
               label="Contact"
+              variant="outlined"
               defaultValue={currentCP.contact}
               sx={{ borderRadius: 200 }}
             />
             <Grid />
+            <Button
+              type="submit"
+              fullWidth
+              variant="contained"
+              sx={{ mt: 3, mb: 2 }}
+            >
+              Update
+            </Button>
             <br />
           </FormControl>
         </Grid>
-        <Button
-          type="submit"
-          fullWidth
-          variant="contained"
-          sx={{ mt: 3, mb: 2 }}
-        >
-          Update
-        </Button>
       </Box>
     </Container>
   );

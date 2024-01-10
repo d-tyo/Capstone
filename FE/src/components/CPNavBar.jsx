@@ -93,7 +93,7 @@ export default function PersistentDrawerLeft({ onChangeTheme, theme }) {
       <CssBaseline />
       <AppBar position="fixed" sx={{ }}>
         <Toolbar sx={{ ...(open && { marginLeft: `${drawerWidth}px` }) }}>
-          <IconButton
+          {currentCP.email?<IconButton
             color="inherit"
             aria-label="open drawer"
             onClick={handleDrawerOpen}
@@ -101,7 +101,7 @@ export default function PersistentDrawerLeft({ onChangeTheme, theme }) {
             sx={{ mr: 2, ...(open && { display: "none" }) }}
           >
             <MenuIcon />
-          </IconButton>
+          </IconButton>:null}
           <Typography variant="h6" noWrap>
             Circle Play
           </Typography>

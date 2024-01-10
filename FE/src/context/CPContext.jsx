@@ -13,23 +13,22 @@ export const CPProvider = ({children, onChangeTheme}) => {
   const [currentCP, setCurrentCP] = useState(cookies.user ? cookies.user : {});
 
   // sets user object in state, shared via context
-const handleUpdateCP = (user) => {
-  if (user.email) {
-    setCookie("user", JSON.stringify(user), { path: "/", maxAge: 60 * 60 * 24 * 2 });
-   const [theme, ] =  themeList.get(user.level) //theme colour changes according to the user academic level 
-  onChangeTheme(theme)
-
-  } else {
-    removeCookie("user");
-    
-    const [theme, ] =  themeList.get("Default") //default theme if users are not log in 
-    onChangeTheme(theme)
-
-  }
-  setCurrentCP(user);
-  console.log(user)
+  const handleUpdateCP = (user) => {
+    if (user) {
+      setCookie("user", JSON.stringify(user), { path: "/", maxAge: 60 * 60 * 24 * 2 });
+      if (user.level) {
+      const [theme, ] =  themeList.get(user.level) //theme colour changes according to the user academic level 
+      onChangeTheme(theme)
+      }
+      setCurrentCP(user);
+    } else {
+      removeCookie("user");
+      
+      const [theme, ] =  themeList.get("Default") //default theme if users are not log in 
+      onChangeTheme(theme)
   
-  };
+    }
+    };
 
   
   // 2. Provide the context.

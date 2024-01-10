@@ -18,7 +18,7 @@ export function useData(url, defaultValue = {}) {
          
           }
         })
-        .catch(error => setData(error.message)); //it tells you what the errora are
+        .catch(error => setData(error.message)); //it tells you what the errors are
 
       // cleanup function, in case url changes before complete
       return () => {

@@ -127,49 +127,67 @@ export default function LessonPage() {
         <DialogContent>
           <br />
           <Grid container spacing={2}>
-              <Grid item xs={12}>
-                <TextField
-                  name="subject"
-                  type="subject"
-                  label="Subject"
-                  sx={{ borderRadius: 200 }}
-                />
-              </Grid>
-              <Grid item xs={12}>
-                <TextField
-                  name="grade"
-                  type="grade"
-                  label="Grade"
-                  sx={{ borderRadius: 200 }}
-                />
-              </Grid>
+  <Grid item xs={12}>
+    <TextField
+      name="subject"
+      type="subject"
+      label="Subject"
+      fullWidth
+      variant="outlined"
+    />
+  </Grid>
+  <Grid item xs={12}>
+    <TextField
+      name="grade"
+      type="grade"
+      label="Grade"
+      fullWidth
+      variant="outlined"
+    />
+  </Grid>
 
-              <Grid item xs={12}>
-                <TextField
-                  name="type"
-                  type="type"
-                  label="Type"
-                  sx={{ borderRadius: 200 }}
-                />
-              </Grid>
+  <Grid item xs={12}>
+    <TextField
+      name="type"
+      type="type"
+      label="Type"
+      fullWidth
+      variant="outlined"
+    />
+  </Grid>
 
-              <Grid item xs={12}>
-                <TextField
-                  name="title"
-                  type="title"
-                  label="Title"
-                  sx={{ borderRadius: 200 }}
-                />
-              </Grid>
+  <Grid item xs={12}>
+    <TextField
+      name="title"
+      type="title"
+      label="Title"
+      fullWidth
+      variant="outlined"
+    />
+  </Grid>
 
-              <Grid item xs={12}>
-                <TextField name="filePath" type="filePath" label="File Path" />
-              </Grid>
+  <Grid item xs={12}>
+    <TextField
+      name="filePath"
+      type="filePath"
+      label="File Path"
+      fullWidth
+      variant="outlined"
+    />
+  </Grid>
 
-              <Grid item xs={12}>
-                <TextField name="comment" type="comment" label="Comment" />
-              </Grid>
-          </Grid>
+  <Grid item xs={12}>
+    <TextField
+      name="comment"
+      type="comment"
+      label="Comment"
+      fullWidth
+      variant="outlined"
+      multiline
+      rows={4}
+    />
+  </Grid>
+</Grid>
           {/* Add form or input fields for adding a new lesson */}
           {/* For example: <input type="text" placeholder="Enter lesson name" /> */}
         </DialogContent>

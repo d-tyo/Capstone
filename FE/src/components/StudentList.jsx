@@ -63,7 +63,8 @@ export default function StudentList(props) {
     <div style={{ height: 400, width: "100%" }}>
       {/* {typeof(data.rows) === 'array'? */}
       <DataGridPro
-        {...data}
+        // {...data}
+        columns = {props.column}
         // loading={loading}
         rows={rows}
         rowReordering
