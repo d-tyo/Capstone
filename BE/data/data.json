@@ -8,7 +8,7 @@
       "contact": "+6427000001",
       "DOB": "1995-03-10T12:00:00.000Z",
       "location": "NZ",
-      "grade": "year 1",
+      "grade": "Primary",
       "capability": "Mind Reader",
       "teacherId": 7,
       "password": "anya123"
@@ -47,7 +47,7 @@
       "contact": "+6427000004",
       "DOB": "1982-05-08T12:00:00.000Z",
       "location": "NZ",
-      "grade": "year 1",
+      "grade": "Primary",
       "capability": "Endurance",
       "teacherId": 3,
       "password": "damian101"
@@ -99,7 +99,7 @@
       "contact": "+6427000008",
       "DOB": "1990-12-25T12:00:00.000Z",
       "location": "AU",
-      "grade": "year 1",
+      "grade": "Primary",
       "capability": "Alchemist",
       "teacherId": 1,
       "password": "edward555"
@@ -125,7 +125,7 @@
       "contact": "+6427000010",
       "DOB": "1992-03-14T12:00:00.000Z",
       "location": "AU",
-      "grade": "year 1",
+      "grade": "Primary",
       "capability": "Empathy",
       "teacherId": 4,
       "password": "ash777"
@@ -151,7 +151,7 @@
       "contact": "+6427000012",
       "DOB": "1980-06-21T12:00:00.000Z",
       "location": "AU",
-      "grade": "year 1",
+      "grade": "Primary",
       "capability": "Stamina Strength",
       "teacherId": 9,
       "password": "heihachi999"
@@ -182,7 +182,7 @@
       "name": "David Wilson",
       "email": "david.wilson@example.com",
       "DOB": "1990-12-10T12:00:00.000Z",
-      "level": "University",
+      "level": "Tertiary",
       "registrationId": "D7A8V9I0D",
       "contact": "+6427012345",
       "password": "david789"
@@ -222,7 +222,7 @@
       "name": "Alex Johnson",
       "email": "alex.johnson@example.com",
       "DOB": "1992-06-07T12:00:00.000Z",
-      "level": "University",
+      "level": "Primary",
       "registrationId": "A4L3E2XJ",
       "contact": "+6427056789",
       "password": "alex444"

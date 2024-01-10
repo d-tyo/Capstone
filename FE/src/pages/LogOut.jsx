@@ -81,10 +81,7 @@ export default function SignInSide() {
               <h4>We hope you had a fantastic experience exploring in our circle. Come back soon for more engaging content and interactive fun.</h4> 
               <h4>See you next time! 👋🎮</h4>
             </div>
-            <FormControlLabel
-              control={<Checkbox value="remember" color="primary" />}
-              label="Remember me"
-            />
+         
             <Button onClick={() => navigate("/login")}
               type="submit"
               fullWidth

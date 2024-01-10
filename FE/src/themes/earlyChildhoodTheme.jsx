@@ -4,15 +4,16 @@ import { createTheme } from "@mui/material/styles";
 export const earlyChildhoodSettings = {
     palette: {
         primary: {
-            main: '#F5D700',
-            contrastText: '#efefef'
+            main: '#FFD3E0',
+            contrastText: '#7F6E82',
+          },
+          secondary: {
+            main: '#AEC6CF',
+            contrastText: '#485B6E',
+          },
+        
+          mode: 'light',
         },
-        secondary: {
-            main: '#D7BE65',
-            contrastText: '#ffffff'
-        },
-        mode: 'light'
-    },
     typography: {
         // see https://blog.logrocket.com/add-custom-fonts-mui/#google-fonts-cdn for custom fonts
         // need to add <link href="https://fonts.googleapis.com/css2?family=Ubuntu&display=swap" rel="stylesheet"> to index.html

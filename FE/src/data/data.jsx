@@ -98,16 +98,16 @@ export const stuobjarr = {
             icon={<DeleteIcon />}
             label="Delete"
             onClick={() => {
-              axios.delete(`/api/student/${params.row.id}`)
+              axios.delete(`api/student/${params.row.id}`)
               .then(setDelStudent(params.row))
-              window.location.reload()
+              console.log("delete", params.row);
               // send a request BE to delete
             }}
           />,
         ];
       },
     },
-  ],
+  ], 
   rows: [],
 };
 
@@ -134,10 +134,11 @@ export const trobjarr = {
     },
 
     {
-      field: "grade",
+      field: "level",
       headerName: "Grade",
       editable: true,
       width: 200,
+      
     },
   ],
   rows: [],

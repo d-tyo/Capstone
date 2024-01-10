@@ -43,10 +43,12 @@ export default function LessonPage() {
       setLessonTable({ ...lessonTable, rows: lessons });
     });
   }, []);
+//state to use if you need to showcase data quickly
+//reload data changes should be using a useState
 
-  //const lessons = useData("http://localhost:8080/api/lesson", []);
 
-  //lessobjarr.rows = lessons; //lessons.map (lesson => ({...lesson, filePath : <Link href={lesson.filePath}> (open PDF) </Link> }));
+
+
   console.log(lessonTable.rows);
 
   const handleOpenDialog = () => {

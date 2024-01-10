@@ -26,7 +26,7 @@ function DarkModeSwitch({onChangeTheme}) {
     }
 
     return (
-        <label><input type="checkbox" checked={themeDarkMode} onChange={handleThemeChange}/> Dark Mode?</label>
+        <label><input type="checkbox" checked={themeDarkMode} onChange={handleThemeChange} style={{ borderRadius: "100%"}}/> Dark Mode</label>
     )
 }
 

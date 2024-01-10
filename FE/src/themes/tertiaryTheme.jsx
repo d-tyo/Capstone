@@ -3,12 +3,12 @@ import { createTheme } from "@mui/material/styles";
 export const tertiarySettings = {
     palette: {
         primary: {
-            main: '#3C1361',
-            contrastText: '#efefef'
-        },
-        secondary: {
-            main: '#A663FF',
-            contrastText: '#ffffff'
+            main: '#E9D2F1',
+            contrastText: '#6F5D7A',
+          },
+          secondary: {
+            main: '#C6E3D4',
+            contrastText: '#4E6454',
         },
         mode: 'light'
     },
