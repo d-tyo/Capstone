@@ -29,7 +29,7 @@ function SignUpForm() {
   const { currentCP, handleUpdateCP } = useCPContext();
   const [userEmail, setUserEmail] = useState("");
   const [userPassword, setUserPassword] = useState("");
-  const [userName, setUserName] = useState("");
+  const [userName, setUserName] = useState(null); // for the conditional statement
   const [fullName, setFullName] = useState("");
   const [contact, setContact] = useState("");
   const [customDate, setCustomDate] = useState("");
@@ -58,11 +58,11 @@ function SignUpForm() {
     } else if (userPassword === userEmail) {
       setSubmitResult("Password must not match email address");
       setLoginAttempts(loginAttempts + 1);
-    } else if(userEmail|| userPassword|| fullName){
+    } else if(userEmail!==""|| userPassword!==""|| fullName!==""){
       console.log(userName === "")
       try {
         let response;
-        if (userName !== "" ) // email 
+        if (userName === null  ) // 
         {response = await axios.post('/api/teacher/create', 
         {email: userEmail, password: userPassword, teacherName:fullName, level:AL, registrationId:registrationId, contact:contact, DOB:customDate})
       .then (response => console.log(response.data))}
@@ -81,7 +81,7 @@ function SignUpForm() {
  // need to make sure this user object matches the DB model
       //  - add this user into the DB using axios.post
 
-      // navigate("/"); // ("/ - index") taking to main route a.k.a homepage
+      navigate("/"); // ("/ - index") taking to main route a.k.a homepage
     };
 
   if (loginAttempts >= 5) return <p>Go away hackers, attempts exceeded</p>;

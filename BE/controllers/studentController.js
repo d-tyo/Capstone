@@ -15,8 +15,9 @@ const getStudents = (res) => {
       throw err;
     });
 };
-const createStudents = (data, res) => {
+const createStudents = async (data, res) => {
   console.log(data)
+  data.password = await bcrypt.hash(data.password, 10);
   Models.Student.create(data)
     .then(function (data) {
       res.send({ result: 200, data: data });
@@ -28,18 +29,22 @@ const createStudents = (data, res) => {
 
 const loginUser = (data, res) => {
   console.log (data)
-  // Find the user with the given email in the User model
-  Models.Student.findOne({where: { userName: data.userName } }).then(
-  async function (user) {
+  
+  // Find the user with the given userName in the User model
+   Models.Student.findOne({ where: { userName: data.userName } }) .then
+  (async function (user) {
   // If the user exists and the password is correct, send the user data as a response
   if (user && (await bcrypt.compare(data.password, user.password))) {
- 
+  // Replace "your-secret-key" with your actual secret key
+  const secretKey = "81828384"; //enable access to payload
   
   // Create a payload with user information
   const payload = {
   userId: user.id,
-  userNamel: user.userName,
+  userName: user.userName,
   };
+  
+  console.log(user)
   
   // Generate a token with jwt.sign
   const token = jwt.sign(payload, process.env.JWT_KEY, { expiresIn: "1h" });

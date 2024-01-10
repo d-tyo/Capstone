@@ -38,7 +38,7 @@ export default function LogIn() {
     const [errMsg, setErrMsg] = React.useState('')
     const [loginAttempts, setLoginAttempts] = React.useState(0)
 
-    console.log(currentCP) // This needed to be check by Gareth 
+    console.log(currentCP) // This needed to be check by someone
 
     const handleSubmit = async (event) => {
         event.preventDefault();
@@ -61,31 +61,32 @@ export default function LogIn() {
             if (userEmail.includes("@")) // email 
             {response = await axios.post('/api/teacher/login', {email: userEmail, password: userPassword})}
             else
-            {response = await axios.post('/api/student/login', {userName: userEmail, password: userPassword})}
-            loggedInUser = response.data.data.user;
-            console.log(loggedInUser)
+            {response = await axios.post('/api/student/login', {userName: userEmail, password: userPassword})
+            .then(response => response.data)}
+            // loggedInUser = console.log(response.data.data.user);
+            // console.log(loggedInUser)
 
         } catch (err) {
             console.log(err.message)
             setErrMsg(err.message + ': ' + err.response.data.result);
         }
 
-        if (!loggedInUser) {
-            let newAttempts = loginAttempts + 1
+        // if (!loggedInUser) {
+        //     let newAttempts = loginAttempts + 1
 
-            if (newAttempts === 5) {
-                setErrMsg('Maximum login attempts exceeded. You are blocked.');
-            }
-            else {
-                setErrMsg('Unsuccessful login attempt #' + newAttempts + ' of 5');
-            }
-            setLoginAttempts(newAttempts)
-            setLoggedIn(false)
-        } else {
-            setErrMsg('')
-            handleUpdateCP(loggedInUser)
-            setLoggedIn(true)
-        }
+        //     if (newAttempts === 5) {
+        //         setErrMsg('Maximum login attempts exceeded. You are blocked.');
+        //     }
+        //     else {
+        //         setErrMsg('Unsuccessful login attempt #' + newAttempts + ' of 5');
+        //     }
+        //     setLoginAttempts(newAttempts)
+        //     setLoggedIn(false)
+        // } else {
+        //     setErrMsg('')
+        //     // handleUpdateCP(loggedInUser)
+        //     setLoggedIn(true)
+        // }
 
     };
 
