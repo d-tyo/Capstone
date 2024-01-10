@@ -1,3 +1,4 @@
+import axios from 'axios'
 import React, { useState } from "react";
 import Avatar from "@mui/material/Avatar";
 import Button from "@mui/material/Button";
@@ -19,6 +20,7 @@ import { createTheme, ThemeProvider } from "@mui/material/styles";
 import { useCPContext } from "../context/CPContext";
 import { useNavigate } from "react-router-dom";
 import { levels } from "./AcademicLevelsMenu";
+import DateChange from './DateChange';
 
 // Create a Material-UI theme
 const theme = createTheme();
@@ -28,6 +30,10 @@ function SignUpForm() {
   const [userEmail, setUserEmail] = useState("");
   const [userPassword, setUserPassword] = useState("");
   const [userName, setUserName] = useState("");
+  const [fullName, setFullName] = useState("");
+  const [contact, setContact] = useState("");
+  const [customDate, setCustomDate] = useState("");
+  const [errMsg, setErrMsg] = React.useState('')
   const [submitResult, setSubmitResult] = useState("");
   const [loginAttempts, setLoginAttempts] = useState(0);
   const [registrationId, setRegistrationId] = useState("");
@@ -38,10 +44,11 @@ function SignUpForm() {
     setAL(event.target.value);
   };
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
     console.log(userName);
 
+   
     if (userPassword.length < 5) {
       setSubmitResult("Password must be at least 5 characters long");
       setLoginAttempts(loginAttempts + 1);
@@ -51,18 +58,31 @@ function SignUpForm() {
     } else if (userPassword === userEmail) {
       setSubmitResult("Password must not match email address");
       setLoginAttempts(loginAttempts + 1);
-    } else {
-      setSubmitResult("Successful sign-up.");
-      handleUpdateCP({
-        name: userName,
-        email: userEmail,
-        password: userPassword,
-      }); // need to make sure this user object matches the DB model
-      // TODO - add this user into the DB using axios.post
+    } else if(userEmail|| userPassword|| fullName){
+      console.log(userName === "")
+      try {
+        let response;
+        if (userName !== "" ) // email 
+        {response = await axios.post('/api/teacher/create', 
+        {email: userEmail, password: userPassword, teacherName:fullName, level:AL, registrationId:registrationId, contact:contact, DOB:customDate})
+      .then (response => console.log(response.data))}
+        else
+        {response = await axios.post('/api/student/create', 
+        {email: userEmail, password: userPassword, userName:userName, studentName:fullName, grade:AL})}
+        //Maybe for out of scope in the future when admin sign up they can add student function
+       
 
-      navigate("/"); // ("/ - index") taking to main route a.k.a homepage
+    } catch (err) {
+        console.log(err.message)
+        setErrMsg(err.message + ': ' + err.response.data.result);
     }
+
   };
+ // need to make sure this user object matches the DB model
+      //  - add this user into the DB using axios.post
+
+      // navigate("/"); // ("/ - index") taking to main route a.k.a homepage
+    };
 
   if (loginAttempts >= 5) return <p>Go away hackers, attempts exceeded</p>;
   if (currentCP.email) return <p>You are already logged in.</p>;
@@ -113,11 +133,23 @@ function SignUpForm() {
                 <TextField
                   autoComplete="given-name"
                   name="fullName"
-                  onChange={(e) => setUserName(e.target.value)}
+                  onChange={(e) => setFullName(e.target.value)}
                   required
                   fullWidth
                   id="fullName"
                   label="Full Name"
+                  autoFocus
+                />
+              </Grid>
+              <Grid item xs={12}>
+                <TextField
+                  autoComplete="userName"
+                  name="userName"
+                  onChange={(e) => setUserName(e.target.value)}
+                  required
+                  fullWidth
+                  id="userName"
+                  label="User Name"
                   autoFocus
                 />
               </Grid>
@@ -144,6 +176,21 @@ function SignUpForm() {
                   autoComplete="new-password"
                 />
               </Grid>
+              <Grid item xs={12}>
+                <TextField
+                  required
+                  fullWidth
+                  id="contact"
+                  label="Contact"
+                  name="contact"
+                  onChange={(e) => setContact(e.target.value)}
+                  autoComplete="contact"
+                />
+              </Grid>
+              <Grid item xs={12} >
+                  <DateChange setDueDate = {setCustomDate}
+                 />
+                  </Grid >
               <Grid item xs={12}>
                 <FormControl fullWidth>
                   <InputLabel id="demo-simple-select-label">

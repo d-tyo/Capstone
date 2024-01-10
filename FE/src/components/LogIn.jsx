@@ -1,3 +1,4 @@
+import axios from 'axios'
 import React, {useContext} from 'react';
 import Avatar from '@mui/material/Avatar';
 import Button from '@mui/material/Button';
@@ -13,7 +14,7 @@ import Typography from '@mui/material/Typography';
 import Container from '@mui/material/Container';
 import { useCPContext } from '../context/CPContext';
 
-import axios from 'axios'
+
 
 
 function Copyright(props) {
