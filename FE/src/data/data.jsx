@@ -6,7 +6,6 @@ import EditIcon from "@mui/icons-material/Edit";
 import DeleteIcon from "@mui/icons-material/Delete";
 import { GridActionsCellItem } from "@mui/x-data-grid";
 import MUIDynamicDialog from "../components/MUIDynamicDialog";
-import StudentPage from "../pages/StudentPage";
 import EditLesson from "../components/EditLesson";
 import { Link } from "react-router-dom";
 
@@ -71,42 +70,7 @@ export const stuobjarr = {
     {
       field: "actions",
       type: "actions",
-      getActions: (params) => {
-        const [isEditDialogOpen, setIsEditDialogOpen] = useState(false); //field edit
-        const [student, setStudent] = useState(params.row);
-        const [delStudent, setDelStudent] = useState(null);
-
-        return [
-          <MUIDynamicDialog
-            open={isEditDialogOpen}
-            setOpen={setIsEditDialogOpen}
-            student={student}
-          />,
-
-          <GridActionsCellItem
-            showInMenu
-            icon={<EditIcon />}
-            label="Edit"
-            onClick={() => {
-              setIsEditDialogOpen(true);
-              // console.log("Edit", params.row.studentName);
-              // send a request BE to edit
-            }}
-          />,
-          <GridActionsCellItem
-            showInMenu
-            icon={<DeleteIcon />}
-            label="Delete"
-            onClick={() => {
-              axios.delete(`api/student/${params.row.id}`)
-              .then(setDelStudent(params.row))
-              console.log("delete", params.row);
-              // send a request BE to delete
-            }}
-          />,
-        ];
-      },
-    },
+    }
   ], 
   rows: [],
 };

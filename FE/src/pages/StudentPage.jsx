@@ -21,6 +21,10 @@ import Paper from "@mui/material/Paper";
 import Draggable from "react-draggable";
 import DateChange from "../components/DateChange";
 
+import EditIcon from "@mui/icons-material/Edit";
+import { GridActionsCellItem } from "@mui/x-data-grid";
+import MUIDynamicDialog from "../components/MUIDynamicDialog";
+
 function PaperComponent(props) {
   return (
     <Draggable
@@ -33,21 +37,63 @@ function PaperComponent(props) {
 }
 
 export default function StudentPage() {
-  const { teachers, handleUpdateCP } = useTeacherContext();
+  //const { teachers, handleUpdateCP } = useTeacherContext();
+
+  const actionscol = {
+    getActions: (params) => {
+      const [isEditDialogOpen, setIsEditDialogOpen] = useState(false); //field edit
+
+      return [
+        <MUIDynamicDialog
+          open={isEditDialogOpen}
+          setOpen={setIsEditDialogOpen}
+          student={params.row}
+        />,
+
+        <GridActionsCellItem
+          showInMenu
+          icon={<EditIcon />}
+          label="Edit"
+          onClick={() => {
+            setIsEditDialogOpen(true);
+            // console.log("Edit", params.row.studentName);
+          }}
+        />,
+        <GridActionsCellItem
+          showInMenu
+          icon={<DeleteIcon />}
+          label="Delete"
+          onClick={() => {
+            // send a request to BE to delete
+            axios.delete(`api/student/${params.row.id}`)
+            .then((response) => {
+              handleDeleteStudent(params.row);
+              console.log("delete", params.row);
+            });
+          }}
+        />,
+      ];
+    },
+  };
+
+  // add our custom actions (including the delete function) to the original student table
+  const studentTableColumns = {...stuobjarr, columns: stuobjarr.columns.map(stucol => stucol.field == 'actions' ? {...stucol, ...actionscol} : stucol)}
+
   const { currentCP } = useCPContext();
   const [customDate, setCustomDate] = useState(false);
-  const [studentTable, setStudentTable] = useState(stuobjarr);
+  const [studentTable, setStudentTable] = useState(studentTableColumns);
   // const students = useData("http://localhost:8080/api/student");
-  const teacherarray = useData("http://localhost:8080/api/teacher");
+  //const teacherarray = useData("http://localhost:8080/api/teacher");
 
   useEffect(() => {
     axios.get("/api/student").then((response) => {
-      const student = response.data.data;
-      setStudentTable({ ...studentTable, rows: student });
+      const students = response.data.data;
+      setStudentTable({ ...studentTable, rows: students });
     });
   }, []);
+  console.log(studentTable)
 
-  handleUpdateCP(teacherarray); // saved in Teacher Context
+  //handleUpdateCP(teacherarray); // saved in Teacher Context
 
   // stuobjarr.rows = students; //stuobjarr changed = students
   // console.log("studentPage", students);
@@ -60,17 +106,13 @@ export default function StudentPage() {
 
   const handleCloseDialog = () => {
     setOpenDialog(false);
-    window.location.reload(); //refresh the page
+    //window.location.reload(); //refresh the page
   };
 
   const handleAddStudent = async (event) => {
     // Add Student
     event.preventDefault();
     const data = new FormData(event.currentTarget);
-    console.log({
-      email: data.get("email"),
-      password: data.get("password"),
-    });
 
     let fullName = data.get("fullName");
     let Email = data.get("email");
@@ -82,9 +124,6 @@ export default function StudentPage() {
     let registrationId = data.get("registration id");
     let dateOfBirth = customDate;
     let contact = data.get("contact");
-    console.log(currentCP);
-
-    let loggedInUser = null;
 
     try {
       let response = await axios.post(
@@ -104,21 +143,26 @@ export default function StudentPage() {
         }
       );
 
-      // stuobjarr.rows.push(response.data);
+      newStudent = response.data;
+      // add new student to table
+      setStudentTable(prevStudentTable => ({...prevStudentTable, rows: [...prevStudentTable.rows, newStudent]}))
 
-      loggedInUser = response.data;
       handleCloseDialog();
-      console.log(loggedInUser);
+      console.log(newStudent);
     } catch (err) {
       console.log(err.message);
     }
   };
 
+  const handleDeleteStudent = (delstudent) => {
+    setStudentTable(prevStudentTable => ({...prevStudentTable, rows: prevStudentTable.rows.filter(student => student.id != delstudent.id)}))
+  }
+
   return (
     <>
       {Array.isArray(stuobjarr.rows) ? (
         <div>
-          <StudentList data={studentTable} column={studentTable.columns} />
+          <StudentList data={studentTable} column={studentTable.columns} onDeleteStudent={handleDeleteStudent}/>
           {currentCP.teacherName ? (
             <>
               {/* Add an Icon button for adding students */}
