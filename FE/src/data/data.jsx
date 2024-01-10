@@ -1,7 +1,6 @@
 import React, { useState } from "react";
 import axios from "axios";
 import AddIcon from "@mui/icons-material/Add";
-import IconButton from "@mui/material/IconButton";
 import EditIcon from "@mui/icons-material/Edit";
 import DeleteIcon from "@mui/icons-material/Delete";
 import { GridActionsCellItem } from "@mui/x-data-grid";
@@ -9,6 +8,7 @@ import MUIDynamicDialog from "../components/MUIDynamicDialog";
 import StudentPage from "../pages/StudentPage";
 import EditLesson from "../components/EditLesson";
 import { Link } from "react-router-dom";
+import TeacherList from "../components/TeacherList";
 
 // export const stuobjarr = (setDialogOpen) => ();
 
@@ -140,7 +140,47 @@ export const trobjarr = {
       width: 200,
       
     },
-  ],
+
+   {
+      field: "actions",
+      type: "actions",
+      getActions: (params) => {
+        const [isEditDialogOpen, setIsEditDialogOpen] = useState(false); //field edit
+        const [teacher, setTeacher] = useState(params.row);
+        const [delTeacher, setDelTeacher] = useState(null);
+
+        return [
+          <setTeacher
+            open={isEditDialogOpen}
+            setOpen={setIsEditDialogOpen}
+            teacher={teacher}
+          />,
+
+          <GridActionsCellItem
+            showInMenu
+            icon={<EditIcon />}
+            label="Edit"
+            onClick={() => {
+              setIsEditDialogOpen(true);
+              // console.log("Edit", params.row.studentName);
+              // send a request BE to edit
+            }}
+          />,
+          <GridActionsCellItem
+            showInMenu
+            icon={<DeleteIcon />}
+            label="Delete"
+            onClick={() => {
+              axios.delete(`api/teacher/${params.row.id}`)
+              .then(setDelTeacher(params.row))
+              console.log("delete", params.row);
+              // send a request BE to delete
+            }}
+          />,
+        ];
+      },
+    },
+  ], 
   rows: [],
 };
 
@@ -222,8 +262,9 @@ export const lessobjarr = {
             label="Edit"
             onClick={() => {
               setIsEditDialogOpen(true);
+               // send a request BE to edit
               // console.log("Edit", params.row.studentName);
-              // send a request BE to edit
+             
 
             }}
           />,
@@ -234,8 +275,6 @@ export const lessobjarr = {
             onClick={() => {
               axios.delete(`/api/lesson/${params.row.id}`)
               .then(setDelLesson(params.row))
-              window.location.reload()
-              // send a request BE to delete
             }}
           />,
         ];
