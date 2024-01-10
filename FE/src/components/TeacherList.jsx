@@ -1,6 +1,6 @@
 import * as React from 'react';
 import { DataGridPro } from '@mui/x-data-grid-pro';
-import { useDemoData } from '@mui/x-data-grid-generator';
+
 
 
 function updateRowPosition(initialIndex, newIndex, rows) {
@@ -19,7 +19,7 @@ export default function TeacherList(props) {
 
 const data = props.data
 
-  const [rows, setRows] = React.useState(Array.isArray(data.rows) ? data.rows : []);
+const [rows, setRows] = React.useState(Array.isArray(data.rows) ? data.rows : []);
 
 React.useEffect(() => {
   console.log(data);
