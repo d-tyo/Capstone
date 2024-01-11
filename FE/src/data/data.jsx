@@ -108,11 +108,48 @@ export const trobjarr = {
     {
       field: "actions",
       type: "actions",
-    }
+      field: "actions",
+      type: "actions",
+      getActions: (params) => {
+        const [isEditDialogOpen, setIsEditDialogOpen] = useState(false); //field edit
+        const [teacher, setTeacher] = useState(params.row);
+        const [delTeacher, setDelTeacher] = useState(null);
+
+        return [
+          <setTeacher
+            open={isEditDialogOpen}
+            setOpen={setIsEditDialogOpen}
+            teacher={teacher}
+          />,
+
+          <GridActionsCellItem
+            showInMenu
+            icon={<EditIcon />}
+            label="Edit"
+            onClick={() => {
+              setIsEditDialogOpen(true);
+              // console.log("Edit", params.row.studentName);
+              // send a request BE to edit
+            }}
+          />,
+          <GridActionsCellItem
+            showInMenu
+            icon={<DeleteIcon />}
+            label="Delete"
+            onClick={() => {
+              axios.delete(`api/teacher/${params.row.id}`)
+              .then(setDelTeacher(params.row))
+              console.log("delete", params.row);
+              // send a request BE to delete
+            }}
+          />,
+        ];
+      },
+    },
   ], 
   rows: [],
 };
-     
+  
 
 export const lessobjarr = {
   columns: [

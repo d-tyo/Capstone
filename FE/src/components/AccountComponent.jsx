@@ -3,19 +3,9 @@ import { Popper } from "@mui/base/Popper";
 import { styled } from "@mui/material/styles";
 import { NavLink } from "react-router-dom";
 import { ClickAwayListener } from "@mui/base/ClickAwayListener";
-
 import Button from "@mui/material/Button";
 import MenuList from "@mui/material/MenuList";
 import MenuItem from "@mui/material/MenuItem";
-import MenuButton from "@mui/joy/MenuButton";
-import MenuIcon from "@mui/icons-material/Menu";
-import List from "@mui/joy/List";
-import ListItem from "@mui/joy/ListItem";
-import ListItemDecorator from "@mui/joy/ListItemDecorator";
-
-import ArrowRight from "@mui/icons-material/ArrowRight";
-import ArrowDropDown from "@mui/icons-material/ArrowDropDown";
-import Dropdown from "@mui/joy/Dropdown";
 import Switch from "@mui/material/Switch";
 import FormGroup from "@mui/material/FormGroup";
 import FormControlLabel from "@mui/material/FormControlLabel";
@@ -66,7 +56,7 @@ export default function AccountComponent() {
               data-testid="account-switch"
             />
           }
-          label={auth ? "Logout" : "Login"}
+          label={auth ? "👶🏻" : "👦🏻"}
         />
       </FormGroup>
 

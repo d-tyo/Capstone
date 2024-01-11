@@ -1,12 +1,14 @@
-import axios from 'axios'
+import axios from "axios";
+import { Link } from "react-router-dom";
 import React, { useState } from "react";
+import { levels } from "./AcademicLevelsMenu";
+import { useNavigate } from "react-router-dom";
+import { useCPContext } from "../context/CPContext";
+import { createTheme, ThemeProvider } from "@mui/material/styles";
 import Avatar from "@mui/material/Avatar";
 import Button from "@mui/material/Button";
 import CssBaseline from "@mui/material/CssBaseline";
 import TextField from "@mui/material/TextField";
-import FormControlLabel from "@mui/material/FormControlLabel";
-import Checkbox from "@mui/material/Checkbox";
-import Link from "@mui/material/Link";
 import Grid from "@mui/material/Grid";
 import Box from "@mui/material/Box";
 import LockOutlinedIcon from "@mui/icons-material/LockOutlined";
@@ -16,11 +18,8 @@ import InputLabel from "@mui/material/InputLabel";
 import MenuItem from "@mui/material/MenuItem";
 import FormControl from "@mui/material/FormControl";
 import Select from "@mui/material/Select";
-import { createTheme, ThemeProvider } from "@mui/material/styles";
-import { useCPContext } from "../context/CPContext";
-import { useNavigate } from "react-router-dom";
-import { levels } from "./AcademicLevelsMenu";
-import DateChange from './DateChange';
+
+import DateChange from "./DateChange";
 
 // Create a Material-UI theme
 const theme = createTheme();
@@ -33,7 +32,7 @@ function SignUpForm() {
   const [fullName, setFullName] = useState("");
   const [contact, setContact] = useState("");
   const [customDate, setCustomDate] = useState("");
-  const [errMsg, setErrMsg] = React.useState('')
+  const [errMsg, setErrMsg] = React.useState("");
   const [submitResult, setSubmitResult] = useState("");
   const [loginAttempts, setLoginAttempts] = useState(0);
   const [registrationId, setRegistrationId] = useState("");
@@ -48,7 +47,6 @@ function SignUpForm() {
     e.preventDefault();
     console.log(userName);
 
-   
     if (userPassword.length < 5) {
       setSubmitResult("Password must be at least 5 characters long");
       setLoginAttempts(loginAttempts + 1);
@@ -58,31 +56,43 @@ function SignUpForm() {
     } else if (userPassword === userEmail) {
       setSubmitResult("Password must not match email address");
       setLoginAttempts(loginAttempts + 1);
-    } else if(userEmail!==""|| userPassword!==""|| fullName!==""){
-      console.log(userName === "")
+    } else if (userEmail !== "" || userPassword !== "" || fullName !== "") {
+      console.log(userName === "");
       try {
         let response;
-        if (userName === null  ) // 
-        {response = await axios.post('/api/teacher/create', 
-        {email: userEmail, password: userPassword, teacherName:fullName, level:AL, registrationId:registrationId, contact:contact, DOB:customDate})
-      .then (response => console.log(response.data))}
-        else
-        {response = await axios.post('/api/student/create', 
-        {email: userEmail, password: userPassword, userName:userName, studentName:fullName, grade:AL})}
+        if (userName === null) {
+          //
+          response = await axios
+            .post("/api/teacher/create", {
+              email: userEmail,
+              password: userPassword,
+              teacherName: fullName,
+              level: AL,
+              registrationId: registrationId,
+              contact: contact,
+              DOB: customDate,
+            })
+            .then((response) => console.log(response.data));
+        } else {
+          response = await axios.post("/api/student/create", {
+            email: userEmail,
+            password: userPassword,
+            userName: userName,
+            studentName: fullName,
+            grade: AL,
+          });
+        }
         //Maybe for out of scope in the future when admin sign up they can add student function
-       
-
-    } catch (err) {
-        console.log(err.message)
-        setErrMsg(err.message + ': ' + err.response.data.result);
+      } catch (err) {
+        console.log(err.message);
+        setErrMsg(err.message + ": " + err.response.data.result);
+      }
     }
+    // need to make sure this user object matches the DB model
+    //  - add this user into the DB using axios.post
 
+    navigate("/"); // ("/ - index") taking to main route a.k.a homepage
   };
- // need to make sure this user object matches the DB model
-      //  - add this user into the DB using axios.post
-
-      navigate("/"); // ("/ - index") taking to main route a.k.a homepage
-    };
 
   if (loginAttempts >= 5) return <p>Go away hackers, attempts exceeded</p>;
   if (currentCP.email) return <p>You are already logged in.</p>;
@@ -187,17 +197,16 @@ function SignUpForm() {
                   autoComplete="contact"
                 />
               </Grid>
-              <Grid item xs={12} >
-                  <DateChange setDueDate = {setCustomDate}
-                 />
-                  </Grid >
+              <Grid item xs={12}>
+                <DateChange setDueDate={setCustomDate} />
+              </Grid>
               <Grid item xs={12}>
                 <FormControl fullWidth>
                   <InputLabel id="demo-simple-select-label">
                     Academic Level
                   </InputLabel>
 
-                  {/*  - make sure this matches the list in AcademicLevelsMenu, ideally both use same variable */}
+                  {/*  - this matches the list in AcademicLevelsMenu, ideally both use same variable */}
                   <Select
                     labelId="demo-simple-select-label"
                     id="demo-simple-select"
@@ -233,7 +242,7 @@ function SignUpForm() {
             </Button>
             <Grid container justifyContent="flex-end">
               <Grid item>
-                <Link href="#" variant="body2">
+                <Link to="/login" variant="body2">
                   Already have an account? Log In
                 </Link>
               </Grid>
