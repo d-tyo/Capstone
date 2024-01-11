@@ -26,6 +26,7 @@ export default function DateChange(props) {
           renderInput={(params) => <input {...params} />}
           format="DD-MM-YYYY"
           variant="outlined"
+          maxWidth
           sx={{ borderRadius: 12, marginBottom: 2 }}
         />
       </LocalizationProvider>

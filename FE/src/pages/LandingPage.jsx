@@ -5,6 +5,7 @@ import Button from '@mui/material/Button';
 import { useCPContext } from '../context/CPContext';
 import { createTheme, ThemeProvider } from '@mui/material/styles';
 import img1 from '../assets/img1.jpg';
+import { useNavigate } from 'react-router-dom';
 
 // Define a custom theme with a new font
 const customTheme = createTheme({
@@ -14,6 +15,7 @@ const customTheme = createTheme({
 });
 
 export default function LandingPage() {
+  const navigate = useNavigate()
   return (
     <ThemeProvider theme={customTheme}>
       <div
@@ -62,7 +64,7 @@ export default function LandingPage() {
             <Typography variant="body1" paragraph>
               Join Circle Play today and experience managable lessons, engaging activities, and a world of knowledge. Let's make learning enjoyable!
             </Typography>
-            <Button variant="contained" color="primary" size="large">
+            <Button onClick= {() => navigate("/login")} variant="contained" color="primary" size="large">
               Start Learning
             </Button>
           </div>

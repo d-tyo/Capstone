@@ -106,7 +106,7 @@ export default function StudentPage() {
 
   const handleCloseDialog = () => {
     setOpenDialog(false);
-    //window.location.reload(); //refresh the page
+   
   };
 
   const handleAddStudent = async (event) => {
@@ -156,7 +156,7 @@ export default function StudentPage() {
 
   const handleDeleteStudent = (delstudent) => {
     setStudentTable(prevStudentTable => ({...prevStudentTable, rows: prevStudentTable.rows.filter(student => student.id != delstudent.id)}))
-  }
+  } //deleting the student ID that is not included
 
   return (
     <>
